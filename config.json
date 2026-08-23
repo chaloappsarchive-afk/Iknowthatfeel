@@ -1,0 +1,20 @@
+appVersion:766320698
+AppIDRealtime:7b3e94a1-8d2c-4f5e-9a1b-3c5d6e7f8a9b
+servers:open
+photonvoiceid:null
+setupasstandart:true
+JsonData:
+{
+  "news"
+   {
+    id:1,
+    text: "Мы добавили функцию новостей,теперь тут будет все писаться об обновлениях, 0_o",
+    image: disabled
+    }
+   "anonce"
+  {
+    AnonceText: "Test",
+    until: "forever",
+    Image: rrkfndsdfamdsa
+  }
+}
