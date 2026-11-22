@@ -330,6 +330,58 @@ def cmd_module(a):
     return 0
 
 
+def cmd_images(a):
+    """Перечислить образы (сборки), для которых в .so есть таблица кода.
+
+    Полезно не только справочно: зная methodCount каждой сборки, можно сопоставить
+    её с распознанными чанками MethodDef из метаданных (их 240) и тем самым
+    подобрать OFF для библиотечных сборок — сейчас он установлен только для
+    игровой, поэтому методы Photon/UnityEngine к своим типам не привязаны.
+    """
+    so = So(a.so)
+    names = set()
+    for off, _va in so.find_str(b".dll\x00"):
+        # find_str возвращает позицию самого ".dll\0", а assemblyName в структуре
+        # указывает на НАЧАЛО имени образа — поэтому сначала отходим назад до
+        # границы строки, и уже её начало переводим в vaddr.
+        start = off
+        while start > 0 and 32 <= so.data[start - 1] < 127:
+            start -= 1
+        nm = so.data[start:off + 4].decode("ascii", "replace")
+        va = so.off_to_vaddr(start)
+        if len(nm) > 4 and va:
+            names.add((nm, va))
+    print("строк-кандидатов на имя образа: %d" % len(names))
+    rows = []
+    for nm, va in sorted(names):
+        mods = []
+        for ptr_off, _ptr_va in so.find_ptrs(va):
+            if not so.writable_off(ptr_off):
+                continue
+            cand = _try_module(so, ptr_off, va)
+            if cand:
+                cand["name"] = nm
+                # базу берём ровно в позиции указателя, то есть assemblyName —
+                # первое поле структуры (delta = 0)
+                cand["struct_delta"] = 0
+                mods.append(cand)
+        if mods:
+            mods.sort(key=lambda d: (-d["_score"], -d["method_count"], d["struct_delta"]))
+            rows.append(mods[0])
+    rows.sort(key=lambda d: -d["method_count"])
+    if not rows:
+        print("ни одной таблицы кода не найдено")
+        return 1
+    print("\n%-42s %-10s %s" % ("образ", "методов", "структура / methodPointers"))
+    for d in rows:
+        print("%-42s %-10d 0x%X -> 0x%X  (count +%d, ptrs +%d)"
+              % (d["name"], d["method_count"], d["struct_offset"],
+                 d["method_pointers_vaddr"], d["count_off"], d["ptr_off"]))
+    print("\nвсего образов с таблицей кода: %d, суммарно методов: %d"
+          % (len(rows), sum(d["method_count"] for d in rows)))
+    return 0
+
+
 def cmd_rva(a):
     so = So(a.so)
     mod = pick_module(find_codegen_modules(so, a.image), a.image)
@@ -493,6 +545,9 @@ def main() -> int:
 
     sp = sub.add_parser("module", help="найти Il2CppCodeGenModule и methodPointers")
     common(sp); sp.set_defaults(fn=cmd_module)
+
+    sp = sub.add_parser("images", help="все образы (сборки) и их methodCount")
+    common(sp, image=False); sp.set_defaults(fn=cmd_images)
 
     sp = sub.add_parser("rva", help="RVA/Offset метода по rid")
     common(sp); sp.add_argument("--rid", type=int, action="append", required=True,
