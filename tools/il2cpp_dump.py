@@ -107,6 +107,13 @@ def main(argv: list[str] | None = None) -> int:
     methods = mchunks[GAME_METHOD_BASE]
     props = pchunks.get(GAME_PROP_BASE, {})
 
+    # Дочитываем хвост таблицы типов: `chunks()` отбраковывает имена с '=' и цифрами,
+    # из-за чего терялись __StaticArrayInitTypeSize=20/24/72.
+    types, added = T.extend_type_chunk(m, types, GAME_TYPE_BASE)
+    if added:
+        print("# дочитано записей типов, отбракованных по имени: %d -> %s"
+              % (len(added), [ (r, m.raw_name(m.u32(types[r], T.TYPE_NAME))) for r in added ]))
+
     # --- методы по declaringType --------------------------------------------
     by_dt: dict[int, list] = collections.defaultdict(list)
     for rid, rec in sorted(methods.items()):
@@ -115,25 +122,20 @@ def main(argv: list[str] | None = None) -> int:
     first_method = {dt: lst[0][0] for dt, lst in by_dt.items()}
 
     # --- свойства и их владельцы ---------------------------------------------
+    # У PropertyDef нет поля «владелец»: принадлежность типу в оригинале задаётся
+    # диапазоном TypeDef.propertyStart/property_count, а он в этом файле не
+    # читается. Восстанавливаем по get/set (смещения от первого метода типа),
+    # именам аксессоров и порядку rid свойств — см. resolve_property_owners().
+    prop_owner, unresolved_rids, prop_stats = T.resolve_property_owners(m, methods, props)
     props_by_owner: dict[int, list] = collections.defaultdict(list)
-    unresolved_props = []
-    for prid, prec in sorted(props.items()):
-        pname = m.name(m.u32(prec, T.PROP_NAME))
-        if not pname:
-            continue
-        g, s = m.u32(prec, 4), m.u32(prec, 8)
-        want = "get_" + pname
-        owners = [dt for dt, F in first_method.items()
-                  if 0 < g < 0xFFFF and meth_name.get(F + g) == want]
-        if not owners and 0 < g < 0xFFFF:
-            # без get-метода ищем по set-методу
-            owners = [dt for dt, F in first_method.items()
-                      if 0 < s < 0xFFFF and meth_name.get(F + s) == "set_" + pname]
-        if owners:
-            for dt in owners:
-                props_by_owner[dt].append((prid, pname, g, s, m.u32(prec, T.PROP_TOK), len(owners)))
-        else:
-            unresolved_props.append((prid, pname, g, s))
+    for prid, info in sorted(prop_owner.items()):
+        prec = props[prid]
+        props_by_owner[info["dt"]].append(
+            (prid, m.name(m.u32(prec, T.PROP_NAME)) or "", m.u32(prec, T.PROP_GET),
+             m.u32(prec, T.PROP_SET), m.u32(prec, T.PROP_TOK), info))
+    unresolved_props = [(prid, m.name(m.u32(props[prid], T.PROP_NAME)) or "",
+                         m.u32(props[prid], T.PROP_GET), m.u32(props[prid], T.PROP_SET))
+                        for prid in unresolved_rids]
 
     # --- индексы имён, уже занятые таблицами (для эвристики полей) ------------
     claimed: set[int] = set()
@@ -176,7 +178,8 @@ def main(argv: list[str] | None = None) -> int:
 
     by_ns: dict[str, list] = collections.defaultdict(list)
     for trid, trec in sorted(types.items()):
-        by_ns[m.name(m.u32(trec, T.TYPE_NS)) or ""].append((trid, trec))
+        by_ns[(m.raw_name(m.u32(trec, T.TYPE_NS))
+               or m.name(m.u32(trec, T.TYPE_NS)) or "")].append((trid, trec))
 
     for ns in sorted(by_ns):
         if ns:
@@ -184,7 +187,8 @@ def main(argv: list[str] | None = None) -> int:
             w("{")
         ind = "\t" if ns else ""
         for trid, trec in by_ns[ns]:
-            tname = m.name(m.u32(trec, T.TYPE_NAME)) or "<без имени>"
+            tname = (m.raw_name(m.u32(trec, T.TYPE_NAME))
+                     or m.name(m.u32(trec, T.TYPE_NAME)) or "<без имени>")
             dt = GAME_OFF + trid
             ms = by_dt.get(dt, [])
             prs = props_by_owner.get(dt, [])
@@ -203,12 +207,15 @@ def main(argv: list[str] | None = None) -> int:
 
             if prs:
                 w("%s\t// ---- Свойства (PropertyDefinition) ----" % ind)
-                for prid, pname, g, s, ptok, nown in prs:
-                    acc = ("get; " if 0 < g < 0xFFFF else "") + ("set; " if 0 < s < 0xFFFF else "")
-                    w("%s\t// Property rid=%d token=0x%08X  get=+%s  set=+%s (от первого метода типа)%s"
-                      % (ind, prid, ptok,
-                         g if 0 < g < 0xFFFF else "—", s if 0 < s < 0xFFFF else "—",
-                         "  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (%d кандидатов)" % nown if nown > 1 else ""))
+                for prid, pname, g, s, ptok, info in prs:
+                    g_rid, s_rid = info["get"], info["set"]
+                    acc = ("get; " if g_rid else "") + ("set; " if s_rid else "")
+                    g_txt = "+%d" % g if g != 0xFFFFFFFF else "—"
+                    s_txt = "+%d" % s if s != 0xFFFFFFFF else "—"
+                    w("%s\t// Property rid=%d token=0x%08X  get=%s  set=%s (от первого метода типа)"
+                      % (ind, prid, ptok, g_txt, s_txt))
+                    w("%s\t// владелец найден по правилу «%s»; аксессоры: get rid=%s, set rid=%s"
+                      % (ind, info["how"], g_rid or "—", s_rid or "—"))
                     w("%s\tpublic object %s { %s}" % (ind, pname, acc or "/*аксессоров нет*/"))
                     w("")
                 n_props += len(prs)
@@ -296,15 +303,19 @@ def main(argv: list[str] | None = None) -> int:
     # --- свойства без владельца ----------------------------------------------
     if unresolved_props:
         w("// ============================================================================")
-        w("// Свойства, владелец которых не восстановлен (%d из %d): get/set в"
+        w("// Свойства, владелец которых не восстановлен (%d из %d)."
           % (len(unresolved_props), len(props)))
-        w("// PropertyDefinition — смещения от первого метода типа-владельца, и ни один тип")
-        w("// не дал метода с именем get_<свойство>. Причины: аксессор в другой сборке,")
-        w("// свойство без get-аксессора, либо сдвиг базы у владельца.")
+        w("// Проверены оба правила: (1) у типа есть метод по адресу first_method+get с")
+        w("// именем get_<свойство> — включая явные реализации интерфейса вида")
+        w("// <интерфейс>.get_X; (2) у типа есть метод с таким именем и get < числа его")
+        w("// методов. Здесь не сработало ни то ни другое: аксессора с таким именем в")
+        w("// игровом чанке MethodDef нет вовсе — он в другой сборке или вырезан.")
         w("// ============================================================================")
         for prid, pname, g, s in unresolved_props:
-            w("// Property rid=%d  %s   get=+%s set=+%s"
-              % (prid, pname, g if 0 < g < 0xFFFF else "—", s if 0 < s < 0xFFFF else "—"))
+            w("// Property rid=%d  %s   get=%s set=%s"
+              % (prid, pname,
+                 "+%d" % g if g != 0xFFFFFFFF else "—",
+                 "+%d" % s if s != 0xFFFFFFFF else "—"))
         w("")
 
     # --- прочие чанки типов (не игровая сборка) --------------------------------

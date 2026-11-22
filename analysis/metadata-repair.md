@@ -5,9 +5,9 @@
 файл можно только пересобрать**, и пересобран он частично. Результат:
 
 ```
-analysis/global-metadata.game-only.dat    527 980 байт (515,6 КБ), sanity 0xFAB11BAF, version 24
+analysis/global-metadata.game-only.dat    528 068 байт (515,7 КБ), sanity 0xFAB11BAF, version 24
 tools/il2cpp_rebuild.py                   генератор + round-trip проверка (--verify по умолчанию)
-analysis/Dump.cs                          объявления игровой сборки (3,6 МБ, 55 091 строка)
+analysis/Dump.cs                          объявления игровой сборки (3,78 МБ, 56 864 строки)
 tools/il2cpp_dump.py                      генератор Dump.cs
 ```
 
@@ -46,12 +46,12 @@ tools/il2cpp_dump.py                      генератор Dump.cs
 
 | секция | offset | size | записей | шаг |
 |---|---|---|---|---|
-| `string` | 0xF8 | 88 176 | — | — |
-| `properties` | 0x15968 | 13 460 | 673 | 20 |
-| `methods` | 0x18DFC | 288 192 | 9 006 | 32 |
-| `typeDefinitions` | 0x5F3BC | 137 816 | 1 498 | 92 |
-| `images` | 0x80E14 | 24 | 1 | 24 |
-| `assemblies` | 0x80E2C | 64 | 1 | 64 |
+| `string` | 0xF8 | 88 263 | — | — |
+| `properties` | 0x159C0 | 13 460 | 673 | 20 |
+| `methods` | 0x18E54 | 288 192 | 9 006 | 32 |
+| `typeDefinitions` | 0x5F414 | 137 816 | 1 498 | 92 |
+| `images` | 0x80E6C | 24 | 1 | 24 |
+| `assemblies` | 0x80E84 | 64 | 1 | 64 |
 
 Все прочие секции — `offset = 0, size = 0`: `stringLiteral(Data)`, `events`, `parameters`,
 `fields`, `genericParameters`, `genericParameterConstraints`, `genericContainers`,
@@ -70,10 +70,34 @@ tools/il2cpp_dump.py                      генератор Dump.cs
   дал лучший результат 5,8 %, то есть их там нет). Методы при этом **перенумерованы**:
   уложены сплошь по возрастанию типа-владельца, иначе `methodStart`/`method_count`
   не имели бы смысла.
-* `TypeDefinition.propertyStart` / `property_count` — так же, по владельцу свойства.
+* `TypeDefinition.propertyStart` / `property_count` — восстановлены по владельцу
+  свойства, а **владельца в `PropertyDefinition` нет**: в оригинале принадлежность
+  типу задаётся самим диапазоном `propertyStart`/`property_count`, который здесь не
+  читается. Владелец выводится функцией `resolve_property_owners()`
+  (`tools/il2cpp_tables.py`) двумя правилами.
+
+  *Правило 1 — точное смещение:* у типа `dt` есть метод с именем `get_<имя>`
+  (или `set_<имя>`, включая явные реализации интерфейса вида
+  `<интерфейс>.get_X` — таких в игре 375) ровно по адресу `first_method[dt] + get`.
+
+  *Правило 2 — мягкое,* для свойств со «съехавшим» смещением: метод с именем
+  аксессора у типа существует, `get` влезает в его блок методов, тип лежит в окне
+  между ближайшими уже привязанными соседями по rid, и найденный аксессор **ещё не
+  занят** другим свойством этого типа — иначе у класса получилось бы два
+  одноимённых свойства, чего C# не допускает (кроме индексаторов `Item`, у которых
+  аксессоры разные).
+
+  Кандидатов обычно несколько (`get_Current`, `get_Item` есть у десятков типов),
+  поэтому выбор делается по порядку rid: свойства лежат сплошными диапазонами по
+  типам (94 из 98 проверенных владельцев дали непрерывный диапазон, 4 нарушения
+  монотонности на 248). Проход требует неубывающей позиции владельца и предпочитает
+  предыдущего владельца. Итог: **659 свойств из 673 привязаны** (было 238), 14
+  остались без владельца — см. §4.
+
 * `PropertyDefinition.get` / `set` — в исходнике это **смещения от первого метода типа**
-  (проверено на 252 из 673), а стандарт требует абсолютных индексов массива методов.
-  Пересчитаны в абсолютные.
+  (подтверждено на 659 из 673), а стандарт требует абсолютных индексов массива методов.
+  Пересчитаны в абсолютные: у всех 659 привязанных свойств `get` указывает на метод
+  с именем `get_<имя свойства>`.
 * `MethodDefinition.declaringType` — из глобального индекса `3400 + rid` переведён
   в индекс массива типов (`rid - 1`).
 * Куча строк собрана заново (дедуплицирована, индекс 0 = пустая строка), все `nameIndex`
@@ -91,11 +115,15 @@ sanity 0xFAB11BAF version 24 — заголовок читается
 typeDefinitions: 1498 записей (ожидалось 1498)
 methods        : 9006 записей (ожидалось 9006)
 properties     : 673 записей  (ожидалось 673)
-имена типов: расхождений 0 из 1494
+имена типов: расхождений 0 из 1497
 BotController    methodStart=5646  method_count=27   Awake, Start, PlaySpawnFX, CheckAttack, Damage, Heal…
 GameController   methodStart=2645  method_count=62   get_GameStartTime, Awake, Start, SendMyEvent, OnEvent, CheckIsMapValid…
 CharacterMotor   methodStart=5831  method_count=120  get_playerClothingManager, get_playerTauntsManager, get_FPSCameraPosition, Awake, Start, TakePhoto…
-свойства: имён совпало 673/673; абсолютный get указан у 217, из них ведут на get_<имя> — 217
+CharacterMotor   propertyStart=432 property_count=13  playerClothingManager, playerTauntsManager, FPSCameraPosition, MyPhotoSize, isInAir, IsAlive…
+GameController   propertyStart=237 property_count=3   GameStartTime, MyTeamScore, OtherTeamScore
+JSONNode         propertyStart=597 property_count=12  Item, Item, Value, Count, Childs, DeepChilds…
+свойства: имён совпало 673/673; абсолютный get указан у 659, из них ведут на get_<имя> — 659
+size(string)=88263, size(images)=24, size(assemblies)=64
 ВСЕ ПРОВЕРКИ ПРОЙДЕНЫ
 ```
 
@@ -115,9 +143,50 @@ CharacterMotor   methodStart=5831  method_count=120  get_playerClothingManager, 
   `globalTypeIndex = OFF + rid` подобрана только для игровой сборки, `OFF = 3400`),
   поэтому их методы к типам не привязать. В файле один `image` (`Assembly-CSharp.dll`)
   и одна `assembly`.
-* **1 498 записей типов при 1 494 распознанных.** В чанке есть rid до 1498, но четыре
-  записи не распознаны — на их месте лежат нулевые заглушки (`nameIndex = 0`, `token = 0`).
-  Это честная дырка, а не данные.
+* **1 498 записей типов, 1 497 с именем.** Хвост чанка дочитывается отдельно
+  (`extend_type_chunk()`): штатный `name()` отбраковывает имена, не похожие на
+  идентификатор C#, и из-за этого терялись легальные сгенерированные Roslyn типы
+  `__StaticArrayInitTypeSize=20/24/72` (rid 1493/1496/1497) — в их именах есть `=`.
+  Без имени осталась одна запись, rid 1495 (`0xADFAE0`): её `nameIndex = 42` указывает
+  в нерасшифрованную область, то есть на месте имени — мусор. В файл она положена
+  нулевой заглушкой, и это честная дырка, а не данные.
+
+  Записи внутри чанка **перемешаны**: порядок на решётке `base + (i-1)*76` не совпадает
+  с rid токена (например, `0xADF964` = rid 1494, следующая `0xADF9B0` = rid 1493).
+  Поэтому rid всегда читается из токена (`token & 0xFFFFFF`), а не из позиции.
+
+  Отдельная аномалия хвоста: типу с rid 1493 (`__StaticArrayInitTypeSize=20`)
+  `declaringType` приписывает 14 методов `getBuilderInstance`, `.ctor`, `build`,
+  `withPublicKey`, `withSignature`, `withPurchaseData`, `withPrice`, `withCurrency`,
+  `withSku`, `withOrderId`, `withPurchaseToken`, `withPurchaseTimestamp`,
+  `withAdditionalParameters`, `withDeveloperPayload` (rid 9169..9182) — по смыслу это
+  `PlayStoreInAppPurchase.Builder`. У записи `0xADF9B0` `namespaceIndex = 636503`
+  совпадает с `namespaceIndex` типа `Builder` (rid 1491), а `nameIndex = 222430`
+  указывает в другой участок кучи (214k–223k, где лежат компиляторно-генерируемые
+  имена). То есть похоже на повреждённый/перемешанный `nameIndex` этой одной записи.
+  **Исправлять догадкой не стали**: и токен, и `declaringType` читаются из данных как
+  есть. Что привязка `3400 + rid` в этом хвосте верна, подтверждается независимо —
+  метод `ComputeStringHash` (rid 9183) имеет `declaringType = 4898` = rid 1498 =
+  `<PrivateImplementationDetails>`, что ровно соответствует Roslyn.
+
+* **14 свойств без владельца.** Их get/set указывают на методы-аксессоры, которые уже
+  заняты другими записями свойств, либо аксессора с таким именем в игровом чанке
+  `MethodDef` нет вовсе. Список: `isSelected` (rid 342, аксессора нет),
+  `Item` (634, 642, 643), `Count` (635), `Childs` (636), `AsInt`/`AsFloat`/`AsDouble`/
+  `AsBool`/`AsArray`/`AsObject` (644..649), `System.Collections.IEnumerator.Current`
+  (680), `NativeInAppPurchase` (684). Почти все — семейство SimpleJSON
+  (`JSONNode`/`JSONArray`/`JSONClass`/`JSON`) и Google Play Store Kit: у этих типов
+  смещения аксессоров «съехали» относительно восстановленного `first_method`, а
+  кандидатов несколько, поэтому присваивать владельца по догадке неверно. В файле они
+  лежат сплошным хвостом после всех принадлежащих типам (`propertyStart` на них не
+  указывает), а в `Dump.cs` вынесены в отдельный раздел с причиной.
+
+* **1 группа методов без типа-владельца.** Метод `ReleaseGssBuffer` (rid 9184) имеет
+  `declaringType = 4904` = rid 1504 — это **за пределами** игрового чанка типов
+  (он кончается на rid 1498, следующая сборка начинается с `0xADFB2C`, где rid идут
+  заново: `GssApiException`, `GssBuffer`, `Status`, `GssFlags`, `NetSecurityNative`).
+  Метод положен в файл, но в `Dump.cs` вынесен в приложение: для игровой сборки
+  владелец не восстановим.
 * **Полей нет вообще.** `FieldDefinition` игровой сборки отсутствует в файле физически.
   Проверено тремя способами: (1) по тегу `0x04` находятся только 6 301 запись и все —
   библиотечные; (2) известные имена полей (`destroyingDuration` 583143, `dieSound` 583175,
@@ -151,8 +220,8 @@ CharacterMotor   methodStart=5831  method_count=120  get_playerClothingManager, 
 ## 5. `Dump.cs`
 
 `analysis/Dump.cs` — объявления игровой сборки в формате, близком к Il2CppDumper:
-1 494 типа, 9 006 методов, 238 свойств с установленным владельцем
-(456 свойств без владельца вынесены в отдельный хвост, 2 группы методов без
+1 497 типов, 9 006 методов, 659 свойств с установленным владельцем
+(14 свойств без владельца вынесены в отдельный хвост, 1 группа методов без
 типа-владельца — тоже).
 
 Факты в нём: имена типов и методов, namespace, число параметров, принадлежность типу,

@@ -16,7 +16,7 @@
 // ФАКТЫ: имена типов и методов, namespace, число параметров, принадлежность типу,
 // флаги, колонка slot, токены, свойства с get/set и их владельцы.
 //
-// Игровая сборка: чанк типов 0xAC3E74 (1494 записей, шаг 76), чанк методов 0x411540
+// Игровая сборка: чанк типов 0xAC3E74 (1497 записей, шаг 76), чанк методов 0x411540
 // (9006 записей, шаг 30), чанк свойств 0x2FE698 (673 записей, шаг 20).
 // Связка: globalTypeIndex = 3400 + rid типа.
 // ============================================================================
@@ -45,10 +45,19 @@ public class <MoveObject>d__13
 // --------------------------------------------------------------
 // TypeDefIndex: 2   token: 0x02000002   запись: 0xAC3F58
 // globalTypeIndex: 3402 = OFF(3400) + rid(2)
-// методов: 6  (rid 7..12)   свойств: 0
+// методов: 6  (rid 7..12)   свойств: 2
 // --------------------------------------------------------------
 public class PingPongMovement
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=1 token=0x17000001  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=10, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=2 token=0x17000002  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=12, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7  пар=0  slot=—  flags=0x81 (hidebysig)  колонка+0=19708  token=0x06000007
 	private PingPongMovement() { }
@@ -80,10 +89,19 @@ public class PingPongMovement
 // --------------------------------------------------------------
 // TypeDefIndex: 3   token: 0x02000003   запись: 0xAC3EC0
 // globalTypeIndex: 3403 = OFF(3400) + rid(3)
-// методов: 6  (rid 13..18)   свойств: 0
+// методов: 6  (rid 13..18)   свойств: 2
 // --------------------------------------------------------------
 public class <MoveObjectsContinuously>d__10
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=3 token=0x17000003  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=16, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=4 token=0x17000004  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=18, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=13  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x0600000D
 	private <MoveObjectsContinuously>d__10() { }
@@ -355,12 +373,17 @@ public class Santa2024SecretManager
 // --------------------------------------------------------------
 // TypeDefIndex: 12   token: 0x0200000C   запись: 0xAC41B8
 // globalTypeIndex: 3412 = OFF(3400) + rid(12)
-// методов: 9  (rid 36..44)   свойств: 1
+// методов: 9  (rid 36..44)   свойств: 2
 // --------------------------------------------------------------
 public class State
 {
 	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=5 token=0x17000005  get=+0  set=+1 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=36, set rid=37
+	public object SecretDone { get; set; }
+
 	// Property rid=6 token=0x17000006  get=+2  set=+3 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=38, set rid=39
 	public object RewardDone { get; set; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -1021,18 +1044,25 @@ public class ElectricityLine3D
 // --------------------------------------------------------------
 // TypeDefIndex: 30   token: 0x0200001E   запись: 0xAC4710
 // globalTypeIndex: 3430 = OFF(3400) + rid(30)
-// методов: 23  (rid 136..158)   свойств: 3
+// методов: 23  (rid 136..158)   свойств: 4
 // --------------------------------------------------------------
 public class GUI_Control_Demonstration
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=8 token=0x17000008  get=+1  set=+— (от первого метода типа)
+	// Property rid=7 token=0x17000007  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=136, set rid=—
+	public object minDistanceBeetwenSmoothingPoints { get; }
+
+	// Property rid=8 token=0x17000008  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=137, set rid=—
 	public object minDistanceBeetwenPoints { get; }
 
-	// Property rid=9 token=0x17000009  get=+2  set=+— (от первого метода типа)
+	// Property rid=9 token=0x17000009  get=+2  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=138, set rid=—
 	public object Width { get; }
 
-	// Property rid=10 token=0x1700000A  get=+3  set=+— (от первого метода типа)
+	// Property rid=10 token=0x1700000A  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=139, set rid=—
 	public object delayChangedPosition { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -1753,27 +1783,37 @@ public class BufferedColor
 // --------------------------------------------------------------
 // TypeDefIndex: 51   token: 0x02000033   запись: 0xAC4CB4
 // globalTypeIndex: 3451 = OFF(3400) + rid(51)
-// методов: 20  (rid 312..331)   свойств: 6
+// методов: 20  (rid 312..331)   свойств: 7
 // --------------------------------------------------------------
 public class AdvancedSettings
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=14 token=0x1700000E  get=+1  set=+— (от первого метода типа)
+	// Property rid=13 token=0x1700000D  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=312, set rid=—
+	public object r { get; }
+
+	// Property rid=14 token=0x1700000E  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=313, set rid=—
 	public object g { get; }
 
-	// Property rid=15 token=0x1700000F  get=+2  set=+— (от первого метода типа)
+	// Property rid=15 token=0x1700000F  get=+2  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=314, set rid=—
 	public object b { get; }
 
-	// Property rid=16 token=0x17000010  get=+3  set=+— (от первого метода типа)
+	// Property rid=16 token=0x17000010  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=315, set rid=—
 	public object a { get; }
 
-	// Property rid=17 token=0x17000011  get=+4  set=+— (от первого метода типа)
+	// Property rid=17 token=0x17000011  get=+4  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=316, set rid=—
 	public object h { get; }
 
-	// Property rid=18 token=0x17000012  get=+5  set=+— (от первого метода типа)
+	// Property rid=18 token=0x17000012  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=317, set rid=—
 	public object s { get; }
 
-	// Property rid=19 token=0x17000013  get=+6  set=+— (от первого метода типа)
+	// Property rid=19 token=0x17000013  get=+6  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=318, set rid=—
 	public object v { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -1838,12 +1878,17 @@ public class AdvancedSettings
 // --------------------------------------------------------------
 // TypeDefIndex: 52   token: 0x02000034   запись: 0xAC4D4C
 // globalTypeIndex: 3452 = OFF(3400) + rid(52)
-// методов: 57  (rid 251..307)   свойств: 1
+// методов: 57  (rid 251..307)   свойств: 2
 // --------------------------------------------------------------
 public class FlexibleColorPicker
 {
 	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=11 token=0x1700000B  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=251, set rid=—
+	public object avs { get; }
+
 	// Property rid=12 token=0x1700000C  get=+1  set=+2 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=252, set rid=253
 	public object color { get; set; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -2002,10 +2047,19 @@ public class <Shake>d__5
 // --------------------------------------------------------------
 // TypeDefIndex: 54   token: 0x02000036   запись: 0xAC4E7C
 // globalTypeIndex: 3454 = OFF(3400) + rid(54)
-// методов: 6  (rid 337..342)   свойств: 0
+// методов: 6  (rid 337..342)   свойств: 2
 // --------------------------------------------------------------
 public class <DestroyParticle>d__20
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=20 token=0x17000014  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=340, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=21 token=0x17000015  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=342, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=337  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000151
 	public <DestroyParticle>d__20() { }
@@ -2074,10 +2128,19 @@ public class CameraShakeSimpleScript
 // --------------------------------------------------------------
 // TypeDefIndex: 56   token: 0x02000038   запись: 0xAC4F14
 // globalTypeIndex: 3456 = OFF(3400) + rid(56)
-// методов: 6  (rid 349..354)   свойств: 0
+// методов: 6  (rid 349..354)   свойств: 2
 // --------------------------------------------------------------
 public class <UpdateRay>d__9
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=22 token=0x17000016  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=352, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=23 token=0x17000017  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=354, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=349  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x0600015D
 	public <UpdateRay>d__9() { }
@@ -2148,10 +2211,19 @@ public class ProjectileMoveScript
 // --------------------------------------------------------------
 // TypeDefIndex: 58   token: 0x0200003A   запись: 0xAC4FAC
 // globalTypeIndex: 3458 = OFF(3400) + rid(58)
-// методов: 6  (rid 363..368)   свойств: 0
+// методов: 6  (rid 363..368)   свойств: 2
 // --------------------------------------------------------------
 public class SpawnProjectilesScript
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=24 token=0x17000018  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=366, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=25 token=0x17000019  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=368, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=363  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x0600016B
 	public SpawnProjectilesScript() { }
@@ -2272,10 +2344,19 @@ public class <RandomSpawnsCoroutine>d__14
 // --------------------------------------------------------------
 // TypeDefIndex: 61   token: 0x0200003D   запись: 0xAC5090
 // globalTypeIndex: 3461 = OFF(3400) + rid(61)
-// методов: 6  (rid 387..392)   свойств: 0
+// методов: 6  (rid 387..392)   свойств: 2
 // --------------------------------------------------------------
 public class <RandomSpawnsCoroutine>d__15
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=26 token=0x1700001A  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=390, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=27 token=0x1700001B  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=392, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=387  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000183
 	public <RandomSpawnsCoroutine>d__15() { }
@@ -2351,10 +2432,19 @@ public class CFX2_Demo
 // --------------------------------------------------------------
 // TypeDefIndex: 63   token: 0x0200003F   запись: 0xAC5128
 // globalTypeIndex: 3463 = OFF(3400) + rid(63)
-// методов: 6  (rid 401..406)   свойств: 0
+// методов: 6  (rid 401..406)   свойств: 2
 // --------------------------------------------------------------
 public class <>c
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=28 token=0x1700001C  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=404, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=29 token=0x1700001D  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=406, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=401  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000191
 	public <>c() { }
@@ -2461,10 +2551,19 @@ public class CFX_Demo_RandomDirectionTranslate
 // --------------------------------------------------------------
 // TypeDefIndex: 66   token: 0x02000042   запись: 0xAC5174
 // globalTypeIndex: 3466 = OFF(3400) + rid(66)
-// методов: 6  (rid 424..429)   свойств: 0
+// методов: 6  (rid 424..429)   свойств: 2
 // --------------------------------------------------------------
 public class <CheckForDeletedParticles>d__25
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=30 token=0x1700001E  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=427, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=31 token=0x1700001F  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=429, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=424  пар=2  slot=—  flags=0x83 (hidebysig)  колонка+0=26662  token=0x060001A8
 	internal <CheckForDeletedParticles>d__25(object p0, object p1) { }
@@ -2736,10 +2835,19 @@ public class <WaitFrame>d__2
 // --------------------------------------------------------------
 // TypeDefIndex: 74   token: 0x0200004A   запись: 0xAC546C
 // globalTypeIndex: 3474 = OFF(3400) + rid(74)
-// методов: 6  (rid 448..453)   свойств: 0
+// методов: 6  (rid 448..453)   свойств: 2
 // --------------------------------------------------------------
 public class ExplosionLightFlicker
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=32 token=0x17000020  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=451, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=33 token=0x17000021  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=453, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=448  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060001C0
 	public ExplosionLightFlicker() { }
@@ -2992,10 +3100,19 @@ public class <Shoot>d__5
 // --------------------------------------------------------------
 // TypeDefIndex: 82   token: 0x02000052   запись: 0xAC56CC
 // globalTypeIndex: 3482 = OFF(3400) + rid(82)
-// методов: 6  (rid 474..479)   свойств: 0
+// методов: 6  (rid 474..479)   свойств: 2
 // --------------------------------------------------------------
 public class <Shrink>d__3
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=34 token=0x17000022  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=477, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=35 token=0x17000023  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=479, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=474  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060001DA
 	public <Shrink>d__3() { }
@@ -3064,10 +3181,19 @@ public class Bullet
 // --------------------------------------------------------------
 // TypeDefIndex: 84   token: 0x02000054   запись: 0xAC5764
 // globalTypeIndex: 3484 = OFF(3400) + rid(84)
-// методов: 6  (rid 483..488)   свойств: 0
+// методов: 6  (rid 483..488)   свойств: 2
 // --------------------------------------------------------------
 public class Turret
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=36 token=0x17000024  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=486, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=37 token=0x17000025  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=488, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=483  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060001E3
 	public Turret() { }
@@ -3222,7 +3348,8 @@ public class StartupPool
 public class ObjectPool
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=38 token=0x17000026  get=+37  set=+— (от первого метода типа)
+	// Property rid=38 token=0x17000026  get=+37  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=528, set rid=—
 	public object instance { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -3415,10 +3542,19 @@ public class <ambientLight>d__8
 // --------------------------------------------------------------
 // TypeDefIndex: 91   token: 0x0200005B   запись: 0xAC5978
 // globalTypeIndex: 3491 = OFF(3400) + rid(91)
-// методов: 6  (rid 576..581)   свойств: 0
+// методов: 6  (rid 576..581)   свойств: 2
 // --------------------------------------------------------------
 public class SimpleRotateWasteland
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=39 token=0x17000027  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=579, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=40 token=0x17000028  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=581, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=576  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000240
 	public SimpleRotateWasteland() { }
@@ -3649,10 +3785,19 @@ public class <RandomizeEyeRotation>d__9
 // --------------------------------------------------------------
 // TypeDefIndex: 98   token: 0x02000062   запись: 0xAC5B8C
 // globalTypeIndex: 3498 = OFF(3400) + rid(98)
-// методов: 6  (rid 602..607)   свойств: 0
+// методов: 6  (rid 602..607)   свойств: 2
 // --------------------------------------------------------------
 public class ClownGameController
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=41 token=0x17000029  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=605, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=42 token=0x1700002A  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=607, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=602  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x0600025A
 	public ClownGameController() { }
@@ -3781,10 +3926,19 @@ public class <ambientLight>d__8
 // --------------------------------------------------------------
 // TypeDefIndex: 102   token: 0x02000066   запись: 0xAC5CBC
 // globalTypeIndex: 3502 = OFF(3400) + rid(102)
-// методов: 6  (rid 616..621)   свойств: 0
+// методов: 6  (rid 616..621)   свойств: 2
 // --------------------------------------------------------------
 public class SimpleRotateCarnival
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=43 token=0x1700002B  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=619, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=44 token=0x1700002C  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=621, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=616  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000268
 	public SimpleRotateCarnival() { }
@@ -3913,10 +4067,19 @@ public class <flickerSpotLight>d__12
 // --------------------------------------------------------------
 // TypeDefIndex: 106   token: 0x0200006A   запись: 0xAC5DEC
 // globalTypeIndex: 3506 = OFF(3400) + rid(106)
-// методов: 6  (rid 630..635)   свойств: 0
+// методов: 6  (rid 630..635)   свойств: 2
 // --------------------------------------------------------------
 public class TeaCupController
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=45 token=0x1700002D  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=633, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=46 token=0x1700002E  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=635, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=630  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000276
 	public TeaCupController() { }
@@ -4276,15 +4439,21 @@ public class <>c
 // --------------------------------------------------------------
 // TypeDefIndex: 117   token: 0x02000075   запись: 0xAC6098
 // globalTypeIndex: 3517 = OFF(3400) + rid(117)
-// методов: 19  (rid 662..680)   свойств: 2
+// методов: 19  (rid 662..680)   свойств: 3
 // --------------------------------------------------------------
 public class Outline
 {
 	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=47 token=0x1700002F  get=+0  set=+1 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=662, set rid=663
+	public object OutlineMode { get; set; }
+
 	// Property rid=48 token=0x17000030  get=+2  set=+3 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=664, set rid=665
 	public object OutlineColor { get; set; }
 
 	// Property rid=49 token=0x17000031  get=+4  set=+5 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=666, set rid=667
 	public object OutlineWidth { get; set; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -4645,21 +4814,29 @@ public class BasePreviewPrefabItem
 // --------------------------------------------------------------
 // TypeDefIndex: 128   token: 0x02000080   запись: 0xAC6428
 // globalTypeIndex: 3528 = OFF(3400) + rid(128)
-// методов: 11  (rid 713..723)   свойств: 4
+// методов: 11  (rid 713..723)   свойств: 5
 // --------------------------------------------------------------
 public class InvItemPrefabData
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=51 token=0x17000033  get=+1  set=+— (от первого метода типа)
+	// Property rid=50 token=0x17000032  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=713, set rid=—
+	public object id { get; }
+
+	// Property rid=51 token=0x17000033  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=714, set rid=—
 	public object prebabName { get; }
 
 	// Property rid=52 token=0x17000034  get=+2  set=+3 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=715, set rid=716
 	public object UnlockedAndVisible { get; set; }
 
-	// Property rid=53 token=0x17000035  get=+4  set=+5 (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (3 кандидатов)
+	// Property rid=53 token=0x17000035  get=+4  set=+5 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=717, set rid=718
 	public object IsBought { get; set; }
 
-	// Property rid=54 token=0x17000036  get=+6  set=+— (от первого метода типа)
+	// Property rid=54 token=0x17000036  get=+6  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=719, set rid=—
 	public object IsLocked { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -5606,12 +5783,17 @@ public class PlayerGunPrefabData
 // --------------------------------------------------------------
 // TypeDefIndex: 162   token: 0x020000A2   запись: 0xAC6E40
 // globalTypeIndex: 3562 = OFF(3400) + rid(162)
-// методов: 3  (rid 832..834)   свойств: 1
+// методов: 3  (rid 832..834)   свойств: 2
 // --------------------------------------------------------------
 public class TauntItemData
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=56 token=0x17000038  get=+1  set=+— (от первого метода типа)
+	// Property rid=55 token=0x17000037  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=832, set rid=—
+	public object customTexture { get; }
+
+	// Property rid=56 token=0x17000038  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=833, set rid=—
 	public object HasCustomTexture { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -6018,10 +6200,15 @@ public class RenderOnCanvasDynamicResolutioinManager
 // --------------------------------------------------------------
 // TypeDefIndex: 175   token: 0x020000AF   запись: 0xAC721C
 // globalTypeIndex: 3575 = OFF(3400) + rid(175)
-// методов: 10  (rid 884..893)   свойств: 0
+// методов: 10  (rid 884..893)   свойств: 1
 // --------------------------------------------------------------
 public class MetronomPropsCanvas
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=57 token=0x17000039  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=884, set rid=—
+	public object mainCam { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=884  пар=1  slot=—  flags=0x81 (hidebysig)  колонка+0=36310  token=0x06000374
 	private void get_mainCam(object p0) { }
@@ -6176,10 +6363,15 @@ public class AmbientOcclusion
 // --------------------------------------------------------------
 // TypeDefIndex: 178   token: 0x020000B2   запись: 0xAC7300
 // globalTypeIndex: 3578 = OFF(3400) + rid(178)
-// методов: 21  (rid 933..953)   свойств: 0
+// методов: 21  (rid 933..953)   свойств: 1
 // --------------------------------------------------------------
 public class ColorGrading
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=58 token=0x1700003A  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=933, set rid=—
+	public object AmbientOcclusionComp { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=933  пар=1  slot=—  flags=0x81 (hidebysig)  колонка+0=19708  token=0x060003A5
 	private void get_AmbientOcclusionComp(object p0) { }
@@ -6240,10 +6432,15 @@ public class ColorGrading
 // --------------------------------------------------------------
 // TypeDefIndex: 179   token: 0x020000B3   запись: 0xAC734C
 // globalTypeIndex: 3579 = OFF(3400) + rid(179)
-// методов: 27  (rid 954..980)   свойств: 0
+// методов: 27  (rid 954..980)   свойств: 1
 // --------------------------------------------------------------
 public class GrainWidget
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=59 token=0x1700003B  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=954, set rid=—
+	public object ColorGradingComp { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=954  пар=1  slot=—  flags=0x81 (hidebysig)  колонка+0=36310  token=0x060003BA
 	private void get_ColorGradingComp(object p0) { }
@@ -6316,10 +6513,15 @@ public class GrainWidget
 // --------------------------------------------------------------
 // TypeDefIndex: 180   token: 0x020000B4   запись: 0xAC7398
 // globalTypeIndex: 3580 = OFF(3400) + rid(180)
-// методов: 19  (rid 981..999)   свойств: 0
+// методов: 19  (rid 981..999)   свойств: 1
 // --------------------------------------------------------------
 public class LensDistortionWidget
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=60 token=0x1700003C  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=981, set rid=—
+	public object Grain { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=981  пар=1  slot=—  flags=0x81 (hidebysig)  колонка+0=36310  token=0x060003D5
 	private void get_Grain(object p0) { }
@@ -6377,12 +6579,17 @@ public class LensDistortionWidget
 // --------------------------------------------------------------
 // TypeDefIndex: 181   token: 0x020000B5   запись: 0xAC73E4
 // globalTypeIndex: 3581 = OFF(3400) + rid(181)
-// методов: 21  (rid 1000..1020)   свойств: 1
+// методов: 21  (rid 1000..1020)   свойств: 2
 // --------------------------------------------------------------
 public class PlayerCustomBuildingRaw
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=62 token=0x1700003E  get=+1  set=+— (от первого метода типа)
+	// Property rid=61 token=0x1700003D  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1000, set rid=—
+	public object Volume { get; }
+
+	// Property rid=62 token=0x1700003E  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1001, set rid=—
 	public object LensDistortion { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -6740,10 +6947,19 @@ public class <>c__DisplayClass6_0
 // --------------------------------------------------------------
 // TypeDefIndex: 193   token: 0x020000C1   запись: 0xAC7728
 // globalTypeIndex: 3593 = OFF(3400) + rid(193)
-// методов: 6  (rid 1058..1063)   свойств: 0
+// методов: 6  (rid 1058..1063)   свойств: 2
 // --------------------------------------------------------------
 public class <SpawnObjectCrt>d__17
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=63 token=0x1700003F  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1061, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=64 token=0x17000040  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1063, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1058  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x06000422
 	internal <SpawnObjectCrt>d__17(object p0) { }
@@ -7467,10 +7683,19 @@ public class <Change_Car_Name>d__17
 // --------------------------------------------------------------
 // TypeDefIndex: 215   token: 0x020000D7   запись: 0xAC7E48
 // globalTypeIndex: 3615 = OFF(3400) + rid(215)
-// методов: 6  (rid 1135..1140)   свойств: 0
+// методов: 6  (rid 1135..1140)   свойств: 2
 // --------------------------------------------------------------
 public class MenuSceneLoader
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=65 token=0x17000041  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1138, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=66 token=0x17000042  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1140, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1135  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x0600046F
 	public MenuSceneLoader() { }
@@ -8161,10 +8386,15 @@ public class CartoonCatGameManager
 // --------------------------------------------------------------
 // TypeDefIndex: 236   token: 0x020000EC   запись: 0xAC8438
 // globalTypeIndex: 3636 = OFF(3400) + rid(236)
-// методов: 4  (rid 1202..1205)   свойств: 0
+// методов: 4  (rid 1202..1205)   свойств: 1
 // --------------------------------------------------------------
 public class <>c
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=67 token=0x17000043  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1202, set rid=—
+	public object HuggySpawnPoint { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1202  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060004B2
 	public void get_HuggySpawnPoint() { }
@@ -8226,10 +8456,15 @@ public class ESZombieSpawnEmitter
 // --------------------------------------------------------------
 // TypeDefIndex: 238   token: 0x020000EE   запись: 0xAC8484
 // globalTypeIndex: 3638 = OFF(3400) + rid(238)
-// методов: 5  (rid 1206..1210)   свойств: 0
+// методов: 5  (rid 1206..1210)   свойств: 1
 // --------------------------------------------------------------
 public class ESZombieManager
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=68 token=0x17000044  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1206, set rid=—
+	public object CurMaxZCount { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1206  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060004B6
 	public void get_CurMaxZCount() { }
@@ -8265,7 +8500,8 @@ public class ESZombieManager
 public class SpawnZType
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=69 token=0x17000045  get=+1  set=+— (от первого метода типа)
+	// Property rid=69 token=0x17000045  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1215, set rid=—
 	public object SpawnPoints { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -8322,10 +8558,15 @@ public class ESZombieSpawnTrigger
 // --------------------------------------------------------------
 // TypeDefIndex: 241   token: 0x020000F1   запись: 0xAC85B4
 // globalTypeIndex: 3641 = OFF(3400) + rid(241)
-// методов: 6  (rid 1220..1225)   свойств: 0
+// методов: 6  (rid 1220..1225)   свойств: 1
 // --------------------------------------------------------------
 public class ESHudItem
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=70 token=0x17000046  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1220, set rid=—
+	public object SpawnPoints { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1220  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060004C4
 	public void get_SpawnPoints() { }
@@ -8378,10 +8619,19 @@ public class <PlayHeliSound>d__8
 // --------------------------------------------------------------
 // TypeDefIndex: 243   token: 0x020000F3   запись: 0xAC8600
 // globalTypeIndex: 3643 = OFF(3400) + rid(243)
-// методов: 6  (rid 1235..1240)   свойств: 0
+// методов: 6  (rid 1235..1240)   свойств: 2
 // --------------------------------------------------------------
 public class <Start>d__10
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=72 token=0x17000048  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1238, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=73 token=0x17000049  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1240, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1235  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060004D3
 	public <Start>d__10() { }
@@ -8413,10 +8663,15 @@ public class <Start>d__10
 // --------------------------------------------------------------
 // TypeDefIndex: 244   token: 0x020000F4   запись: 0xAC864C
 // globalTypeIndex: 3644 = OFF(3400) + rid(244)
-// методов: 9  (rid 1226..1234)   свойств: 0
+// методов: 9  (rid 1226..1234)   свойств: 1
 // --------------------------------------------------------------
 public class EliteSquadHudManager
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=71 token=0x17000047  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1226, set rid=—
+	public object cam { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1226  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060004CA
 	public void get_cam() { }
@@ -8454,10 +8709,19 @@ public class EliteSquadHudManager
 // --------------------------------------------------------------
 // TypeDefIndex: 245   token: 0x020000F5   запись: 0xAC8730
 // globalTypeIndex: 3645 = OFF(3400) + rid(245)
-// методов: 6  (rid 1249..1254)   свойств: 0
+// методов: 6  (rid 1249..1254)   свойств: 2
 // --------------------------------------------------------------
 public class <>c
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=74 token=0x1700004A  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1252, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=75 token=0x1700004B  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1254, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1249  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060004E1
 	public <>c() { }
@@ -8558,10 +8822,19 @@ public class EliteSquadWidget
 // --------------------------------------------------------------
 // TypeDefIndex: 248   token: 0x020000F8   запись: 0xAC877C
 // globalTypeIndex: 3648 = OFF(3400) + rid(248)
-// методов: 6  (rid 1272..1277)   свойств: 0
+// методов: 6  (rid 1272..1277)   свойств: 2
 // --------------------------------------------------------------
 public class <ChoppaWaitingCountDownCrt>d__13
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=76 token=0x1700004C  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1275, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=77 token=0x1700004D  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1277, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1272  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x060004F8
 	internal <ChoppaWaitingCountDownCrt>d__13(object p0) { }
@@ -8591,10 +8864,19 @@ public class <ChoppaWaitingCountDownCrt>d__13
 // --------------------------------------------------------------
 // TypeDefIndex: 249   token: 0x020000F9   запись: 0xAC87C8
 // globalTypeIndex: 3649 = OFF(3400) + rid(249)
-// методов: 6  (rid 1278..1283)   свойств: 0
+// методов: 6  (rid 1278..1283)   свойств: 2
 // --------------------------------------------------------------
 public class <DisableFogCrt>d__19
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=78 token=0x1700004E  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1281, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=79 token=0x1700004F  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1283, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1278  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x060004FE
 	private <DisableFogCrt>d__19() { }
@@ -8624,10 +8906,19 @@ public class <DisableFogCrt>d__19
 // --------------------------------------------------------------
 // TypeDefIndex: 250   token: 0x020000FA   запись: 0xAC8814
 // globalTypeIndex: 3650 = OFF(3400) + rid(250)
-// методов: 6  (rid 1284..1289)   свойств: 0
+// методов: 6  (rid 1284..1289)   свойств: 2
 // --------------------------------------------------------------
 public class <OnAllSecretDocsCollectedCrt>d__11
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=80 token=0x17000050  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1287, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=81 token=0x17000051  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1289, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1284  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000504
 	private <OnAllSecretDocsCollectedCrt>d__11() { }
@@ -8751,10 +9042,19 @@ public class <AnimText>d__4
 // --------------------------------------------------------------
 // TypeDefIndex: 253   token: 0x020000FD   запись: 0xAC8990
 // globalTypeIndex: 3653 = OFF(3400) + rid(253)
-// методов: 6  (rid 1303..1308)   свойств: 0
+// методов: 6  (rid 1303..1308)   свойств: 2
 // --------------------------------------------------------------
 public class ResqueHeliAnimEvents
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=82 token=0x17000052  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1306, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=83 token=0x17000053  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1308, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1303  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000517
 	public ResqueHeliAnimEvents() { }
@@ -8881,7 +9181,8 @@ public class ZWZombieManager
 public class CFX_AutoStopLoopedEffect
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=84 token=0x17000054  get=+2  set=+— (от первого метода типа)
+	// Property rid=84 token=0x17000054  get=+2  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1317, set rid=—
 	public object CurMaxZCount { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -9061,10 +9362,19 @@ public class <CheckIfAlive>d__2
 // --------------------------------------------------------------
 // TypeDefIndex: 263   token: 0x02000107   запись: 0xAC8C88
 // globalTypeIndex: 3663 = OFF(3400) + rid(263)
-// методов: 6  (rid 1335..1340)   свойств: 0
+// методов: 6  (rid 1335..1340)   свойств: 2
 // --------------------------------------------------------------
 public class CFX_LightIntensityFade
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=85 token=0x17000055  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1338, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=86 token=0x17000056  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1340, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1335  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000537
 	public CFX_LightIntensityFade() { }
@@ -9163,10 +9473,19 @@ public class <holeUpdate>d__12
 // --------------------------------------------------------------
 // TypeDefIndex: 266   token: 0x0200010A   запись: 0xAC8D6C
 // globalTypeIndex: 3666 = OFF(3400) + rid(266)
-// методов: 6  (rid 1350..1355)   свойств: 0
+// методов: 6  (rid 1350..1355)   свойств: 2
 // --------------------------------------------------------------
 public class <Flicker>d__3
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=87 token=0x17000057  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1353, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=88 token=0x17000058  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1355, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1350  пар=0  slot=—  flags=0x1891 (static|hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000546
 	private <Flicker>d__3() { }
@@ -9235,10 +9554,19 @@ public class WFX_BulletHoleDecal
 // --------------------------------------------------------------
 // TypeDefIndex: 268   token: 0x0200010C   запись: 0xAC8E04
 // globalTypeIndex: 3668 = OFF(3400) + rid(268)
-// методов: 6  (rid 1359..1364)   свойств: 0
+// методов: 6  (rid 1359..1364)   свойств: 2
 // --------------------------------------------------------------
 public class CamControl
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=89 token=0x17000059  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1362, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=90 token=0x1700005A  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1364, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1359  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x0600054F
 	public CamControl() { }
@@ -9343,10 +9671,19 @@ public class <ChangeLOD>d__36
 // --------------------------------------------------------------
 // TypeDefIndex: 271   token: 0x0200010F   запись: 0xAC8EE8
 // globalTypeIndex: 3671 = OFF(3400) + rid(271)
-// методов: 6  (rid 1392..1397)   свойств: 0
+// методов: 6  (rid 1392..1397)   свойств: 2
 // --------------------------------------------------------------
 public class <ChangeLOD>d__33
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=91 token=0x1700005B  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1395, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=92 token=0x1700005C  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1397, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1392  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000570
 	public <ChangeLOD>d__33() { }
@@ -9447,10 +9784,19 @@ public class GUIConrtolModule_St
 // --------------------------------------------------------------
 // TypeDefIndex: 273   token: 0x02000111   запись: 0xAC8F80
 // globalTypeIndex: 3673 = OFF(3400) + rid(273)
-// методов: 6  (rid 1418..1423)   свойств: 0
+// методов: 6  (rid 1418..1423)   свойств: 2
 // --------------------------------------------------------------
 public class <DestroySelf>d__6
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=93 token=0x1700005D  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1421, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=94 token=0x1700005E  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1423, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1418  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x0600058A
 	public <DestroySelf>d__6() { }
@@ -9551,10 +9897,19 @@ public class GUIConrtol_St
 // --------------------------------------------------------------
 // TypeDefIndex: 275   token: 0x02000113   запись: 0xAC9018
 // globalTypeIndex: 3675 = OFF(3400) + rid(275)
-// методов: 6  (rid 1430..1435)   свойств: 0
+// методов: 6  (rid 1430..1435)   свойств: 2
 // --------------------------------------------------------------
 public class characterModule
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=95 token=0x1700005F  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1433, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=96 token=0x17000060  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1435, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1430  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000596
 	public characterModule() { }
@@ -9731,10 +10086,19 @@ public class <AnimControllerChange>d__24
 // --------------------------------------------------------------
 // TypeDefIndex: 280   token: 0x02000118   запись: 0xAC9194
 // globalTypeIndex: 3680 = OFF(3400) + rid(280)
-// методов: 6  (rid 1463..1468)   свойств: 0
+// методов: 6  (rid 1463..1468)   свойств: 2
 // --------------------------------------------------------------
 public class PlayGUI
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=97 token=0x17000061  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1466, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=98 token=0x17000062  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1468, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1463  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060005B7
 	public PlayGUI() { }
@@ -10273,10 +10637,19 @@ public class <Start>d__3
 // --------------------------------------------------------------
 // TypeDefIndex: 297   token: 0x02000129   запись: 0xAC96A0
 // globalTypeIndex: 3697 = OFF(3400) + rid(297)
-// методов: 6  (rid 1521..1526)   свойств: 0
+// методов: 6  (rid 1521..1526)   свойств: 2
 // --------------------------------------------------------------
 public class AdMobController
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=100 token=0x17000064  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1524, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=101 token=0x17000065  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1526, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1521  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060005F1
 	public AdMobController() { }
@@ -10313,6 +10686,7 @@ public class AdMobGDPRWindow
 {
 	// ---- Свойства (PropertyDefinition) ----
 	// Property rid=99 token=0x17000063  get=+3  set=+4 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1515, set rid=1516
 	public object AdMobGDPRConsent { get; set; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -10374,10 +10748,19 @@ public class <ShowNonSkipVideoCrt>d__24
 // --------------------------------------------------------------
 // TypeDefIndex: 300   token: 0x0200012C   запись: 0xAC9784
 // globalTypeIndex: 3700 = OFF(3400) + rid(300)
-// методов: 6  (rid 1544..1549)   свойств: 0
+// методов: 6  (rid 1544..1549)   свойств: 2
 // --------------------------------------------------------------
 public class AdsWidget
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=103 token=0x17000067  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1547, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=104 token=0x17000068  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1549, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1544  пар=0  slot=—  flags=0x1891 (static|hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000608
 	private AdsWidget() { }
@@ -10406,10 +10789,15 @@ public class AdsWidget
 // --------------------------------------------------------------
 // TypeDefIndex: 301   token: 0x0200012D   запись: 0xAC9738
 // globalTypeIndex: 3701 = OFF(3400) + rid(301)
-// методов: 16  (rid 1528..1543)   свойств: 0
+// методов: 16  (rid 1528..1543)   свойств: 1
 // --------------------------------------------------------------
 public class AdsController
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=102 token=0x17000066  get=+0  set=+1 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1528, set rid=1529
+	public object AdsPauseTime { get; set; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1528  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060005F8
 	public void get_AdsPauseTime() { }
@@ -10572,10 +10960,19 @@ public class <Start>d__2
 // --------------------------------------------------------------
 // TypeDefIndex: 305   token: 0x02000131   запись: 0xAC9900
 // globalTypeIndex: 3705 = OFF(3400) + rid(305)
-// методов: 6  (rid 1583..1588)   свойств: 0
+// методов: 6  (rid 1583..1588)   свойств: 2
 // --------------------------------------------------------------
 public class UnityAdsController
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=107 token=0x1700006B  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1586, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=108 token=0x1700006C  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1588, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1583  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x0600062F
 	public UnityAdsController() { }
@@ -10613,9 +11010,11 @@ public class ReviewGameWidget
 {
 	// ---- Свойства (PropertyDefinition) ----
 	// Property rid=105 token=0x17000069  get=+4  set=+5 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1578, set rid=1579
 	public object MenuLaunchesCount { get; set; }
 
 	// Property rid=106 token=0x1700006A  get=+6  set=+7 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1580, set rid=1581
 	public object NeverAskRate { get; set; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -10929,10 +11328,19 @@ public class <WakeUp>d__2
 // --------------------------------------------------------------
 // TypeDefIndex: 316   token: 0x0200013C   запись: 0xAC9C44
 // globalTypeIndex: 3716 = OFF(3400) + rid(316)
-// методов: 6  (rid 1624..1629)   свойств: 0
+// методов: 6  (rid 1624..1629)   свойств: 2
 // --------------------------------------------------------------
 public class LootBox
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=109 token=0x1700006D  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1627, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=110 token=0x1700006E  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1629, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1624  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000658
 	public LootBox() { }
@@ -11093,10 +11501,19 @@ public class <UpdateVehFPSSubPivotsCrt>d__14
 // --------------------------------------------------------------
 // TypeDefIndex: 321   token: 0x02000141   запись: 0xAC9DC0
 // globalTypeIndex: 3721 = OFF(3400) + rid(321)
-// методов: 6  (rid 1652..1657)   свойств: 0
+// методов: 6  (rid 1652..1657)   свойств: 2
 // --------------------------------------------------------------
 public class CarCamParams
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=113 token=0x17000071  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1655, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=114 token=0x17000072  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1657, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1652  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000674
 	public CarCamParams() { }
@@ -11131,12 +11548,17 @@ public class CarCamParams
 // --------------------------------------------------------------
 // TypeDefIndex: 322   token: 0x02000142   запись: 0xAC9D74
 // globalTypeIndex: 3722 = OFF(3400) + rid(322)
-// методов: 11  (rid 1641..1651)   свойств: 1
+// методов: 11  (rid 1641..1651)   свойств: 2
 // --------------------------------------------------------------
 public class BaseCamera
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=112 token=0x17000070  get=+8  set=+— (от первого метода типа)
+	// Property rid=111 token=0x1700006F  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1641, set rid=—
+	public object cam { get; }
+
+	// Property rid=112 token=0x17000070  get=+8  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1649, set rid=—
 	public object ourPlayer { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -11214,7 +11636,8 @@ public class CarCamera
 public class <>c
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=115 token=0x17000073  get=+21  set=+— (от первого метода типа)
+	// Property rid=115 token=0x17000073  get=+21  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1680, set rid=—
 	public object CarCamIs360Rotatable { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -11285,14 +11708,10 @@ public class <>c
 // --------------------------------------------------------------
 // TypeDefIndex: 325   token: 0x02000145   запись: 0xAC9F3C
 // globalTypeIndex: 3725 = OFF(3400) + rid(325)
-// методов: 3  (rid 1689..1691)   свойств: 1
+// методов: 3  (rid 1689..1691)   свойств: 0
 // --------------------------------------------------------------
 public class DynamicResolutionTest
 {
-	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=189 token=0x170000BD  get=+13  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (3 кандидатов)
-	public object ourPlayer { get; }
-
 	// ---- Методы (MethodDefinition) ----
 	// rid=1689  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000699
 	static DynamicResolutionTest() { }   // флаги/slot в этой записи недостоверны
@@ -11321,13 +11740,18 @@ public class DynamicResolutionTest
 // --------------------------------------------------------------
 // TypeDefIndex: 326   token: 0x02000146   запись: 0xAC9EA4
 // globalTypeIndex: 3726 = OFF(3400) + rid(326)
-// методов: 6  (rid 1692..1697)   свойств: 1
+// методов: 6  (rid 1692..1697)   свойств: 2
 // --------------------------------------------------------------
 public class <Fade>d__14
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=131 token=0x17000083  get=+10  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (2 кандидатов)
-	public object ourPlayer { get; }
+	// Property rid=116 token=0x17000074  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1695, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=117 token=0x17000075  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1697, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
 
 	// ---- Методы (MethodDefinition) ----
 	// rid=1692  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x0600069C
@@ -11459,10 +11883,19 @@ public class <Start>d__13
 // --------------------------------------------------------------
 // TypeDefIndex: 330   token: 0x0200014A   запись: 0xACA06C
 // globalTypeIndex: 3730 = OFF(3400) + rid(330)
-// методов: 6  (rid 1726..1731)   свойств: 0
+// методов: 6  (rid 1726..1731)   свойств: 2
 // --------------------------------------------------------------
 public class HUDInfo
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=120 token=0x17000078  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1729, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=121 token=0x17000079  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1731, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1726  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060006BE
 	public HUDInfo() { }
@@ -11495,12 +11928,17 @@ public class HUDInfo
 // --------------------------------------------------------------
 // TypeDefIndex: 331   token: 0x0200014B   запись: 0xACA020
 // globalTypeIndex: 3731 = OFF(3400) + rid(331)
-// методов: 24  (rid 1702..1725)   свойств: 1
+// методов: 24  (rid 1702..1725)   свойств: 2
 // --------------------------------------------------------------
 public class FPSCamera
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=119 token=0x17000077  get=+3  set=+— (от первого метода типа)
+	// Property rid=118 token=0x17000076  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1702, set rid=—
+	public object ourPlayer { get; }
+
+	// Property rid=119 token=0x17000077  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1705, set rid=—
 	public object SmoothTime { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -11900,10 +12338,19 @@ public class MouseOrbit2
 // --------------------------------------------------------------
 // TypeDefIndex: 342   token: 0x02000156   запись: 0xACA364
 // globalTypeIndex: 3742 = OFF(3400) + rid(342)
-// методов: 6  (rid 1789..1794)   свойств: 0
+// методов: 6  (rid 1789..1794)   свойств: 2
 // --------------------------------------------------------------
 public class <LookFX>d__9
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=122 token=0x1700007A  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1792, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=123 token=0x1700007B  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1794, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1789  пар=2  slot=—  flags=0x83 (hidebysig)  колонка+0=26662  token=0x060006FD
 	internal <LookFX>d__9(object p0, object p1) { }
@@ -12021,10 +12468,19 @@ public class <CR_SetBoostView>d__9
 // --------------------------------------------------------------
 // TypeDefIndex: 345   token: 0x02000159   запись: 0xACA4E0
 // globalTypeIndex: 3745 = OFF(3400) + rid(345)
-// методов: 6  (rid 1811..1816)   свойств: 0
+// методов: 6  (rid 1811..1816)   свойств: 2
 // --------------------------------------------------------------
 public class <HideHudChatLine>d__19
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=125 token=0x1700007D  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1814, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=126 token=0x1700007E  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1816, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1811  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000713
 	public <HideHudChatLine>d__19() { }
@@ -12059,10 +12515,15 @@ public class <HideHudChatLine>d__19
 // --------------------------------------------------------------
 // TypeDefIndex: 346   token: 0x0200015A   запись: 0xACA494
 // globalTypeIndex: 3746 = OFF(3400) + rid(346)
-// методов: 12  (rid 1799..1810)   свойств: 0
+// методов: 12  (rid 1799..1810)   свойств: 1
 // --------------------------------------------------------------
 public class PlaneCamera
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=124 token=0x1700007C  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1799, set rid=—
+	public object CameraComponent { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1799  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000707
 	public void get_CameraComponent() { }
@@ -12109,10 +12570,19 @@ public class PlaneCamera
 // --------------------------------------------------------------
 // TypeDefIndex: 347   token: 0x0200015B   запись: 0xACA578
 // globalTypeIndex: 3747 = OFF(3400) + rid(347)
-// методов: 6  (rid 1829..1834)   свойств: 0
+// методов: 6  (rid 1829..1834)   свойств: 2
 // --------------------------------------------------------------
 public class RectUtil
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=128 token=0x17000080  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1832, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=129 token=0x17000081  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1834, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1829  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000725
 	public RectUtil() { }
@@ -12147,10 +12617,15 @@ public class RectUtil
 // --------------------------------------------------------------
 // TypeDefIndex: 348   token: 0x0200015C   запись: 0xACA52C
 // globalTypeIndex: 3748 = OFF(3400) + rid(348)
-// методов: 12  (rid 1817..1828)   свойств: 0
+// методов: 12  (rid 1817..1828)   свойств: 1
 // --------------------------------------------------------------
 public class PlayerUIHUD
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=127 token=0x1700007F  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1817, set rid=—
+	public object target { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1817  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000719
 	private virtual void get_target() { }
@@ -12266,15 +12741,11 @@ public class TPCCamera
 // --------------------------------------------------------------
 // TypeDefIndex: 351   token: 0x0200015F   запись: 0xACA65C
 // globalTypeIndex: 3751 = OFF(3400) + rid(351)
-// методов: 1  (rid 1843..1843)   свойств: 1
+// методов: 1  (rid 1843..1843)   свойств: 0
 // только .ctor: enum, делегат или компонент-маркер — по метаданным не различить
 // --------------------------------------------------------------
 public class CamMode
 {
-	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=189 token=0x170000BD  get=+13  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (3 кандидатов)
-	public object ourPlayer { get; }
-
 	// ---- Методы (MethodDefinition) ----
 	// rid=1843  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000733
 	public CamMode() { }
@@ -12415,10 +12886,12 @@ public class TankCamSettings
 public class TPSCamera
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=130 token=0x17000082  get=+6  set=+— (от первого метода типа)
+	// Property rid=130 token=0x17000082  get=+6  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1852, set rid=—
 	public object SniperK { get; }
 
-	// Property rid=131 token=0x17000083  get=+10  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (2 кандидатов)
+	// Property rid=131 token=0x17000083  get=+10  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1856, set rid=—
 	public object ourPlayer { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -12497,10 +12970,19 @@ public class CustomModelLoaderWidget
 // --------------------------------------------------------------
 // TypeDefIndex: 358   token: 0x02000166   запись: 0xACA824
 // globalTypeIndex: 3758 = OFF(3400) + rid(358)
-// методов: 6  (rid 1877..1882)   свойств: 0
+// методов: 6  (rid 1877..1882)   свойств: 2
 // --------------------------------------------------------------
 public class <Start>d__12
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=135 token=0x17000087  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1880, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=136 token=0x17000088  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1882, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=1877  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000755
 	public <Start>d__12() { }
@@ -12533,15 +13015,21 @@ public class <Start>d__12
 // --------------------------------------------------------------
 // TypeDefIndex: 359   token: 0x02000167   запись: 0xACA870
 // globalTypeIndex: 3759 = OFF(3400) + rid(359)
-// методов: 13  (rid 1864..1876)   свойств: 2
+// методов: 13  (rid 1864..1876)   свойств: 3
 // --------------------------------------------------------------
 public class TankCamera
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=133 token=0x17000085  get=+5  set=+— (от первого метода типа)
+	// Property rid=132 token=0x17000084  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1864, set rid=—
+	public object curSettings { get; }
+
+	// Property rid=133 token=0x17000085  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1869, set rid=—
 	public object CurDistance { get; }
 
-	// Property rid=134 token=0x17000086  get=+10  set=+— (от первого метода типа)
+	// Property rid=134 token=0x17000086  get=+10  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1874, set rid=—
 	public object VisibleDistance { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -13097,15 +13585,21 @@ public class <>c__DisplayClass38_0
 // --------------------------------------------------------------
 // TypeDefIndex: 376   token: 0x02000178   запись: 0xACAD7C
 // globalTypeIndex: 3776 = OFF(3400) + rid(376)
-// методов: 19  (rid 1920..1938)   свойств: 2
+// методов: 19  (rid 1920..1938)   свойств: 3
 // --------------------------------------------------------------
 public class DataModel
 {
 	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=137 token=0x17000089  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1920, set rid=—
+	public object AndroidApiLevel { get; }
+
 	// Property rid=138 token=0x1700008A  get=+6  set=+7 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1926, set rid=1927
 	public object PlayerExp { get; set; }
 
-	// Property rid=139 token=0x1700008B  get=+9  set=+— (от первого метода типа)
+	// Property rid=139 token=0x1700008B  get=+9  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1929, set rid=—
 	public object PlayerLevelIndex { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -13226,6 +13720,7 @@ public class GPSController
 {
 	// ---- Свойства (PropertyDefinition) ----
 	// Property rid=140 token=0x1700008C  get=+3  set=+4 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=1962, set rid=1963
 	public object HasEverSuccessfullyAuthenticated { get; set; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -13395,24 +13890,33 @@ public class OtchimPunisher
 // --------------------------------------------------------------
 // TypeDefIndex: 383   token: 0x0200017F   запись: 0xACAFDC
 // globalTypeIndex: 3783 = OFF(3400) + rid(383)
-// методов: 10  (rid 2007..2016)   свойств: 5
+// методов: 10  (rid 2007..2016)   свойств: 6
 // --------------------------------------------------------------
 public class ScenesBuildSettingsUtility
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=142 token=0x1700008E  get=+1  set=+— (от первого метода типа)
+	// Property rid=141 token=0x1700008D  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2007, set rid=—
+	public object Name { get; }
+
+	// Property rid=142 token=0x1700008E  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2008, set rid=—
 	public object IsSupported { get; }
 
 	// Property rid=143 token=0x1700008F  get=+2  set=+3 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2009, set rid=2010
 	public object IsActive { get; set; }
 
-	// Property rid=144 token=0x17000090  get=+4  set=+— (от первого метода типа)
+	// Property rid=144 token=0x17000090  get=+4  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2011, set rid=—
 	public object ThreatRating { get; }
 
-	// Property rid=145 token=0x17000091  get=+5  set=+— (от первого метода типа)
+	// Property rid=145 token=0x17000091  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2012, set rid=—
 	public object PunishOnce { get; }
 
 	// Property rid=146 token=0x17000092  get=+6  set=+7 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2013, set rid=2014
 	public object HasPunished { get; set; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -13541,102 +14045,135 @@ public class StorageController
 {
 	// ---- Свойства (PropertyDefinition) ----
 	// Property rid=147 token=0x17000093  get=+2  set=+3 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2024, set rid=2025
 	public object IsFirstLaunch { get; set; }
 
 	// Property rid=148 token=0x17000094  get=+4  set=+5 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2026, set rid=2027
 	public object SelectedArenaId { get; set; }
 
 	// Property rid=149 token=0x17000095  get=+6  set=+7 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2028, set rid=2029
 	public object IsVibroAllowed { get; set; }
 
 	// Property rid=150 token=0x17000096  get=+8  set=+9 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2030, set rid=2031
 	public object PlayerName { get; set; }
 
 	// Property rid=151 token=0x17000097  get=+11  set=+12 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2033, set rid=2034
 	public object SelectedHat { get; set; }
 
 	// Property rid=152 token=0x17000098  get=+13  set=+14 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2035, set rid=2036
 	public object SelectedHairs { get; set; }
 
 	// Property rid=153 token=0x17000099  get=+15  set=+16 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2037, set rid=2038
 	public object SelectedEyes { get; set; }
 
 	// Property rid=154 token=0x1700009A  get=+17  set=+18 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2039, set rid=2040
 	public object SelectedEyesOnly { get; set; }
 
 	// Property rid=155 token=0x1700009B  get=+21  set=+22 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2043, set rid=2044
 	public object SelectedSkin { get; set; }
 
 	// Property rid=156 token=0x1700009C  get=+23  set=+24 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2045, set rid=2046
 	public object SelectedSmile { get; set; }
 
 	// Property rid=157 token=0x1700009D  get=+25  set=+26 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2047, set rid=2048
 	public object SelectedShoes { get; set; }
 
 	// Property rid=158 token=0x1700009E  get=+27  set=+28 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2049, set rid=2050
 	public object SelectedTail { get; set; }
 
-	// Property rid=159 token=0x1700009F  get=+34  set=+— (от первого метода типа)
+	// Property rid=159 token=0x1700009F  get=+34  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2056, set rid=—
 	public object AttachSide { get; }
 
-	// Property rid=160 token=0x170000A0  get=+35  set=+— (от первого метода типа)
+	// Property rid=160 token=0x170000A0  get=+35  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2057, set rid=—
 	public object AttachSideTop { get; }
 
-	// Property rid=161 token=0x170000A1  get=+36  set=+— (от первого метода типа)
+	// Property rid=161 token=0x170000A1  get=+36  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2058, set rid=—
 	public object AttachBack { get; }
 
-	// Property rid=162 token=0x170000A2  get=+37  set=+— (от первого метода типа)
+	// Property rid=162 token=0x170000A2  get=+37  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2059, set rid=—
 	public object AttachFront { get; }
 
 	// Property rid=163 token=0x170000A3  get=+38  set=+39 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2060, set rid=2061
 	public object SelectedGun { get; set; }
 
-	// Property rid=164 token=0x170000A4  get=+41  set=+— (от первого метода типа)
+	// Property rid=164 token=0x170000A4  get=+41  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2063, set rid=—
 	public object PlayerSelectedGun { get; }
 
 	// Property rid=165 token=0x170000A5  get=+46  set=+47 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2068, set rid=2069
 	public object AutoshootEnabled { get; set; }
 
 	// Property rid=166 token=0x170000A6  get=+48  set=+49 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2070, set rid=2071
 	public object KickAlertsEnabled { get; set; }
 
 	// Property rid=167 token=0x170000A7  get=+50  set=+51 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2072, set rid=2073
 	public object CarFlipControlEnabled { get; set; }
 
 	// Property rid=168 token=0x170000A8  get=+52  set=+53 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2074, set rid=2075
 	public object MouseSensK { get; set; }
 
 	// Property rid=169 token=0x170000A9  get=+54  set=+55 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2076, set rid=2077
 	public object LanguageCode { get; set; }
 
 	// Property rid=170 token=0x170000AA  get=+56  set=+57 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2078, set rid=2079
 	public object ShowHUDChat { get; set; }
 
 	// Property rid=171 token=0x170000AB  get=+58  set=+59 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2080, set rid=2081
 	public object ShowSelectionLine { get; set; }
 
 	// Property rid=172 token=0x170000AC  get=+60  set=+61 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2082, set rid=2083
 	public object ShowWires { get; set; }
 
 	// Property rid=173 token=0x170000AD  get=+62  set=+63 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2084, set rid=2085
 	public object DamageBlocks { get; set; }
 
 	// Property rid=174 token=0x170000AE  get=+64  set=+65 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2086, set rid=2087
 	public object JetPackEnabled { get; set; }
 
 	// Property rid=175 token=0x170000AF  get=+66  set=+67 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2088, set rid=2089
 	public object PlayerInOutChatMsg { get; set; }
 
 	// Property rid=176 token=0x170000B0  get=+68  set=+69 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2090, set rid=2091
 	public object ShowPlayerInCar { get; set; }
 
-	// Property rid=177 token=0x170000B1  get=+70  set=+— (от первого метода типа)
+	// Property rid=177 token=0x170000B1  get=+70  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2092, set rid=—
 	public object LanguageCodeEverInited { get; }
 
 	// Property rid=178 token=0x170000B2  get=+73  set=+74 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2095, set rid=2096
 	public object OutlineSelectionState { get; set; }
 
 	// Property rid=179 token=0x170000B3  get=+75  set=+76 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2097, set rid=2098
 	public object OutlineSelectionColor { get; set; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -13922,12 +14459,17 @@ public class <>c__DisplayClass43_0
 // --------------------------------------------------------------
 // TypeDefIndex: 393   token: 0x02000189   запись: 0xACB288
 // globalTypeIndex: 3793 = OFF(3400) + rid(393)
-// методов: 20  (rid 2107..2126)   свойств: 1
+// методов: 20  (rid 2107..2126)   свойств: 2
 // --------------------------------------------------------------
 public class ArenaScript
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=181 token=0x170000B5  get=+1  set=+— (от первого метода типа)
+	// Property rid=180 token=0x170000B4  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2107, set rid=—
+	public object MaxInvObjectsCount { get; }
+
+	// Property rid=181 token=0x170000B5  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2108, set rid=—
 	public object MaxVehiclesCount { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -14171,10 +14713,19 @@ public class <StartBattleRoyaleGame>d__17
 // --------------------------------------------------------------
 // TypeDefIndex: 400   token: 0x02000190   запись: 0xACB580
 // globalTypeIndex: 3800 = OFF(3400) + rid(400)
-// методов: 6  (rid 2161..2166)   свойств: 0
+// методов: 6  (rid 2161..2166)   свойств: 2
 // --------------------------------------------------------------
 public class <>c
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=182 token=0x170000B6  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2164, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=183 token=0x170000B7  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2166, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2161  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000871
 	public <>c() { }
@@ -14209,10 +14760,19 @@ public class <>c
 // --------------------------------------------------------------
 // TypeDefIndex: 401   token: 0x02000191   запись: 0xACB4E8
 // globalTypeIndex: 3801 = OFF(3400) + rid(401)
-// методов: 6  (rid 2167..2172)   свойств: 0
+// методов: 6  (rid 2167..2172)   свойств: 2
 // --------------------------------------------------------------
 public class <StartCountDown>d__16
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=184 token=0x170000B8  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2170, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=185 token=0x170000B9  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2172, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2167  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000877
 	private <StartCountDown>d__16() { }
@@ -14387,15 +14947,13 @@ public class <>c__DisplayClass14_0
 // --------------------------------------------------------------
 // TypeDefIndex: 406   token: 0x02000196   запись: 0xACB664
 // globalTypeIndex: 3806 = OFF(3400) + rid(406)
-// методов: 10  (rid 2173..2182)   свойств: 2
+// методов: 10  (rid 2173..2182)   свойств: 1
 // --------------------------------------------------------------
 public class BattleRoyalePvpFinaleTable
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=186 token=0x170000BA  get=+8  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (2 кандидатов)
-	public object OurPlayer { get; }
-
-	// Property rid=187 token=0x170000BB  get=+8  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (2 кандидатов)
+	// Property rid=186 token=0x170000BA  get=+8  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2181, set rid=—
 	public object OurPlayer { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -14568,15 +15126,13 @@ public class <>c__DisplayClass23_0
 // --------------------------------------------------------------
 // TypeDefIndex: 411   token: 0x0200019B   запись: 0xACB7E0
 // globalTypeIndex: 3811 = OFF(3400) + rid(411)
-// методов: 14  (rid 2196..2209)   свойств: 2
+// методов: 14  (rid 2196..2209)   свойств: 1
 // --------------------------------------------------------------
 public class BattleRoyaleTeamsFinalTable
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=186 token=0x170000BA  get=+8  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (2 кандидатов)
-	public object OurPlayer { get; }
-
-	// Property rid=187 token=0x170000BB  get=+8  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (2 кандидатов)
+	// Property rid=187 token=0x170000BB  get=+8  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2204, set rid=—
 	public object OurPlayer { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -14753,10 +15309,19 @@ public class CaptureFlagFinalTable
 // --------------------------------------------------------------
 // TypeDefIndex: 416   token: 0x020001A0   запись: 0xACB9F4
 // globalTypeIndex: 3816 = OFF(3400) + rid(416)
-// методов: 6  (rid 2250..2255)   свойств: 0
+// методов: 6  (rid 2250..2255)   свойств: 2
 // --------------------------------------------------------------
 public class CarControlType
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=190 token=0x170000BE  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2253, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=191 token=0x170000BF  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2255, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2250  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060008CA
 	public CarControlType() { }
@@ -14788,12 +15353,17 @@ public class CarControlType
 // --------------------------------------------------------------
 // TypeDefIndex: 417   token: 0x020001A1   запись: 0xACB9A8
 // globalTypeIndex: 3817 = OFF(3400) + rid(417)
-// методов: 16  (rid 2234..2249)   свойств: 1
+// методов: 16  (rid 2234..2249)   свойств: 2
 // --------------------------------------------------------------
 public class CaptureFlagManager
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=189 token=0x170000BD  get=+13  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (3 кандидатов)
+	// Property rid=188 token=0x170000BC  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2234, set rid=—
+	public object isInitialized { get; }
+
+	// Property rid=189 token=0x170000BD  get=+13  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2247, set rid=—
 	public object ourPlayer { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -14899,10 +15469,19 @@ public class HorseInputController
 // --------------------------------------------------------------
 // TypeDefIndex: 420   token: 0x020001A4   запись: 0xACBA8C
 // globalTypeIndex: 3820 = OFF(3400) + rid(420)
-// методов: 6  (rid 2295..2300)   свойств: 0
+// методов: 6  (rid 2295..2300)   свойств: 2
 // --------------------------------------------------------------
 public class <Start>d__11
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=192 token=0x170000C0  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2298, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=193 token=0x170000C1  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2300, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2295  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x060008F7
 	internal <Start>d__11(object p0) { }
@@ -15259,10 +15838,15 @@ public class <>c__DisplayClass22_0
 // --------------------------------------------------------------
 // TypeDefIndex: 429   token: 0x020001AD   запись: 0xACBD38
 // globalTypeIndex: 3829 = OFF(3400) + rid(429)
-// методов: 18  (rid 2320..2337)   свойств: 0
+// методов: 18  (rid 2320..2337)   свойств: 1
 // --------------------------------------------------------------
 public class ChatController
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=194 token=0x170000C2  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2320, set rid=—
+	public object ChatMessages { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2320  пар=3  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000910
 	public void get_ChatMessages(object p0, object p1, object p2) { }
@@ -15587,10 +16171,19 @@ public class DuelFinalTableRow
 // --------------------------------------------------------------
 // TypeDefIndex: 437   token: 0x020001B5   запись: 0xACBF98
 // globalTypeIndex: 3837 = OFF(3400) + rid(437)
-// методов: 6  (rid 2405..2410)   свойств: 0
+// методов: 6  (rid 2405..2410)   свойств: 2
 // --------------------------------------------------------------
 public class <RaundFinishedCrt>d__21
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=196 token=0x170000C4  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2408, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=197 token=0x170000C5  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2410, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2405  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x06000965
 	internal <RaundFinishedCrt>d__21(object p0) { }
@@ -15622,10 +16215,15 @@ public class <RaundFinishedCrt>d__21
 // --------------------------------------------------------------
 // TypeDefIndex: 438   token: 0x020001B6   запись: 0xACBFE4
 // globalTypeIndex: 3838 = OFF(3400) + rid(438)
-// методов: 16  (rid 2383..2398)   свойств: 0
+// методов: 16  (rid 2383..2398)   свойств: 1
 // --------------------------------------------------------------
 public class DuelController
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=195 token=0x170000C3  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2383, set rid=—
+	public object OurPlayer { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2383  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x0600094F
 	public void get_OurPlayer() { }
@@ -15737,10 +16335,19 @@ public class PlayerItem
 // --------------------------------------------------------------
 // TypeDefIndex: 441   token: 0x020001B9   запись: 0xACC0C8
 // globalTypeIndex: 3841 = OFF(3400) + rid(441)
-// методов: 6  (rid 2428..2433)   свойств: 0
+// методов: 6  (rid 2428..2433)   свойств: 2
 // --------------------------------------------------------------
 public class <LeftGameCrt>d__22
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=198 token=0x170000C6  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2431, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=199 token=0x170000C7  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2433, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2428  пар=2  slot=—  flags=0x83 (hidebysig)  колонка+0=26662  token=0x0600097C
 	internal <LeftGameCrt>d__22(object p0, object p1) { }
@@ -15770,10 +16377,19 @@ public class <LeftGameCrt>d__22
 // --------------------------------------------------------------
 // TypeDefIndex: 442   token: 0x020001BA   запись: 0xACC114
 // globalTypeIndex: 3842 = OFF(3400) + rid(442)
-// методов: 6  (rid 2434..2439)   свойств: 0
+// методов: 6  (rid 2434..2439)   свойств: 2
 // --------------------------------------------------------------
 public class <ShowTablesCRT>d__15
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=200 token=0x170000C8  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2437, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=201 token=0x170000C9  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2439, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2434  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000982
 	private <ShowTablesCRT>d__15() { }
@@ -15955,10 +16571,19 @@ public class <>c__DisplayClass20_0
 // --------------------------------------------------------------
 // TypeDefIndex: 448   token: 0x020001C0   запись: 0xACC2DC
 // globalTypeIndex: 3848 = OFF(3400) + rid(448)
-// методов: 6  (rid 2462..2467)   свойств: 0
+// методов: 6  (rid 2462..2467)   свойств: 2
 // --------------------------------------------------------------
 public class <OnRaundFinishedCrt>d__15
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=202 token=0x170000CA  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2465, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=203 token=0x170000CB  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2467, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2462  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x0600099E
 	internal <OnRaundFinishedCrt>d__15(object p0) { }
@@ -16041,10 +16666,19 @@ public class DuelFragsWidget
 // --------------------------------------------------------------
 // TypeDefIndex: 450   token: 0x020001C2   запись: 0xACC4A4
 // globalTypeIndex: 3850 = OFF(3400) + rid(450)
-// методов: 6  (rid 2490..2495)   свойств: 0
+// методов: 6  (rid 2490..2495)   свойств: 2
 // --------------------------------------------------------------
 public class <SetSpriteDelay>d__5
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=204 token=0x170000CC  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2493, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=205 token=0x170000CD  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2495, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2490  пар=0  slot=—  flags=0x81 (hidebysig)  колонка+0=36310  token=0x060009BA
 	private <SetSpriteDelay>d__5() { }
@@ -16075,10 +16709,19 @@ public class <SetSpriteDelay>d__5
 // --------------------------------------------------------------
 // TypeDefIndex: 451   token: 0x020001C3   запись: 0xACC3C0
 // globalTypeIndex: 3851 = OFF(3400) + rid(451)
-// методов: 6  (rid 2496..2501)   свойств: 0
+// методов: 6  (rid 2496..2501)   свойств: 2
 // --------------------------------------------------------------
 public class <StartDuelGameCrt>d__38
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=206 token=0x170000CE  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2499, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=207 token=0x170000CF  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2501, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2496  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x060009C0
 	private <StartDuelGameCrt>d__38() { }
@@ -16109,10 +16752,19 @@ public class <StartDuelGameCrt>d__38
 // --------------------------------------------------------------
 // TypeDefIndex: 452   token: 0x020001C4   запись: 0xACC40C
 // globalTypeIndex: 3852 = OFF(3400) + rid(452)
-// методов: 6  (rid 2502..2507)   свойств: 0
+// методов: 6  (rid 2502..2507)   свойств: 2
 // --------------------------------------------------------------
 public class <StartPlayAgainWaitingCrt>d__43
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=208 token=0x170000D0  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2505, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=209 token=0x170000D1  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2507, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2502  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x060009C6
 	private <StartPlayAgainWaitingCrt>d__43() { }
@@ -16210,10 +16862,19 @@ public class DuelLobbyManager
 // --------------------------------------------------------------
 // TypeDefIndex: 454   token: 0x020001C6   запись: 0xACC53C
 // globalTypeIndex: 3854 = OFF(3400) + rid(454)
-// методов: 6  (rid 2513..2518)   свойств: 0
+// методов: 6  (rid 2513..2518)   свойств: 2
 // --------------------------------------------------------------
 public class <StartRace>d__11
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=210 token=0x170000D2  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2516, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=211 token=0x170000D3  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2518, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2513  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060009D1
 	public <StartRace>d__11() { }
@@ -16275,10 +16936,19 @@ public class DuelPlayerFragWidgetItem
 // --------------------------------------------------------------
 // TypeDefIndex: 456   token: 0x020001C8   запись: 0xACC620
 // globalTypeIndex: 3856 = OFF(3400) + rid(456)
-// методов: 6  (rid 2527..2532)   свойств: 0
+// методов: 6  (rid 2527..2532)   свойств: 2
 // --------------------------------------------------------------
 public class <StartSparksAndExplode>d__5
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=212 token=0x170000D4  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2530, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=213 token=0x170000D5  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2532, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2527  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060009DF
 	public <StartSparksAndExplode>d__5() { }
@@ -16308,10 +16978,19 @@ public class <StartSparksAndExplode>d__5
 // --------------------------------------------------------------
 // TypeDefIndex: 457   token: 0x020001C9   запись: 0xACC588
 // globalTypeIndex: 3857 = OFF(3400) + rid(457)
-// методов: 6  (rid 2533..2538)   свойств: 0
+// методов: 6  (rid 2533..2538)   свойств: 2
 // --------------------------------------------------------------
 public class <WaitForStart>d__10
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=214 token=0x170000D6  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2536, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=215 token=0x170000D7  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2538, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2533  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x060009E5
 	private <WaitForStart>d__10() { }
@@ -16379,10 +17058,19 @@ public class RacingLobbyManager
 // --------------------------------------------------------------
 // TypeDefIndex: 459   token: 0x020001CB   запись: 0xACC6B8
 // globalTypeIndex: 3859 = OFF(3400) + rid(459)
-// методов: 6  (rid 2544..2549)   свойств: 0
+// методов: 6  (rid 2544..2549)   свойств: 2
 // --------------------------------------------------------------
 public class <>c
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=216 token=0x170000D8  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2547, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=217 token=0x170000D9  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2549, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2544  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060009F0
 	public <>c() { }
@@ -16508,13 +17196,16 @@ public class <>c__DisplayClass16_0
 public class ElitSquadeGameManager
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=218 token=0x170000DA  get=+3  set=+— (от первого метода типа)
+	// Property rid=218 token=0x170000DA  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2553, set rid=—
 	public object TotalSecretsCount { get; }
 
-	// Property rid=219 token=0x170000DB  get=+4  set=+— (от первого метода типа)
+	// Property rid=219 token=0x170000DB  get=+4  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2554, set rid=—
 	public object CollectedSecretsCount { get; }
 
 	// Property rid=220 token=0x170000DC  get=+9  set=+10 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2559, set rid=2560
 	public object MissionCompletedCount { get; set; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -16562,10 +17253,19 @@ public class ElitSquadeGameManager
 // --------------------------------------------------------------
 // TypeDefIndex: 464   token: 0x020001D0   запись: 0xACC880
 // globalTypeIndex: 3864 = OFF(3400) + rid(464)
-// методов: 6  (rid 2583..2588)   свойств: 0
+// методов: 6  (rid 2583..2588)   свойств: 2
 // --------------------------------------------------------------
 public class EngineHealthFX
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=221 token=0x170000DD  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2586, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=222 token=0x170000DE  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2588, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2583  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000A17
 	public EngineHealthFX() { }
@@ -16599,10 +17299,19 @@ public class EngineHealthFX
 // --------------------------------------------------------------
 // TypeDefIndex: 465   token: 0x020001D1   запись: 0xACC7E8
 // globalTypeIndex: 3865 = OFF(3400) + rid(465)
-// методов: 6  (rid 2589..2594)   свойств: 0
+// методов: 6  (rid 2589..2594)   свойств: 2
 // --------------------------------------------------------------
 public class <StartEliteSquadGame>d__19
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=223 token=0x170000DF  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2592, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=224 token=0x170000E0  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2594, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2589  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000A1D
 	private <StartEliteSquadGame>d__19() { }
@@ -16790,10 +17499,15 @@ public class GameConfigData
 // --------------------------------------------------------------
 // TypeDefIndex: 471   token: 0x020001D7   запись: 0xACC9FC
 // globalTypeIndex: 3871 = OFF(3400) + rid(471)
-// методов: 2  (rid 2606..2607)   свойств: 0
+// методов: 2  (rid 2606..2607)   свойств: 1
 // --------------------------------------------------------------
 public class PlayerConfigData
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=225 token=0x170000E1  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2606, set rid=—
+	public object gameMode { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2606  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000A2E
 	public void get_gameMode() { }
@@ -17041,10 +17755,19 @@ public class <>c__DisplayClass99_0
 // --------------------------------------------------------------
 // TypeDefIndex: 480   token: 0x020001E0   запись: 0xACCC5C
 // globalTypeIndex: 3880 = OFF(3400) + rid(480)
-// методов: 6  (rid 2690..2695)   свойств: 0
+// методов: 6  (rid 2690..2695)   свойств: 2
 // --------------------------------------------------------------
 public class <DestroyDisconnectedPlayer>d__45
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=229 token=0x170000E5  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2693, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=230 token=0x170000E6  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2695, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2690  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x06000A82
 	internal <DestroyDisconnectedPlayer>d__45(object p0) { }
@@ -17073,10 +17796,19 @@ public class <DestroyDisconnectedPlayer>d__45
 // --------------------------------------------------------------
 // TypeDefIndex: 481   token: 0x020001E1   запись: 0xACCCA8
 // globalTypeIndex: 3881 = OFF(3400) + rid(481)
-// методов: 6  (rid 2696..2701)   свойств: 0
+// методов: 6  (rid 2696..2701)   свойств: 2
 // --------------------------------------------------------------
 public class <MatchFinishedCRT>d__60
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=231 token=0x170000E7  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2699, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=232 token=0x170000E8  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2701, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2696  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000A88
 	private <MatchFinishedCRT>d__60() { }
@@ -17104,10 +17836,19 @@ public class <MatchFinishedCRT>d__60
 // --------------------------------------------------------------
 // TypeDefIndex: 482   token: 0x020001E2   запись: 0xACCCF4
 // globalTypeIndex: 3882 = OFF(3400) + rid(482)
-// методов: 6  (rid 2702..2707)   свойств: 0
+// методов: 6  (rid 2702..2707)   свойств: 2
 // --------------------------------------------------------------
 public class <OnCompletlyConnectedCRT>d__38
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=233 token=0x170000E9  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2705, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=234 token=0x170000EA  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2707, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2702  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000A8E
 	private <OnCompletlyConnectedCRT>d__38() { }
@@ -17135,10 +17876,19 @@ public class <OnCompletlyConnectedCRT>d__38
 // --------------------------------------------------------------
 // TypeDefIndex: 483   token: 0x020001E3   запись: 0xACCD40
 // globalTypeIndex: 3883 = OFF(3400) + rid(483)
-// методов: 6  (rid 2708..2713)   свойств: 0
+// методов: 6  (rid 2708..2713)   свойств: 2
 // --------------------------------------------------------------
 public class <SetSavedPlayerPos>d__68
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=235 token=0x170000EB  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2711, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=236 token=0x170000EC  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2713, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2708  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000A94
 	private <SetSavedPlayerPos>d__68() { }
@@ -17165,10 +17915,19 @@ public class <SetSavedPlayerPos>d__68
 // --------------------------------------------------------------
 // TypeDefIndex: 484   token: 0x020001E4   запись: 0xACCD8C
 // globalTypeIndex: 3884 = OFF(3400) + rid(484)
-// методов: 6  (rid 2714..2719)   свойств: 0
+// методов: 6  (rid 2714..2719)   свойств: 2
 // --------------------------------------------------------------
 public class <Start>d__31
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=237 token=0x170000ED  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2717, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=238 token=0x170000EE  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2719, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2714  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000A9A
 	private <Start>d__31() { }
@@ -17196,10 +17955,19 @@ public class <Start>d__31
 // --------------------------------------------------------------
 // TypeDefIndex: 485   token: 0x020001E5   запись: 0xACCDD8
 // globalTypeIndex: 3885 = OFF(3400) + rid(485)
-// методов: 6  (rid 2720..2725)   свойств: 0
+// методов: 6  (rid 2720..2725)   свойств: 2
 // --------------------------------------------------------------
 public class <WaitForStartTime>d__40
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=239 token=0x170000EF  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2723, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=240 token=0x170000F0  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2725, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2720  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000AA0
 	private <WaitForStartTime>d__40() { }
@@ -17227,15 +17995,21 @@ public class <WaitForStartTime>d__40
 // --------------------------------------------------------------
 // TypeDefIndex: 486   token: 0x020001E6   запись: 0xACCE24
 // globalTypeIndex: 3886 = OFF(3400) + rid(486)
-// методов: 62  (rid 2609..2670)   свойств: 2
+// методов: 62  (rid 2609..2670)   свойств: 3
 // --------------------------------------------------------------
 public class GameController
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=227 token=0x170000E3  get=+37  set=+— (от первого метода типа)
+	// Property rid=226 token=0x170000E2  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2609, set rid=—
+	public object GameStartTime { get; }
+
+	// Property rid=227 token=0x170000E3  get=+37  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2646, set rid=—
 	public object MyTeamScore { get; }
 
-	// Property rid=228 token=0x170000E4  get=+38  set=+— (от первого метода типа)
+	// Property rid=228 token=0x170000E4  get=+38  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2647, set rid=—
 	public object OtherTeamScore { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -17404,10 +18178,19 @@ public class <JumpBtnCRT>d__52
 // --------------------------------------------------------------
 // TypeDefIndex: 488   token: 0x020001E8   запись: 0xACCF54
 // globalTypeIndex: 3888 = OFF(3400) + rid(488)
-// методов: 6  (rid 2774..2779)   свойств: 0
+// методов: 6  (rid 2774..2779)   свойств: 2
 // --------------------------------------------------------------
 public class <AnimatePanel>d__56
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=241 token=0x170000F1  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2777, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=242 token=0x170000F2  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2779, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2774  пар=0  slot=—  flags=0x81 (hidebysig)  колонка+0=36310  token=0x06000AD6
 	private <AnimatePanel>d__56() { }
@@ -17557,10 +18340,19 @@ public class GameInputController
 // --------------------------------------------------------------
 // TypeDefIndex: 490   token: 0x020001EA   запись: 0xACD038
 // globalTypeIndex: 3890 = OFF(3400) + rid(490)
-// методов: 6  (rid 2833..2838)   свойств: 0
+// методов: 6  (rid 2833..2838)   свойств: 2
 // --------------------------------------------------------------
 public class <>c
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=243 token=0x170000F3  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2836, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=244 token=0x170000F4  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2838, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2833  пар=0  slot=—  flags=0x1891 (static|hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000B11
 	private <>c() { }
@@ -17595,10 +18387,19 @@ public class <>c
 // --------------------------------------------------------------
 // TypeDefIndex: 491   token: 0x020001EB   запись: 0xACCFA0
 // globalTypeIndex: 3891 = OFF(3400) + rid(491)
-// методов: 6  (rid 2839..2844)   свойств: 0
+// методов: 6  (rid 2839..2844)   свойств: 2
 // --------------------------------------------------------------
 public class <ShowPanelCrt>d__58
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=245 token=0x170000F5  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2842, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=246 token=0x170000F6  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2844, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2839  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000B17
 	private <ShowPanelCrt>d__58() { }
@@ -17795,10 +18596,15 @@ public class HPBar
 // --------------------------------------------------------------
 // TypeDefIndex: 494   token: 0x020001EE   запись: 0xACD084
 // globalTypeIndex: 3894 = OFF(3400) + rid(494)
-// методов: 6  (rid 2845..2850)   свойств: 0
+// методов: 6  (rid 2845..2850)   свойств: 1
 // --------------------------------------------------------------
 public class GeneralZombieSpawnTrigger
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=247 token=0x170000F7  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2845, set rid=—
+	public object SpawnPoints { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2845  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000B1D
 	private virtual void get_SpawnPoints() { }
@@ -17873,10 +18679,19 @@ public class <Start>d__7
 // --------------------------------------------------------------
 // TypeDefIndex: 496   token: 0x020001F0   запись: 0xACD1B4
 // globalTypeIndex: 3896 = OFF(3400) + rid(496)
-// методов: 6  (rid 2867..2872)   свойств: 0
+// методов: 6  (rid 2867..2872)   свойств: 2
 // --------------------------------------------------------------
 public class JetPackWidget
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=248 token=0x170000F8  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2870, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=249 token=0x170000F9  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2872, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2867  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000B33
 	public JetPackWidget() { }
@@ -18004,10 +18819,19 @@ public class <>c__DisplayClass26_0
 // --------------------------------------------------------------
 // TypeDefIndex: 500   token: 0x020001F4   запись: 0xACD24C
 // globalTypeIndex: 3900 = OFF(3400) + rid(500)
-// методов: 6  (rid 2891..2896)   свойств: 0
+// методов: 6  (rid 2891..2896)   свойств: 2
 // --------------------------------------------------------------
 public class <CheckTimeCrt>d__12
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=250 token=0x170000FA  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2894, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=251 token=0x170000FB  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2896, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2891  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000B4B
 	public <CheckTimeCrt>d__12() { }
@@ -18117,10 +18941,19 @@ public class OptimizeContentForDevice
 // --------------------------------------------------------------
 // TypeDefIndex: 503   token: 0x020001F7   запись: 0xACD330
 // globalTypeIndex: 3903 = OFF(3400) + rid(503)
-// методов: 6  (rid 2914..2919)   свойств: 0
+// методов: 6  (rid 2914..2919)   свойств: 2
 // --------------------------------------------------------------
 public class <KickAlertCrt>d__17
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=252 token=0x170000FC  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2917, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=253 token=0x170000FD  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2919, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2914  пар=0  slot=—  flags=0x83 (hidebysig)  колонка+0=36310  token=0x06000B62
 	internal <KickAlertCrt>d__17() { }
@@ -18359,10 +19192,19 @@ public class <Start>d__22
 // --------------------------------------------------------------
 // TypeDefIndex: 509   token: 0x020001FD   запись: 0xACD5DC
 // globalTypeIndex: 3909 = OFF(3400) + rid(509)
-// методов: 6  (rid 2977..2982)   свойств: 0
+// методов: 6  (rid 2977..2982)   свойств: 2
 // --------------------------------------------------------------
 public class PlantBombStatus
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=258 token=0x17000102  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2980, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=259 token=0x17000103  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2982, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2977  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000BA1
 	public PlantBombStatus() { }
@@ -18397,10 +19239,19 @@ public class PlantBombStatus
 // --------------------------------------------------------------
 // TypeDefIndex: 510   token: 0x020001FE   запись: 0xACD544
 // globalTypeIndex: 3910 = OFF(3400) + rid(510)
-// методов: 6  (rid 2983..2988)   свойств: 0
+// методов: 6  (rid 2983..2988)   свойств: 2
 // --------------------------------------------------------------
 public class <StartNextSessionCrt>d__32
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=260 token=0x17000104  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2986, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=261 token=0x17000105  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2988, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=2983  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000BA7
 	private <StartNextSessionCrt>d__32() { }
@@ -18429,18 +19280,25 @@ public class <StartNextSessionCrt>d__32
 // --------------------------------------------------------------
 // TypeDefIndex: 511   token: 0x020001FF   запись: 0xACD590
 // globalTypeIndex: 3911 = OFF(3400) + rid(511)
-// методов: 24  (rid 2953..2976)   свойств: 3
+// методов: 24  (rid 2953..2976)   свойств: 4
 // --------------------------------------------------------------
 public class PlantBombManager
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=255 token=0x170000FF  get=+1  set=+— (от первого метода типа)
+	// Property rid=254 token=0x170000FE  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2953, set rid=—
+	public object IsInitialized { get; }
+
+	// Property rid=255 token=0x170000FF  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2954, set rid=—
 	public object raundDuration { get; }
 
-	// Property rid=256 token=0x17000100  get=+2  set=+— (от первого метода типа)
+	// Property rid=256 token=0x17000100  get=+2  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2955, set rid=—
 	public object PbSessionStatus { get; }
 
-	// Property rid=257 token=0x17000101  get=+20  set=+— (от первого метода типа)
+	// Property rid=257 token=0x17000101  get=+20  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2973, set rid=—
 	public object TimeUntilRaundEnd { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -18536,10 +19394,19 @@ public class RadarMiniMapData
 // --------------------------------------------------------------
 // TypeDefIndex: 513   token: 0x02000201   запись: 0xACD628
 // globalTypeIndex: 3913 = OFF(3400) + rid(513)
-// методов: 6  (rid 3030..3035)   свойств: 0
+// методов: 6  (rid 3030..3035)   свойств: 2
 // --------------------------------------------------------------
 public class <DiffuseCrt>d__56
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=266 token=0x1700010A  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3033, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=267 token=0x1700010B  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3035, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3030  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000BD6
 	public <DiffuseCrt>d__56() { }
@@ -18574,10 +19441,19 @@ public class <DiffuseCrt>d__56
 // --------------------------------------------------------------
 // TypeDefIndex: 514   token: 0x02000202   запись: 0xACD674
 // globalTypeIndex: 3914 = OFF(3400) + rid(514)
-// методов: 6  (rid 3036..3041)   свойств: 0
+// методов: 6  (rid 3036..3041)   свойств: 2
 // --------------------------------------------------------------
 public class <TickTok>d__67
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=268 token=0x1700010C  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3039, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=269 token=0x1700010D  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3041, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3036  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000BDC
 	private <TickTok>d__67() { }
@@ -18612,18 +19488,25 @@ public class <TickTok>d__67
 // --------------------------------------------------------------
 // TypeDefIndex: 515   token: 0x02000203   запись: 0xACD6C0
 // globalTypeIndex: 3915 = OFF(3400) + rid(515)
-// методов: 41  (rid 2989..3029)   свойств: 3
+// методов: 41  (rid 2989..3029)   свойств: 4
 // --------------------------------------------------------------
 public class PlantingBomb
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=263 token=0x17000107  get=+19  set=+— (от первого метода типа)
+	// Property rid=262 token=0x17000106  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=2989, set rid=—
+	public object startPos { get; }
+
+	// Property rid=263 token=0x17000107  get=+19  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3008, set rid=—
 	public object BombPlantTime { get; }
 
-	// Property rid=264 token=0x17000108  get=+20  set=+— (от первого метода типа)
+	// Property rid=264 token=0x17000108  get=+20  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3009, set rid=—
 	public object IsPlanted { get; }
 
-	// Property rid=265 token=0x17000109  get=+21  set=+— (от первого метода типа)
+	// Property rid=265 token=0x17000109  get=+21  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3010, set rid=—
 	public object IsPickable { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -18778,10 +19661,19 @@ public class <GetCrashed>d__24
 // --------------------------------------------------------------
 // TypeDefIndex: 518   token: 0x02000206   запись: 0xACD888
 // globalTypeIndex: 3918 = OFF(3400) + rid(518)
-// методов: 6  (rid 3060..3065)   свойств: 0
+// методов: 6  (rid 3060..3065)   свойств: 2
 // --------------------------------------------------------------
 public class Tournament
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=272 token=0x17000110  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3063, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=273 token=0x17000111  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3065, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3060  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000BF4
 	public Tournament() { }
@@ -18814,10 +19706,19 @@ public class Tournament
 // --------------------------------------------------------------
 // TypeDefIndex: 519   token: 0x02000207   запись: 0xACD7F0
 // globalTypeIndex: 3919 = OFF(3400) + rid(519)
-// методов: 6  (rid 3066..3071)   свойств: 0
+// методов: 6  (rid 3066..3071)   свойств: 2
 // --------------------------------------------------------------
 public class <Start>d__14
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=274 token=0x17000112  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3069, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=275 token=0x17000113  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3071, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3066  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000BFA
 	private <Start>d__14() { }
@@ -18850,12 +19751,17 @@ public class <Start>d__14
 // --------------------------------------------------------------
 // TypeDefIndex: 520   token: 0x02000208   запись: 0xACD83C
 // globalTypeIndex: 3920 = OFF(3400) + rid(520)
-// методов: 15  (rid 3045..3059)   свойств: 1
+// методов: 15  (rid 3045..3059)   свойств: 2
 // --------------------------------------------------------------
 public class RaceCarController
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=271 token=0x1700010F  get=+12  set=+— (от первого метода типа)
+	// Property rid=270 token=0x1700010E  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3045, set rid=—
+	public object carID { get; }
+
+	// Property rid=271 token=0x1700010F  get=+12  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3057, set rid=—
 	public object Alive { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -18986,6 +19892,7 @@ public class GameType
 {
 	// ---- Свойства (PropertyDefinition) ----
 	// Property rid=276 token=0x17000114  get=+3  set=+4 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3076, set rid=3077
 	public object PlayerSelectedCar { get; set; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -19410,10 +20317,19 @@ public class <>c__DisplayClass16_2
 // --------------------------------------------------------------
 // TypeDefIndex: 537   token: 0x02000219   запись: 0xACDD48
 // globalTypeIndex: 3937 = OFF(3400) + rid(537)
-// методов: 6  (rid 3145..3150)   свойств: 0
+// методов: 6  (rid 3145..3150)   свойств: 2
 // --------------------------------------------------------------
 public class <SortList>d__16
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=277 token=0x17000115  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3148, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=278 token=0x17000116  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3150, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3145  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x06000C49
 	internal <SortList>d__16(object p0) { }
@@ -19606,10 +20522,19 @@ public class <>c__DisplayClass11_0
 // --------------------------------------------------------------
 // TypeDefIndex: 542   token: 0x0200021E   запись: 0xACDEC4
 // globalTypeIndex: 3942 = OFF(3400) + rid(542)
-// методов: 6  (rid 3174..3179)   свойств: 0
+// методов: 6  (rid 3174..3179)   свойств: 2
 // --------------------------------------------------------------
 public class <MakeTable>d__11
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=279 token=0x17000117  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3177, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=280 token=0x17000118  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3179, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3174  пар=0  slot=—  flags=0x83 (hidebysig)  колонка+0=36310  token=0x06000C66
 	internal <MakeTable>d__11() { }
@@ -19835,10 +20760,19 @@ public class <ShowLightsCrt>d__22
 // --------------------------------------------------------------
 // TypeDefIndex: 549   token: 0x02000225   запись: 0xACE170
 // globalTypeIndex: 3949 = OFF(3400) + rid(549)
-// методов: 6  (rid 3205..3210)   свойств: 0
+// методов: 6  (rid 3205..3210)   свойств: 2
 // --------------------------------------------------------------
 public class RacingGameWindow
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=281 token=0x17000119  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3208, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=282 token=0x1700011A  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3210, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3205  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000C85
 	public RacingGameWindow() { }
@@ -19986,10 +20920,15 @@ public class Radar
 // --------------------------------------------------------------
 // TypeDefIndex: 553   token: 0x02000229   запись: 0xACE254
 // globalTypeIndex: 3953 = OFF(3400) + rid(553)
-// методов: 11  (rid 3220..3230)   свойств: 0
+// методов: 11  (rid 3220..3230)   свойств: 1
 // --------------------------------------------------------------
 public class RadarCar
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=283 token=0x1700011B  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3220, set rid=—
+	public object R { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3220  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000C94
 	public void get_R() { }
@@ -20070,10 +21009,19 @@ public class <ShowCRT>d__3
 // --------------------------------------------------------------
 // TypeDefIndex: 555   token: 0x0200022B   запись: 0xACE338
 // globalTypeIndex: 3955 = OFF(3400) + rid(555)
-// методов: 6  (rid 3239..3244)   свойств: 0
+// методов: 6  (rid 3239..3244)   свойств: 2
 // --------------------------------------------------------------
 public class RoomPropsViewer
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=284 token=0x1700011C  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3242, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=285 token=0x1700011D  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3244, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3239  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000CA7
 	public RoomPropsViewer() { }
@@ -20220,10 +21168,19 @@ public class <UpdDropTime>d__27
 // --------------------------------------------------------------
 // TypeDefIndex: 560   token: 0x02000230   запись: 0xACE4B4
 // globalTypeIndex: 3960 = OFF(3400) + rid(560)
-// методов: 6  (rid 3266..3271)   свойств: 0
+// методов: 6  (rid 3266..3271)   свойств: 2
 // --------------------------------------------------------------
 public class ServerInfoPanel
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=287 token=0x1700011F  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3269, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=288 token=0x17000120  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3271, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3266  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000CC2
 	public ServerInfoPanel() { }
@@ -20263,7 +21220,8 @@ public class ServerInfoPanel
 public class SecretCase
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=286 token=0x1700011E  get=+11  set=+— (от первого метода типа)
+	// Property rid=286 token=0x1700011E  get=+11  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3259, set rid=—
 	public object IsPickable { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -21408,10 +22366,19 @@ public class <>c__DisplayClass8_0
 // --------------------------------------------------------------
 // TypeDefIndex: 593   token: 0x02000251   запись: 0xACEDE8
 // globalTypeIndex: 3993 = OFF(3400) + rid(593)
-// методов: 6  (rid 3448..3453)   свойств: 0
+// методов: 6  (rid 3448..3453)   свойств: 2
 // --------------------------------------------------------------
 public class <SetSpriteDelay>d__6
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=289 token=0x17000121  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3451, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=290 token=0x17000122  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3453, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3448  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x06000D78
 	internal <SetSpriteDelay>d__6(object p0) { }
@@ -21785,10 +22752,19 @@ public class InvObjBasePropWidget
 // --------------------------------------------------------------
 // TypeDefIndex: 603   token: 0x0200025B   запись: 0xACF0E0
 // globalTypeIndex: 4003 = OFF(3400) + rid(603)
-// методов: 6  (rid 3518..3523)   свойств: 0
+// методов: 6  (rid 3518..3523)   свойств: 2
 // --------------------------------------------------------------
 public class <OnOurPlayerCreateCrt>d__19
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=291 token=0x17000123  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3521, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=292 token=0x17000124  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3523, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3518  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x06000DBE
 	internal <OnOurPlayerCreateCrt>d__19(object p0) { }
@@ -22336,10 +23312,19 @@ public class KickOutWindow
 // --------------------------------------------------------------
 // TypeDefIndex: 618   token: 0x0200026A   запись: 0xACF5EC
 // globalTypeIndex: 4018 = OFF(3400) + rid(618)
-// методов: 6  (rid 3609..3614)   свойств: 0
+// методов: 6  (rid 3609..3614)   свойств: 2
 // --------------------------------------------------------------
 public class LampPropsWidget
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=293 token=0x17000125  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3612, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=294 token=0x17000126  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3614, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3609  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000E19
 	public LampPropsWidget() { }
@@ -22412,7 +23397,8 @@ public class KillEventsWidget
 public class <>c
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=295 token=0x17000127  get=+8  set=+— (от первого метода типа)
+	// Property rid=295 token=0x17000127  get=+8  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3623, set rid=—
 	public object lampBaseInvObj { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -22650,10 +23636,19 @@ public class <CounterCrt>d__13
 // --------------------------------------------------------------
 // TypeDefIndex: 627   token: 0x02000273   запись: 0xACF800
 // globalTypeIndex: 4027 = OFF(3400) + rid(627)
-// методов: 6  (rid 3658..3663)   свойств: 0
+// методов: 6  (rid 3658..3663)   свойств: 2
 // --------------------------------------------------------------
 public class <TouchDownCRT>d__14
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=296 token=0x17000128  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3661, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=297 token=0x17000129  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3663, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3658  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000E4A
 	public <TouchDownCRT>d__14() { }
@@ -22721,10 +23716,19 @@ public class LongTapButton
 // --------------------------------------------------------------
 // TypeDefIndex: 629   token: 0x02000275   запись: 0xACF97C
 // globalTypeIndex: 4029 = OFF(3400) + rid(629)
-// методов: 6  (rid 3675..3680)   свойств: 0
+// методов: 6  (rid 3675..3680)   свойств: 2
 // --------------------------------------------------------------
 public class OutlineSelectionWidget
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=298 token=0x1700012A  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3678, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=299 token=0x1700012B  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3680, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3675  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000E5B
 	public OutlineSelectionWidget() { }
@@ -22755,10 +23759,19 @@ public class OutlineSelectionWidget
 // --------------------------------------------------------------
 // TypeDefIndex: 630   token: 0x02000276   запись: 0xACF8E4
 // globalTypeIndex: 4030 = OFF(3400) + rid(630)
-// методов: 6  (rid 3681..3686)   свойств: 0
+// методов: 6  (rid 3681..3686)   свойств: 2
 // --------------------------------------------------------------
 public class <Start>d__5
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=300 token=0x1700012C  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3684, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=301 token=0x1700012D  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3686, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3681  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000E61
 	private <Start>d__5() { }
@@ -23506,10 +24519,15 @@ public class ScalingSliders
 // --------------------------------------------------------------
 // TypeDefIndex: 651   token: 0x0200028B   запись: 0xACFF6C
 // globalTypeIndex: 4051 = OFF(3400) + rid(651)
-// методов: 11  (rid 3808..3818)   свойств: 0
+// методов: 11  (rid 3808..3818)   свойств: 1
 // --------------------------------------------------------------
 public class ShadowsConfig
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=302 token=0x1700012E  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3808, set rid=—
+	public object currentItemObject { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3808  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000EE0
 	public void get_currentItemObject() { }
@@ -23669,10 +24687,19 @@ public class WaterPlane0PropsWidget
 // --------------------------------------------------------------
 // TypeDefIndex: 655   token: 0x0200028F   запись: 0xAD0050
 // globalTypeIndex: 4055 = OFF(3400) + rid(655)
-// методов: 6  (rid 3862..3867)   свойств: 0
+// методов: 6  (rid 3862..3867)   свойств: 2
 // --------------------------------------------------------------
 public class <JoinCaptureFlagC>d__23
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=303 token=0x1700012F  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3865, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=304 token=0x17000130  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3867, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3862  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x06000F16
 	internal <JoinCaptureFlagC>d__23(object p0) { }
@@ -23700,10 +24727,19 @@ public class <JoinCaptureFlagC>d__23
 // --------------------------------------------------------------
 // TypeDefIndex: 656   token: 0x02000290   запись: 0xAD009C
 // globalTypeIndex: 4056 = OFF(3400) + rid(656)
-// методов: 6  (rid 3868..3873)   свойств: 0
+// методов: 6  (rid 3868..3873)   свойств: 2
 // --------------------------------------------------------------
 public class <JoinRandomTeams>d__35
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=305 token=0x17000131  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3871, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=306 token=0x17000132  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3873, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3868  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000F1C
 	private <JoinRandomTeams>d__35() { }
@@ -23731,10 +24767,19 @@ public class <JoinRandomTeams>d__35
 // --------------------------------------------------------------
 // TypeDefIndex: 657   token: 0x02000291   запись: 0xAD00E8
 // globalTypeIndex: 4057 = OFF(3400) + rid(657)
-// методов: 6  (rid 3874..3879)   свойств: 0
+// методов: 6  (rid 3874..3879)   свойств: 2
 // --------------------------------------------------------------
 public class <SelectTeamCRT>d__31
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=307 token=0x17000133  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3877, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=308 token=0x17000134  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3879, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3874  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000F22
 	private <SelectTeamCRT>d__31() { }
@@ -24243,10 +25288,19 @@ public class <OnCrash>d__28
 // --------------------------------------------------------------
 // TypeDefIndex: 671   token: 0x0200029F   запись: 0xAD05F4
 // globalTypeIndex: 4071 = OFF(3400) + rid(671)
-// методов: 6  (rid 3976..3981)   свойств: 0
+// методов: 6  (rid 3976..3981)   свойств: 2
 // --------------------------------------------------------------
 public class <>c
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=309 token=0x17000135  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3979, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=310 token=0x17000136  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3981, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3976  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000F88
 	public <>c() { }
@@ -24281,10 +25335,19 @@ public class <>c
 // --------------------------------------------------------------
 // TypeDefIndex: 672   token: 0x020002A0   запись: 0xAD055C
 // globalTypeIndex: 4072 = OFF(3400) + rid(672)
-// методов: 6  (rid 3982..3987)   свойств: 0
+// методов: 6  (rid 3982..3987)   свойств: 2
 // --------------------------------------------------------------
 public class <OnPlayerLeaveMeRPCrt>d__37
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=311 token=0x17000137  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3985, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=312 token=0x17000138  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=3987, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=3982  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06000F8E
 	private <OnPlayerLeaveMeRPCrt>d__37() { }
@@ -24496,10 +25559,19 @@ public class <>c__DisplayClass8_0
 // --------------------------------------------------------------
 // TypeDefIndex: 678   token: 0x020002A6   запись: 0xAD0724
 // globalTypeIndex: 4078 = OFF(3400) + rid(678)
-// методов: 6  (rid 4008..4013)   свойств: 0
+// методов: 6  (rid 4008..4013)   свойств: 2
 // --------------------------------------------------------------
 public class <TakeScreenshotAndSave>d__2
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=313 token=0x17000139  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4011, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=314 token=0x1700013A  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4013, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4008  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=36310  token=0x06000FA8
 	internal <TakeScreenshotAndSave>d__2(object p0) { }
@@ -24594,10 +25666,19 @@ public class <UpdateWheelColliderInParentCrt>d__9
 // --------------------------------------------------------------
 // TypeDefIndex: 681   token: 0x020002A9   запись: 0xAD08A0
 // globalTypeIndex: 4081 = OFF(3400) + rid(681)
-// методов: 6  (rid 4026..4031)   свойств: 0
+// методов: 6  (rid 4026..4031)   свойств: 2
 // --------------------------------------------------------------
 public class PressureBlockTrigger
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=315 token=0x1700013B  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4029, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=316 token=0x1700013C  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4031, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4026  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000FBA
 	public PressureBlockTrigger() { }
@@ -24692,10 +25773,19 @@ public class <AnimateFromStartToEndCrt>d__13
 // --------------------------------------------------------------
 // TypeDefIndex: 684   token: 0x020002AC   запись: 0xAD0984
 // globalTypeIndex: 4084 = OFF(3400) + rid(684)
-// методов: 6  (rid 4042..4047)   свойств: 0
+// методов: 6  (rid 4042..4047)   свойств: 2
 // --------------------------------------------------------------
 public class CandleInvObj
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=317 token=0x1700013D  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4045, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=318 token=0x1700013E  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4047, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4042  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06000FCA
 	public CandleInvObj() { }
@@ -25139,10 +26229,19 @@ public class CustomFBXMapInvObj
 // --------------------------------------------------------------
 // TypeDefIndex: 697   token: 0x020002B9   запись: 0xAD0CC8
 // globalTypeIndex: 4097 = OFF(3400) + rid(697)
-// методов: 6  (rid 4130..4135)   свойств: 0
+// методов: 6  (rid 4130..4135)   свойств: 2
 // --------------------------------------------------------------
 public class <UpdateMaterials>d__27
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=319 token=0x1700013F  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4133, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=320 token=0x17000140  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4135, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4130  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001022
 	public <UpdateMaterials>d__27() { }
@@ -25176,10 +26275,19 @@ public class <UpdateMaterials>d__27
 // --------------------------------------------------------------
 // TypeDefIndex: 698   token: 0x020002BA   запись: 0xAD0D14
 // globalTypeIndex: 4098 = OFF(3400) + rid(698)
-// методов: 7  (rid 4136..4142)   свойств: 0
+// методов: 7  (rid 4136..4142)   свойств: 2
 // --------------------------------------------------------------
 public class <UpdateShaderTypeCrt>d__35
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=321 token=0x17000141  get=+4  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4140, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=322 token=0x17000142  get=+6  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4142, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4136  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001028
 	private <UpdateShaderTypeCrt>d__35() { }
@@ -25444,10 +26552,19 @@ public class <LoadAudioCrt>d__9
 // --------------------------------------------------------------
 // TypeDefIndex: 705   token: 0x020002C1   запись: 0xAD0FC0
 // globalTypeIndex: 4105 = OFF(3400) + rid(705)
-// методов: 6  (rid 4174..4179)   свойств: 0
+// методов: 6  (rid 4174..4179)   свойств: 2
 // --------------------------------------------------------------
 public class CustomPlayerImageInvObj
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=323 token=0x17000143  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4177, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=324 token=0x17000144  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4179, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4174  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x0600104E
 	public CustomPlayerImageInvObj() { }
@@ -25816,27 +26933,25 @@ public class FNAFLaptopVideoCamera
 // --------------------------------------------------------------
 // TypeDefIndex: 715   token: 0x020002CB   запись: 0xAD126C
 // globalTypeIndex: 4115 = OFF(3400) + rid(715)
-// методов: 11  (rid 4233..4243)   свойств: 6
+// методов: 11  (rid 4233..4243)   свойств: 4
 // --------------------------------------------------------------
 public class FirepitInvObj
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=326 token=0x17000146  get=+1  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (2 кандидатов)
+	// Property rid=325 token=0x17000145  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4233, set rid=—
+	public object targetRenderFPS { get; }
+
+	// Property rid=326 token=0x17000146  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4234, set rid=—
 	public object CheckOptimizationPeriod { get; }
 
-	// Property rid=327 token=0x17000147  get=+2  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (2 кандидатов)
+	// Property rid=327 token=0x17000147  get=+2  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4235, set rid=—
 	public object RenderPeriod { get; }
 
-	// Property rid=328 token=0x17000148  get=+3  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (2 кандидатов)
-	public object MinAllowedFps { get; }
-
-	// Property rid=350 token=0x1700015E  get=+1  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (2 кандидатов)
-	public object CheckOptimizationPeriod { get; }
-
-	// Property rid=351 token=0x1700015F  get=+2  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (2 кандидатов)
-	public object RenderPeriod { get; }
-
-	// Property rid=352 token=0x17000160  get=+3  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (2 кандидатов)
+	// Property rid=328 token=0x17000148  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4236, set rid=—
 	public object MinAllowedFps { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -26135,18 +27250,25 @@ public class InvMirror
 // --------------------------------------------------------------
 // TypeDefIndex: 724   token: 0x020002D4   запись: 0xAD1518
 // globalTypeIndex: 4124 = OFF(3400) + rid(724)
-// методов: 10  (rid 4294..4303)   свойств: 3
+// методов: 10  (rid 4294..4303)   свойств: 4
 // --------------------------------------------------------------
 public class TankTurretCustomBullet
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=330 token=0x1700014A  get=+1  set=+— (от первого метода типа)
+	// Property rid=329 token=0x17000149  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4294, set rid=—
+	public object targetRenderFPS { get; }
+
+	// Property rid=330 token=0x1700014A  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4295, set rid=—
 	public object RenderPeriod { get; }
 
-	// Property rid=331 token=0x1700014B  get=+2  set=+— (от первого метода типа)
+	// Property rid=331 token=0x1700014B  get=+2  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4296, set rid=—
 	public object MinAllowedFps { get; }
 
-	// Property rid=332 token=0x1700014C  get=+3  set=+— (от первого метода типа)
+	// Property rid=332 token=0x1700014C  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4297, set rid=—
 	public object CheckOptimizationPeriod { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -26364,10 +27486,19 @@ public class <ActivateCrt>d__4
 // --------------------------------------------------------------
 // TypeDefIndex: 730   token: 0x020002DA   запись: 0xAD172C
 // globalTypeIndex: 4130 = OFF(3400) + rid(730)
-// методов: 6  (rid 4328..4333)   свойств: 0
+// методов: 6  (rid 4328..4333)   свойств: 2
 // --------------------------------------------------------------
 public class InvObjInteractionManager
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=333 token=0x1700014D  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4331, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=334 token=0x1700014E  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4333, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4328  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060010E8
 	public InvObjInteractionManager() { }
@@ -26772,7 +27903,8 @@ public class InventoryCarObject
 public class InventoryConnectionLine
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=335 token=0x1700014F  get=+5  set=+— (от первого метода типа)
+	// Property rid=335 token=0x1700014F  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4388, set rid=—
 	public object MyCar { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -26880,10 +28012,19 @@ public class <DistanceCrt>d__28
 // --------------------------------------------------------------
 // TypeDefIndex: 745   token: 0x020002E9   запись: 0xAD1C38
 // globalTypeIndex: 4145 = OFF(3400) + rid(745)
-// методов: 6  (rid 4444..4449)   свойств: 0
+// методов: 6  (rid 4444..4449)   свойств: 2
 // --------------------------------------------------------------
 public class InventoryItem
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=336 token=0x17000150  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4447, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=337 token=0x17000151  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4449, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4444  пар=1  slot=—  flags=0x81 (hidebysig)  колонка+0=36310  token=0x0600115C
 	private InventoryItem(object p0) { }
@@ -26916,10 +28057,19 @@ public class InventoryItem
 // --------------------------------------------------------------
 // TypeDefIndex: 746   token: 0x020002EA   запись: 0xAD1B54
 // globalTypeIndex: 4146 = OFF(3400) + rid(746)
-// методов: 6  (rid 4450..4455)   свойств: 0
+// методов: 6  (rid 4450..4455)   свойств: 2
 // --------------------------------------------------------------
 public class <ScaleCrt>d__29
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=338 token=0x17000152  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4453, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=339 token=0x17000153  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4455, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4450  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001162
 	private <ScaleCrt>d__29() { }
@@ -26952,10 +28102,19 @@ public class <ScaleCrt>d__29
 // --------------------------------------------------------------
 // TypeDefIndex: 747   token: 0x020002EB   запись: 0xAD1BA0
 // globalTypeIndex: 4147 = OFF(3400) + rid(747)
-// методов: 6  (rid 4456..4461)   свойств: 0
+// методов: 6  (rid 4456..4461)   свойств: 2
 // --------------------------------------------------------------
 public class <Start>d__16
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=340 token=0x17000154  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4459, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=341 token=0x17000155  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4461, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4456  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001168
 	private <Start>d__16() { }
@@ -27188,10 +28347,19 @@ public class JetEngineContextMenuManager
 // --------------------------------------------------------------
 // TypeDefIndex: 752   token: 0x020002F0   запись: 0xAD1D1C
 // globalTypeIndex: 4152 = OFF(3400) + rid(752)
-// методов: 6  (rid 4532..4537)   свойств: 0
+// методов: 6  (rid 4532..4537)   свойств: 2
 // --------------------------------------------------------------
 public class <CheckMyUniqueIdsCrt>d__18
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=343 token=0x17000157  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4535, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=344 token=0x17000158  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4537, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4532  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x060011B4
 	internal <CheckMyUniqueIdsCrt>d__18(object p0) { }
@@ -27222,10 +28390,19 @@ public class <CheckMyUniqueIdsCrt>d__18
 // --------------------------------------------------------------
 // TypeDefIndex: 753   token: 0x020002F1   запись: 0xAD1D68
 // globalTypeIndex: 4153 = OFF(3400) + rid(753)
-// методов: 6  (rid 4538..4543)   свойств: 0
+// методов: 6  (rid 4538..4543)   свойств: 2
 // --------------------------------------------------------------
 public class <DestroyChildObjects>d__62
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=345 token=0x17000159  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4541, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=346 token=0x1700015A  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4543, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4538  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x060011BA
 	private <DestroyChildObjects>d__62() { }
@@ -27546,10 +28723,19 @@ public class MetronomeContextMenuManager
 // --------------------------------------------------------------
 // TypeDefIndex: 760   token: 0x020002F8   запись: 0xAD1F7C
 // globalTypeIndex: 4160 = OFF(3400) + rid(760)
-// методов: 6  (rid 4590..4595)   свойств: 0
+// методов: 6  (rid 4590..4595)   свойств: 2
 // --------------------------------------------------------------
 public class <MovePlatform>d__16
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=347 token=0x1700015B  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4593, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=348 token=0x1700015C  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4595, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4590  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060011EE
 	public <MovePlatform>d__16() { }
@@ -28463,27 +29649,25 @@ public class TrackingStationCamera
 // --------------------------------------------------------------
 // TypeDefIndex: 786   token: 0x02000312   запись: 0xAD2780
 // globalTypeIndex: 4186 = OFF(3400) + rid(786)
-// методов: 15  (rid 4729..4743)   свойств: 6
+// методов: 15  (rid 4729..4743)   свойств: 4
 // --------------------------------------------------------------
 public class TriggerActPressure
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=326 token=0x17000146  get=+1  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (2 кандидатов)
+	// Property rid=349 token=0x1700015D  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4729, set rid=—
+	public object targetRenderFPS { get; }
+
+	// Property rid=350 token=0x1700015E  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4730, set rid=—
 	public object CheckOptimizationPeriod { get; }
 
-	// Property rid=327 token=0x17000147  get=+2  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (2 кандидатов)
+	// Property rid=351 token=0x1700015F  get=+2  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4731, set rid=—
 	public object RenderPeriod { get; }
 
-	// Property rid=328 token=0x17000148  get=+3  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (2 кандидатов)
-	public object MinAllowedFps { get; }
-
-	// Property rid=350 token=0x1700015E  get=+1  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (2 кандидатов)
-	public object CheckOptimizationPeriod { get; }
-
-	// Property rid=351 token=0x1700015F  get=+2  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (2 кандидатов)
-	public object RenderPeriod { get; }
-
-	// Property rid=352 token=0x17000160  get=+3  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (2 кандидатов)
+	// Property rid=352 token=0x17000160  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4732, set rid=—
 	public object MinAllowedFps { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -28655,10 +29839,19 @@ public class <>c__DisplayClass12_0
 // --------------------------------------------------------------
 // TypeDefIndex: 791   token: 0x02000317   запись: 0xAD28B0
 // globalTypeIndex: 4191 = OFF(3400) + rid(791)
-// методов: 6  (rid 4777..4782)   свойств: 0
+// методов: 6  (rid 4777..4782)   свойств: 2
 // --------------------------------------------------------------
 public class <SetupSavedListenersOnStart>d__12
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=353 token=0x17000161  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4780, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=354 token=0x17000162  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4782, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4777  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x060012A9
 	internal <SetupSavedListenersOnStart>d__12(object p0) { }
@@ -28900,10 +30093,19 @@ public class <>c__DisplayClass4_0
 // --------------------------------------------------------------
 // TypeDefIndex: 798   token: 0x0200031E   запись: 0xAD2AC4
 // globalTypeIndex: 4198 = OFF(3400) + rid(798)
-// методов: 6  (rid 4817..4822)   свойств: 0
+// методов: 6  (rid 4817..4822)   свойств: 2
 // --------------------------------------------------------------
 public class <AnimateLinesCrt>d__12
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=355 token=0x17000163  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4820, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=356 token=0x17000164  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4822, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4817  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x060012D1
 	internal <AnimateLinesCrt>d__12(object p0) { }
@@ -28931,10 +30133,19 @@ public class <AnimateLinesCrt>d__12
 // --------------------------------------------------------------
 // TypeDefIndex: 799   token: 0x0200031F   запись: 0xAD2B10
 // globalTypeIndex: 4199 = OFF(3400) + rid(799)
-// методов: 6  (rid 4823..4828)   свойств: 0
+// методов: 6  (rid 4823..4828)   свойств: 2
 // --------------------------------------------------------------
 public class <SetupSavedCommandersOnStart>d__4
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=357 token=0x17000165  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4826, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=358 token=0x17000166  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4828, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4823  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x060012D7
 	private <SetupSavedCommandersOnStart>d__4() { }
@@ -29337,10 +30548,15 @@ public class LocalizatioManager
 // --------------------------------------------------------------
 // TypeDefIndex: 810   token: 0x0200032A   запись: 0xAD2EA0
 // globalTypeIndex: 4210 = OFF(3400) + rid(810)
-// методов: 7  (rid 4883..4889)   свойств: 0
+// методов: 7  (rid 4883..4889)   свойств: 1
 // --------------------------------------------------------------
 public class LocalizedLabel
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=359 token=0x17000167  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4883, set rid=—
+	public object PlayerTemplateNames { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4883  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001313
 	public void get_PlayerTemplateNames() { }
@@ -29431,7 +30647,8 @@ public class QuickEasyBadWordFilter
 public class LocalizedLabel2
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=360 token=0x17000168  get=+3  set=+— (от первого метода типа)
+	// Property rid=360 token=0x17000168  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4896, set rid=—
 	public object text { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -29537,7 +30754,8 @@ public class BaseScreen
 public class ButtonLimitByLevel
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=361 token=0x17000169  get=+9  set=+— (от первого метода типа)
+	// Property rid=361 token=0x17000169  get=+9  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4916, set rid=—
 	public object MainCamera { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -29608,12 +30826,17 @@ public class ClothingSlidersController
 // --------------------------------------------------------------
 // TypeDefIndex: 818   token: 0x02000332   запись: 0xAD3100
 // globalTypeIndex: 4218 = OFF(3400) + rid(818)
-// методов: 46  (rid 4920..4965)   свойств: 1
+// методов: 46  (rid 4920..4965)   свойств: 2
 // --------------------------------------------------------------
 public class ConnectionProblemsAlert
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=363 token=0x1700016B  get=+7  set=+— (от первого метода типа)
+	// Property rid=362 token=0x1700016A  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4920, set rid=—
+	public object playerClothingManager { get; }
+
+	// Property rid=363 token=0x1700016B  get=+7  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4927, set rid=—
 	public object currentTargetTr { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -29790,10 +31013,19 @@ public class <VideoFail>d__22
 // --------------------------------------------------------------
 // TypeDefIndex: 821   token: 0x02000335   запись: 0xAD327C
 // globalTypeIndex: 4221 = OFF(3400) + rid(821)
-// методов: 6  (rid 4989..4994)   свойств: 0
+// методов: 6  (rid 4989..4994)   свойств: 2
 // --------------------------------------------------------------
 public class GamblingWheelScreen
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=364 token=0x1700016C  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4992, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=365 token=0x1700016D  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4994, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4989  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x0600137D
 	public GamblingWheelScreen() { }
@@ -29822,10 +31054,19 @@ public class GamblingWheelScreen
 // --------------------------------------------------------------
 // TypeDefIndex: 822   token: 0x02000336   запись: 0xAD31E4
 // globalTypeIndex: 4222 = OFF(3400) + rid(822)
-// методов: 6  (rid 4995..5000)   свойств: 0
+// методов: 6  (rid 4995..5000)   свойств: 2
 // --------------------------------------------------------------
 public class <VideoSuccess>d__20
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=366 token=0x1700016E  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=4998, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=367 token=0x1700016F  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5000, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=4995  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001383
 	private <VideoSuccess>d__20() { }
@@ -30073,10 +31314,19 @@ public class <>c__DisplayClass48_2
 // --------------------------------------------------------------
 // TypeDefIndex: 830   token: 0x0200033E   запись: 0xAD3444
 // globalTypeIndex: 4230 = OFF(3400) + rid(830)
-// методов: 6  (rid 5058..5063)   свойств: 0
+// методов: 6  (rid 5058..5063)   свойств: 2
 // --------------------------------------------------------------
 public class <OnPhotonJoinRoomFailedCRT>d__42
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=369 token=0x17000171  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5061, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=370 token=0x17000172  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5063, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5058  пар=0  slot=—  flags=0x83 (hidebysig)  колонка+0=36310  token=0x060013C2
 	internal <OnPhotonJoinRoomFailedCRT>d__42() { }
@@ -30109,10 +31359,15 @@ public class <OnPhotonJoinRoomFailedCRT>d__42
 // --------------------------------------------------------------
 // TypeDefIndex: 831   token: 0x0200033F   запись: 0xAD3490
 // globalTypeIndex: 4231 = OFF(3400) + rid(831)
-// методов: 42  (rid 5004..5045)   свойств: 0
+// методов: 42  (rid 5004..5045)   свойств: 1
 // --------------------------------------------------------------
 public class GameConnectionScreen
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=368 token=0x17000170  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5004, set rid=—
+	public object CameraPosForThisScreen { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5004  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x0600138C
 	public void get_CameraPosForThisScreen() { }
@@ -30342,10 +31597,19 @@ public class <>c__DisplayClass37_0
 // --------------------------------------------------------------
 // TypeDefIndex: 836   token: 0x02000344   запись: 0xAD360C
 // globalTypeIndex: 4236 = OFF(3400) + rid(836)
-// методов: 6  (rid 5109..5114)   свойств: 0
+// методов: 6  (rid 5109..5114)   свойств: 2
 // --------------------------------------------------------------
 public class <CreateSingleGame>d__26
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=371 token=0x17000173  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5112, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=372 token=0x17000174  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5114, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5109  пар=0  slot=—  flags=0x83 (hidebysig)  колонка+0=36310  token=0x060013F5
 	internal <CreateSingleGame>d__26() { }
@@ -30460,10 +31724,19 @@ public class <OnFailedToJoinRooCrt>d__15
 // --------------------------------------------------------------
 // TypeDefIndex: 839   token: 0x02000347   запись: 0xAD3788
 // globalTypeIndex: 4239 = OFF(3400) + rid(839)
-// методов: 6  (rid 5130..5135)   свойств: 0
+// методов: 6  (rid 5130..5135)   свойств: 2
 // --------------------------------------------------------------
 public class LogListener
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=373 token=0x17000175  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5133, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=374 token=0x17000176  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5135, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5130  пар=0  slot=—  flags=0x81 (hidebysig)  колонка+0=36310  token=0x0600140A
 	private LogListener() { }
@@ -30567,15 +31840,21 @@ public class MainMenuScreen
 // --------------------------------------------------------------
 // TypeDefIndex: 842   token: 0x0200034A   запись: 0xAD3820
 // globalTypeIndex: 4242 = OFF(3400) + rid(842)
-// методов: 45  (rid 5140..5184)   свойств: 2
+// методов: 45  (rid 5140..5184)   свойств: 3
 // --------------------------------------------------------------
 public class MainMenuSettingsScreen
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=376 token=0x17000178  get=+1  set=+— (от первого метода типа)
+	// Property rid=375 token=0x17000177  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5140, set rid=—
+	public object CameraPosForThisScreen { get; }
+
+	// Property rid=376 token=0x17000178  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5141, set rid=—
 	public object playerPosForThisScreen { get; }
 
-	// Property rid=377 token=0x17000179  get=+10  set=+— (от первого метода типа)
+	// Property rid=377 token=0x17000179  get=+10  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5150, set rid=—
 	public object MyPhotoSize { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -30887,10 +32166,19 @@ public class <>c__DisplayClass17_0
 // --------------------------------------------------------------
 // TypeDefIndex: 850   token: 0x02000352   запись: 0xAD3A34
 // globalTypeIndex: 4250 = OFF(3400) + rid(850)
-// методов: 6  (rid 5214..5219)   свойств: 0
+// методов: 6  (rid 5214..5219)   свойств: 2
 // --------------------------------------------------------------
 public class <UpdateMaterials>d__20
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=378 token=0x1700017A  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5217, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=379 token=0x1700017B  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5219, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5214  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x0600145E
 	internal <UpdateMaterials>d__20(object p0) { }
@@ -30922,10 +32210,19 @@ public class <UpdateMaterials>d__20
 // --------------------------------------------------------------
 // TypeDefIndex: 851   token: 0x02000353   запись: 0xAD3A80
 // globalTypeIndex: 4251 = OFF(3400) + rid(851)
-// методов: 7  (rid 5220..5226)   свойств: 0
+// методов: 7  (rid 5220..5226)   свойств: 2
 // --------------------------------------------------------------
 public class <UpdateShaderTypeCrt>d__21
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=380 token=0x1700017C  get=+4  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5224, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=381 token=0x1700017D  get=+6  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5226, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5220  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001464
 	private <UpdateShaderTypeCrt>d__21() { }
@@ -31103,6 +32400,7 @@ public class MenuEnvObjectManager
 {
 	// ---- Свойства (PropertyDefinition) ----
 	// Property rid=382 token=0x1700017E  get=+2  set=+3 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5233, set rid=5234
 	public object SavedMenuIndex { get; set; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -31345,6 +32643,7 @@ public class PlayerLevelWidget
 {
 	// ---- Свойства (PropertyDefinition) ----
 	// Property rid=383 token=0x1700017F  get=+7  set=+8 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5283, set rid=5284
 	public object PhotonRegion { get; set; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -31699,10 +32998,19 @@ public class <>c__DisplayClass9_0
 // --------------------------------------------------------------
 // TypeDefIndex: 873   token: 0x02000369   запись: 0xAD4108
 // globalTypeIndex: 4273 = OFF(3400) + rid(873)
-// методов: 6  (rid 5348..5353)   свойств: 0
+// методов: 6  (rid 5348..5353)   свойств: 2
 // --------------------------------------------------------------
 public class <ResetClothingPos>d__12
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=384 token=0x17000180  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5351, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=385 token=0x17000181  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5353, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5348  пар=0  slot=—  flags=0x83 (hidebysig)  колонка+0=36310  token=0x060014E4
 	internal <ResetClothingPos>d__12() { }
@@ -32084,10 +33392,19 @@ public class <>c__DisplayClass46_0
 // --------------------------------------------------------------
 // TypeDefIndex: 885   token: 0x02000375   запись: 0xAD4498
 // globalTypeIndex: 4285 = OFF(3400) + rid(885)
-// методов: 6  (rid 5423..5428)   свойств: 0
+// методов: 6  (rid 5423..5428)   свойств: 2
 // --------------------------------------------------------------
 public class <CreateBodyguard>d__52
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=390 token=0x17000186  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5426, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=391 token=0x17000187  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5428, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5423  пар=0  slot=—  flags=0x83 (hidebysig)  колонка+0=36310  token=0x0600152F
 	internal <CreateBodyguard>d__52() { }
@@ -32122,10 +33439,19 @@ public class <CreateBodyguard>d__52
 // --------------------------------------------------------------
 // TypeDefIndex: 886   token: 0x02000376   запись: 0xAD44E4
 // globalTypeIndex: 4286 = OFF(3400) + rid(886)
-// методов: 6  (rid 5429..5434)   свойств: 0
+// методов: 6  (rid 5429..5434)   свойств: 2
 // --------------------------------------------------------------
 public class <ResetClothingPos>d__48
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=392 token=0x17000188  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5432, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=393 token=0x17000189  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5434, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5429  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001535
 	private <ResetClothingPos>d__48() { }
@@ -32159,18 +33485,25 @@ public class <ResetClothingPos>d__48
 // --------------------------------------------------------------
 // TypeDefIndex: 887   token: 0x02000377   запись: 0xAD4530
 // globalTypeIndex: 4287 = OFF(3400) + rid(887)
-// методов: 42  (rid 5373..5414)   свойств: 3
+// методов: 42  (rid 5373..5414)   свойств: 4
 // --------------------------------------------------------------
 public class ShopController
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=387 token=0x17000183  get=+1  set=+— (от первого метода типа)
+	// Property rid=386 token=0x17000182  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5373, set rid=—
+	public object menuPlayerPivot { get; }
+
+	// Property rid=387 token=0x17000183  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5374, set rid=—
 	public object shopCarPivot { get; }
 
-	// Property rid=388 token=0x17000184  get=+2  set=+— (от первого метода типа)
+	// Property rid=388 token=0x17000184  get=+2  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5375, set rid=—
 	public object shopPetPivot { get; }
 
-	// Property rid=389 token=0x17000185  get=+3  set=+— (от первого метода типа)
+	// Property rid=389 token=0x17000185  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5376, set rid=—
 	public object carsCamera { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -32274,10 +33607,15 @@ public class ShopController
 // --------------------------------------------------------------
 // TypeDefIndex: 888   token: 0x02000378   запись: 0xAD45C8
 // globalTypeIndex: 4288 = OFF(3400) + rid(888)
-// методов: 6  (rid 5435..5440)   свойств: 0
+// методов: 6  (rid 5435..5440)   свойств: 1
 // --------------------------------------------------------------
 public class <>c
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=394 token=0x1700018A  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5435, set rid=—
+	public object CameraPosForThisScreen { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5435  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x0600153B
 	private virtual void get_CameraPosForThisScreen() { }
@@ -32368,14 +33706,10 @@ public class <>c__DisplayClass19_0
 // --------------------------------------------------------------
 // TypeDefIndex: 891   token: 0x0200037B   запись: 0xAD4660
 // globalTypeIndex: 4291 = OFF(3400) + rid(891)
-// методов: 2  (rid 5457..5458)   свойств: 1
+// методов: 2  (rid 5457..5458)   свойств: 0
 // --------------------------------------------------------------
 public class <>c__DisplayClass23_0
 {
-	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=53 token=0x17000035  get=+4  set=+5 (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (3 кандидатов)
-	public object IsBought { get; set; }
-
 	// ---- Методы (MethodDefinition) ----
 	// rid=5457  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x06001551
 	internal <>c__DisplayClass23_0(object p0) { }
@@ -32402,14 +33736,10 @@ public class <>c__DisplayClass23_0
 // --------------------------------------------------------------
 // TypeDefIndex: 892   token: 0x0200037C   запись: 0xAD46AC
 // globalTypeIndex: 4292 = OFF(3400) + rid(892)
-// методов: 2  (rid 5459..5460)   свойств: 1
+// методов: 2  (rid 5459..5460)   свойств: 0
 // --------------------------------------------------------------
 public class <>c__DisplayClass23_1
 {
-	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=499 token=0x170001F3  get=+2  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (3 кандидатов)
-	public object IsBought { get; }
-
 	// ---- Методы (MethodDefinition) ----
 	// rid=5459  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=36310  token=0x06001553
 	internal <>c__DisplayClass23_1(object p0) { }
@@ -32433,10 +33763,15 @@ public class <>c__DisplayClass23_1
 // --------------------------------------------------------------
 // TypeDefIndex: 893   token: 0x0200037D   запись: 0xAD46F8
 // globalTypeIndex: 4293 = OFF(3400) + rid(893)
-// методов: 11  (rid 5441..5451)   свойств: 0
+// методов: 11  (rid 5441..5451)   свойств: 1
 // --------------------------------------------------------------
 public class GunPropsWidget
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=395 token=0x1700018B  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5441, set rid=—
+	public object PreviewGunsContainer { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5441  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001541
 	public void get_PreviewGunsContainer() { }
@@ -32480,10 +33815,15 @@ public class GunPropsWidget
 // --------------------------------------------------------------
 // TypeDefIndex: 894   token: 0x0200037E   запись: 0xAD4790
 // globalTypeIndex: 4294 = OFF(3400) + rid(894)
-// методов: 3  (rid 5461..5463)   свойств: 0
+// методов: 3  (rid 5461..5463)   свойств: 1
 // --------------------------------------------------------------
 public class LocalizationData
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=396 token=0x1700018C  get=+0  set=+1 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5461, set rid=5462
+	public object IsBought { get; set; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5461  пар=0  slot=—  flags=0x83 (hidebysig)  колонка+0=36310  token=0x06001555
 	internal void get_IsBought() { }
@@ -32533,10 +33873,15 @@ public class LanguageData
 // --------------------------------------------------------------
 // TypeDefIndex: 896   token: 0x02000380   запись: 0xAD4828
 // globalTypeIndex: 4296 = OFF(3400) + rid(896)
-// методов: 2  (rid 5465..5466)   свойств: 0
+// методов: 2  (rid 5465..5466)   свойств: 1
 // --------------------------------------------------------------
 public class RotatePlayerArea
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=397 token=0x1700018D  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5465, set rid=—
+	public object Name { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5465  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001559
 	public void get_Name() { }
@@ -32920,10 +34265,19 @@ public class <>c__DisplayClass29_0
 // --------------------------------------------------------------
 // TypeDefIndex: 909   token: 0x0200038D   запись: 0xAD4BB8
 // globalTypeIndex: 4309 = OFF(3400) + rid(909)
-// методов: 6  (rid 5569..5574)   свойств: 0
+// методов: 6  (rid 5569..5574)   свойств: 2
 // --------------------------------------------------------------
 public class <ExecuteReconnectPipeline>d__38
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=400 token=0x17000190  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5572, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=401 token=0x17000191  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5574, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5569  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x060015C1
 	internal <ExecuteReconnectPipeline>d__38(object p0) { }
@@ -32956,10 +34310,19 @@ public class <ExecuteReconnectPipeline>d__38
 // --------------------------------------------------------------
 // TypeDefIndex: 910   token: 0x0200038E   запись: 0xAD4C04
 // globalTypeIndex: 4310 = OFF(3400) + rid(910)
-// методов: 6  (rid 5575..5580)   свойств: 0
+// методов: 6  (rid 5575..5580)   свойств: 2
 // --------------------------------------------------------------
 public class <GoToMainMenuCrt>d__74
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=402 token=0x17000192  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5578, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=403 token=0x17000193  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5580, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5575  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x060015C7
 	private <GoToMainMenuCrt>d__74() { }
@@ -32992,10 +34355,19 @@ public class <GoToMainMenuCrt>d__74
 // --------------------------------------------------------------
 // TypeDefIndex: 911   token: 0x0200038F   запись: 0xAD4C50
 // globalTypeIndex: 4311 = OFF(3400) + rid(911)
-// методов: 6  (rid 5581..5586)   свойств: 0
+// методов: 6  (rid 5581..5586)   свойств: 2
 // --------------------------------------------------------------
 public class <OnPlayerPropertiesUpdateCrt>d__59
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=404 token=0x17000194  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5584, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=405 token=0x17000195  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5586, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5581  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x060015CD
 	private <OnPlayerPropertiesUpdateCrt>d__59() { }
@@ -33028,12 +34400,17 @@ public class <OnPlayerPropertiesUpdateCrt>d__59
 // --------------------------------------------------------------
 // TypeDefIndex: 912   token: 0x02000390   запись: 0xAD4C9C
 // globalTypeIndex: 4312 = OFF(3400) + rid(912)
-// методов: 49  (rid 5516..5564)   свойств: 1
+// методов: 49  (rid 5516..5564)   свойств: 2
 // --------------------------------------------------------------
 public class MultiplayerController
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=399 token=0x1700018F  get=+42  set=+— (от первого метода типа)
+	// Property rid=398 token=0x1700018E  get=+0  set=+1 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5516, set rid=5517
+	public object GetHIDE_ROOMS { get; set; }
+
+	// Property rid=399 token=0x1700018F  get=+42  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5558, set rid=—
 	public object CurrentModeMaxPlayersCount { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -33234,10 +34611,19 @@ public class StoreConfig
 // --------------------------------------------------------------
 // TypeDefIndex: 916   token: 0x02000394   запись: 0xAD4DCC
 // globalTypeIndex: 4316 = OFF(3400) + rid(916)
-// методов: 6  (rid 5602..5607)   свойств: 0
+// методов: 6  (rid 5602..5607)   свойств: 2
 // --------------------------------------------------------------
 public class <LoadJsonData>d__11
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=406 token=0x17000196  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5605, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=407 token=0x17000197  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5607, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5602  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060015E2
 	public <LoadJsonData>d__11() { }
@@ -33379,10 +34765,19 @@ public class <Start>d__6
 // --------------------------------------------------------------
 // TypeDefIndex: 920   token: 0x02000398   запись: 0xAD4F94
 // globalTypeIndex: 4320 = OFF(3400) + rid(920)
-// методов: 6  (rid 5630..5635)   свойств: 0
+// методов: 6  (rid 5630..5635)   свойств: 2
 // --------------------------------------------------------------
 public class <Start>d__5
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=409 token=0x17000199  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5633, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=410 token=0x1700019A  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5635, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5630  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060015FE
 	public <Start>d__5() { }
@@ -33413,10 +34808,15 @@ public class <Start>d__5
 // --------------------------------------------------------------
 // TypeDefIndex: 921   token: 0x02000399   запись: 0xAD4F48
 // globalTypeIndex: 4321 = OFF(3400) + rid(921)
-// методов: 6  (rid 5624..5629)   свойств: 0
+// методов: 6  (rid 5624..5629)   свойств: 1
 // --------------------------------------------------------------
 public class BackpackCustomJetpack
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=408 token=0x17000198  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5624, set rid=—
+	public object MyJetPack { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5624  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060015F8
 	public void get_MyJetPack() { }
@@ -33449,10 +34849,19 @@ public class BackpackCustomJetpack
 // --------------------------------------------------------------
 // TypeDefIndex: 922   token: 0x0200039A   запись: 0xAD502C
 // globalTypeIndex: 4322 = OFF(3400) + rid(922)
-// методов: 6  (rid 5642..5647)   свойств: 0
+// методов: 6  (rid 5642..5647)   свойств: 2
 // --------------------------------------------------------------
 public class BodyPart
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=412 token=0x1700019C  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5645, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=413 token=0x1700019D  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5647, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5642  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x0600160A
 	public BodyPart() { }
@@ -33482,10 +34891,15 @@ public class BodyPart
 // --------------------------------------------------------------
 // TypeDefIndex: 923   token: 0x0200039B   запись: 0xAD4FE0
 // globalTypeIndex: 4323 = OFF(3400) + rid(923)
-// методов: 6  (rid 5636..5641)   свойств: 0
+// методов: 6  (rid 5636..5641)   свойств: 1
 // --------------------------------------------------------------
 public class BackpackWings
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=411 token=0x1700019B  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5636, set rid=—
+	public object MyJetPack { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5636  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001604
 	private virtual void get_MyJetPack() { }
@@ -33778,10 +35192,19 @@ public class CartoonCatMob
 // --------------------------------------------------------------
 // TypeDefIndex: 932   token: 0x020003A4   запись: 0xAD528C
 // globalTypeIndex: 4332 = OFF(3400) + rid(932)
-// методов: 6  (rid 5713..5718)   свойств: 0
+// методов: 6  (rid 5713..5718)   свойств: 2
 // --------------------------------------------------------------
 public class <FlashDamageFXCrt>d__40
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=415 token=0x1700019F  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5716, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=416 token=0x170001A0  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5718, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5713  пар=0  slot=—  flags=0x1891 (static|hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001651
 	private <FlashDamageFXCrt>d__40() { }
@@ -33819,7 +35242,8 @@ public class <FlashDamageFXCrt>d__40
 public class BotController
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=414 token=0x1700019E  get=+8  set=+— (от первого метода типа)
+	// Property rid=414 token=0x1700019E  get=+8  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5694, set rid=—
 	public object IsTopShaderDevice { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -34091,10 +35515,19 @@ public class <AttackPlayer>d__9
 // --------------------------------------------------------------
 // TypeDefIndex: 941   token: 0x020003AD   запись: 0xAD55D0
 // globalTypeIndex: 4341 = OFF(3400) + rid(941)
-// методов: 6  (rid 5739..5744)   свойств: 0
+// методов: 6  (rid 5739..5744)   свойств: 2
 // --------------------------------------------------------------
 public class InvZombie
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=417 token=0x170001A1  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5742, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=418 token=0x170001A2  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5744, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5739  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x0600166B
 	public InvZombie() { }
@@ -34203,10 +35636,19 @@ public class <AttackPlayer>d__9
 // --------------------------------------------------------------
 // TypeDefIndex: 944   token: 0x020003B0   запись: 0xAD56B4
 // globalTypeIndex: 4344 = OFF(3400) + rid(944)
-// методов: 6  (rid 5760..5765)   свойств: 0
+// методов: 6  (rid 5760..5765)   свойств: 2
 // --------------------------------------------------------------
 public class MoveToAhmedJailTrigger
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=419 token=0x170001A3  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5763, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=420 token=0x170001A4  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5765, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5760  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001680
 	public MoveToAhmedJailTrigger() { }
@@ -34404,10 +35846,19 @@ public class <Start>d__15
 // --------------------------------------------------------------
 // TypeDefIndex: 951   token: 0x020003B7   запись: 0xAD58C8
 // globalTypeIndex: 4351 = OFF(3400) + rid(951)
-// методов: 6  (rid 5797..5802)   свойств: 0
+// методов: 6  (rid 5797..5802)   свойств: 2
 // --------------------------------------------------------------
 public class <RefreshOnWeaponSwitched>d__32
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=421 token=0x170001A5  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5800, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=422 token=0x170001A6  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5802, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5797  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060016A5
 	public <RefreshOnWeaponSwitched>d__32() { }
@@ -34507,10 +35958,19 @@ public class CarOrPlayerSwitcher
 // --------------------------------------------------------------
 // TypeDefIndex: 953   token: 0x020003B9   запись: 0xAD5960
 // globalTypeIndex: 4353 = OFF(3400) + rid(953)
-// методов: 6  (rid 5834..5839)   свойств: 0
+// методов: 6  (rid 5834..5839)   свойств: 2
 // --------------------------------------------------------------
 public class CharacterAudioController
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=424 token=0x170001A8  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5837, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=425 token=0x170001A9  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5839, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5834  пар=0  slot=—  flags=0x1891 (static|hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060016CA
 	private CharacterAudioController() { }
@@ -34547,7 +36007,8 @@ public class CharacterAudioController
 public class CharacterAnimation
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=423 token=0x170001A7  get=+4  set=+— (от первого метода типа)
+	// Property rid=423 token=0x170001A7  get=+4  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5807, set rid=—
 	public object SpeedAnimK { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -34836,10 +36297,19 @@ public class <>c
 // --------------------------------------------------------------
 // TypeDefIndex: 962   token: 0x020003C2   запись: 0xAD5B74
 // globalTypeIndex: 4362 = OFF(3400) + rid(962)
-// методов: 6  (rid 5973..5978)   свойств: 0
+// методов: 6  (rid 5973..5978)   свойств: 2
 // --------------------------------------------------------------
 public class <DieCRT>d__148
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=439 token=0x170001B7  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5976, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=440 token=0x170001B8  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5978, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5973  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x06001755
 	internal <DieCRT>d__148(object p0) { }
@@ -34873,10 +36343,19 @@ public class <DieCRT>d__148
 // --------------------------------------------------------------
 // TypeDefIndex: 963   token: 0x020003C3   запись: 0xAD5BC0
 // globalTypeIndex: 4363 = OFF(3400) + rid(963)
-// методов: 6  (rid 5979..5984)   свойств: 0
+// методов: 6  (rid 5979..5984)   свойств: 2
 // --------------------------------------------------------------
 public class <JumpCRT>d__142
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=441 token=0x170001B9  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5982, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=442 token=0x170001BA  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5984, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5979  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x0600175B
 	private <JumpCRT>d__142() { }
@@ -34910,10 +36389,19 @@ public class <JumpCRT>d__142
 // --------------------------------------------------------------
 // TypeDefIndex: 964   token: 0x020003C4   запись: 0xAD5C0C
 // globalTypeIndex: 4364 = OFF(3400) + rid(964)
-// методов: 6  (rid 5985..5990)   свойств: 0
+// методов: 6  (rid 5985..5990)   свойств: 2
 // --------------------------------------------------------------
 public class <PlayRespawnEffectCRT>d__155
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=443 token=0x170001BB  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5988, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=444 token=0x170001BC  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5990, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5985  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001761
 	private <PlayRespawnEffectCRT>d__155() { }
@@ -34947,10 +36435,19 @@ public class <PlayRespawnEffectCRT>d__155
 // --------------------------------------------------------------
 // TypeDefIndex: 965   token: 0x020003C5   запись: 0xAD5C58
 // globalTypeIndex: 4365 = OFF(3400) + rid(965)
-// методов: 6  (rid 5991..5996)   свойств: 0
+// методов: 6  (rid 5991..5996)   свойств: 2
 // --------------------------------------------------------------
 public class <TakePhoto>d__66
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=445 token=0x170001BD  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5994, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=446 token=0x170001BE  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5996, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=5991  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001767
 	private <TakePhoto>d__66() { }
@@ -34984,45 +36481,61 @@ public class <TakePhoto>d__66
 // --------------------------------------------------------------
 // TypeDefIndex: 966   token: 0x020003C6   запись: 0xAD5CA4
 // globalTypeIndex: 4366 = OFF(3400) + rid(966)
-// методов: 120  (rid 5847..5966)   свойств: 12
+// методов: 120  (rid 5847..5966)   свойств: 13
 // --------------------------------------------------------------
 public class CharacterMotor
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=427 token=0x170001AB  get=+1  set=+— (от первого метода типа)
+	// Property rid=426 token=0x170001AA  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5847, set rid=—
+	public object playerClothingManager { get; }
+
+	// Property rid=427 token=0x170001AB  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5848, set rid=—
 	public object playerTauntsManager { get; }
 
-	// Property rid=428 token=0x170001AC  get=+2  set=+— (от первого метода типа)
+	// Property rid=428 token=0x170001AC  get=+2  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5849, set rid=—
 	public object FPSCameraPosition { get; }
 
-	// Property rid=429 token=0x170001AD  get=+6  set=+— (от первого метода типа)
+	// Property rid=429 token=0x170001AD  get=+6  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5853, set rid=—
 	public object MyPhotoSize { get; }
 
-	// Property rid=430 token=0x170001AE  get=+37  set=+— (от первого метода типа)
+	// Property rid=430 token=0x170001AE  get=+37  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5884, set rid=—
 	public object isInAir { get; }
 
-	// Property rid=431 token=0x170001AF  get=+44  set=+— (от первого метода типа)
+	// Property rid=431 token=0x170001AF  get=+44  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5891, set rid=—
 	public object IsAlive { get; }
 
-	// Property rid=432 token=0x170001B0  get=+86  set=+— (от первого метода типа)
+	// Property rid=432 token=0x170001B0  get=+86  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5933, set rid=—
 	public object HP { get; }
 
-	// Property rid=433 token=0x170001B1  get=+90  set=+— (от первого метода типа)
+	// Property rid=433 token=0x170001B1  get=+90  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5937, set rid=—
 	public object MyBodyguard { get; }
 
-	// Property rid=434 token=0x170001B2  get=+93  set=+— (от первого метода типа)
+	// Property rid=434 token=0x170001B2  get=+93  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5940, set rid=—
 	public object ViewID { get; }
 
-	// Property rid=435 token=0x170001B3  get=+108  set=+— (от первого метода типа)
+	// Property rid=435 token=0x170001B3  get=+108  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5955, set rid=—
 	public object LastKiller { get; }
 
-	// Property rid=436 token=0x170001B4  get=+110  set=+— (от первого метода типа)
+	// Property rid=436 token=0x170001B4  get=+110  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5957, set rid=—
 	public object MyPassengerIndex { get; }
 
 	// Property rid=437 token=0x170001B5  get=+111  set=+112 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5958, set rid=5959
 	public object titer { get; set; }
 
-	// Property rid=438 token=0x170001B6  get=+114  set=+— (от первого метода типа)
+	// Property rid=438 token=0x170001B6  get=+114  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5961, set rid=—
 	public object damageReciver { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -35284,15 +36797,21 @@ public class CharacterMotor
 // --------------------------------------------------------------
 // TypeDefIndex: 967   token: 0x020003C7   запись: 0xAD5D3C
 // globalTypeIndex: 4367 = OFF(3400) + rid(967)
-// методов: 6  (rid 5997..6002)   свойств: 2
+// методов: 6  (rid 5997..6002)   свойств: 3
 // --------------------------------------------------------------
 public class TrgTarget
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=448 token=0x170001C0  get=+1  set=+— (от первого метода типа)
+	// Property rid=447 token=0x170001BF  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5997, set rid=—
+	public object TargetPhViewId { get; }
+
+	// Property rid=448 token=0x170001C0  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5998, set rid=—
 	public object MyTarget { get; }
 
-	// Property rid=449 token=0x170001C1  get=+2  set=+— (от первого метода типа)
+	// Property rid=449 token=0x170001C1  get=+2  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=5999, set rid=—
 	public object TargetPhotonView { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -35729,10 +37248,19 @@ public class PlayerBecameVisible
 // --------------------------------------------------------------
 // TypeDefIndex: 980   token: 0x020003D4   запись: 0xAD60CC
 // globalTypeIndex: 4380 = OFF(3400) + rid(980)
-// методов: 6  (rid 6061..6066)   свойств: 0
+// методов: 6  (rid 6061..6066)   свойств: 2
 // --------------------------------------------------------------
 public class <OnNewPlayerJoinedCrt>d__6
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=451 token=0x170001C3  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6064, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=452 token=0x170001C4  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6066, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6061  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x060017AD
 	internal <OnNewPlayerJoinedCrt>d__6(object p0) { }
@@ -35767,10 +37295,19 @@ public class <OnNewPlayerJoinedCrt>d__6
 // --------------------------------------------------------------
 // TypeDefIndex: 981   token: 0x020003D5   запись: 0xAD6118
 // globalTypeIndex: 4381 = OFF(3400) + rid(981)
-// методов: 6  (rid 6067..6072)   свойств: 0
+// методов: 6  (rid 6067..6072)   свойств: 2
 // --------------------------------------------------------------
 public class <UpdateHandsMeshC>d__14
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=453 token=0x170001C5  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6070, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=454 token=0x170001C6  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6072, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6067  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x060017B3
 	private <UpdateHandsMeshC>d__14() { }
@@ -35805,10 +37342,15 @@ public class <UpdateHandsMeshC>d__14
 // --------------------------------------------------------------
 // TypeDefIndex: 982   token: 0x020003D6   запись: 0xAD6164
 // globalTypeIndex: 4382 = OFF(3400) + rid(982)
-// методов: 10  (rid 6049..6058)   свойств: 0
+// методов: 10  (rid 6049..6058)   свойств: 1
 // --------------------------------------------------------------
 public class PlaayerTauntsManager
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=450 token=0x170001C2  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6049, set rid=—
+	public object animator { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6049  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060017A1
 	public void get_animator() { }
@@ -36055,10 +37597,19 @@ public class <>c__DisplayClass42_0
 // --------------------------------------------------------------
 // TypeDefIndex: 990   token: 0x020003DE   запись: 0xAD63C4
 // globalTypeIndex: 4390 = OFF(3400) + rid(990)
-// методов: 6  (rid 6141..6146)   свойств: 0
+// методов: 6  (rid 6141..6146)   свойств: 2
 // --------------------------------------------------------------
 public class <OnPlayerPropsUpdatedCrt>d__100
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=457 token=0x170001C9  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6144, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=458 token=0x170001CA  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6146, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6141  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x060017FD
 	internal <OnPlayerPropsUpdatedCrt>d__100(object p0) { }
@@ -36093,12 +37644,17 @@ public class <OnPlayerPropsUpdatedCrt>d__100
 // --------------------------------------------------------------
 // TypeDefIndex: 991   token: 0x020003DF   запись: 0xAD6410
 // globalTypeIndex: 4391 = OFF(3400) + rid(991)
-// методов: 48  (rid 6074..6121)   свойств: 1
+// методов: 48  (rid 6074..6121)   свойств: 2
 // --------------------------------------------------------------
 public class PlayerClothingManager
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=456 token=0x170001C8  get=+1  set=+— (от первого метода типа)
+	// Property rid=455 token=0x170001C7  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6074, set rid=—
+	public object GetCurrentLeftHandPrefab { get; }
+
+	// Property rid=456 token=0x170001C8  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6075, set rid=—
 	public object GetCurrentRightHandPrefab { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -36345,10 +37901,19 @@ public class <>c__DisplayClass18_0
 // --------------------------------------------------------------
 // TypeDefIndex: 996   token: 0x020003E4   запись: 0xAD658C
 // globalTypeIndex: 4396 = OFF(3400) + rid(996)
-// методов: 6  (rid 6201..6206)   свойств: 0
+// методов: 6  (rid 6201..6206)   свойств: 2
 // --------------------------------------------------------------
 public class <SelectCopiedInvObj>d__18
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=460 token=0x170001CC  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6204, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=461 token=0x170001CD  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6206, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6201  пар=0  slot=—  flags=0x83 (hidebysig)  колонка+0=36310  token=0x06001839
 	internal <SelectCopiedInvObj>d__18() { }
@@ -36385,7 +37950,8 @@ public class <SelectCopiedInvObj>d__18
 public class PlayerInventaryManager
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=459 token=0x170001CB  get=+31  set=+— (от первого метода типа)
+	// Property rid=459 token=0x170001CB  get=+31  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6180, set rid=—
 	public object HasSelection { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -36526,10 +38092,19 @@ public class <>c
 // --------------------------------------------------------------
 // TypeDefIndex: 999   token: 0x020003E7   запись: 0xAD6670
 // globalTypeIndex: 4399 = OFF(3400) + rid(999)
-// методов: 6  (rid 6222..6227)   свойств: 0
+// методов: 6  (rid 6222..6227)   свойств: 2
 // --------------------------------------------------------------
 public class <OnRaceCarCreatedCrt>d__7
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=462 token=0x170001CE  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6225, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=463 token=0x170001CF  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6227, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6222  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x0600184E
 	internal <OnRaceCarCreatedCrt>d__7(object p0) { }
@@ -36559,10 +38134,19 @@ public class <OnRaceCarCreatedCrt>d__7
 // --------------------------------------------------------------
 // TypeDefIndex: 1000   token: 0x020003E8   запись: 0xAD66BC
 // globalTypeIndex: 4400 = OFF(3400) + rid(1000)
-// методов: 6  (rid 6228..6233)   свойств: 0
+// методов: 6  (rid 6228..6233)   свойств: 2
 // --------------------------------------------------------------
 public class <PrepareCar>d__5
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=464 token=0x170001D0  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6231, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=465 token=0x170001D1  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6233, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6228  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001854
 	private <PrepareCar>d__5() { }
@@ -36847,13 +38431,16 @@ public class <>c__DisplayClass51_0
 public class PlayerWeaponManager
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=466 token=0x170001D2  get=+8  set=+— (от первого метода типа)
+	// Property rid=466 token=0x170001D2  get=+8  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6242, set rid=—
 	public object gunPrefabsdata { get; }
 
-	// Property rid=467 token=0x170001D3  get=+22  set=+— (от первого метода типа)
+	// Property rid=467 token=0x170001D3  get=+22  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6256, set rid=—
 	public object SelectedGunId { get; }
 
-	// Property rid=468 token=0x170001D4  get=+26  set=+— (от первого метода типа)
+	// Property rid=468 token=0x170001D4  get=+26  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6260, set rid=—
 	public object DefaultGun { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -37082,10 +38669,19 @@ public class <EatenBySharkC>d__10
 // --------------------------------------------------------------
 // TypeDefIndex: 1016   token: 0x020003F8   запись: 0xAD6C14
 // globalTypeIndex: 4416 = OFF(3400) + rid(1016)
-// методов: 6  (rid 6308..6313)   свойств: 0
+// методов: 6  (rid 6308..6313)   свойств: 2
 // --------------------------------------------------------------
 public class TanksFoodManager
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=469 token=0x170001D5  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6311, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=470 token=0x170001D6  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6313, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6308  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060018A4
 	public TanksFoodManager() { }
@@ -37391,10 +38987,19 @@ public class <Start>d__8
 // --------------------------------------------------------------
 // TypeDefIndex: 1025   token: 0x02000401   запись: 0xAD6EC0
 // globalTypeIndex: 4425 = OFF(3400) + rid(1025)
-// методов: 6  (rid 6356..6361)   свойств: 0
+// методов: 6  (rid 6356..6361)   свойств: 2
 // --------------------------------------------------------------
 public class <>c
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=471 token=0x170001D7  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6359, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=472 token=0x170001D8  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6361, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6356  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060018D4
 	public <>c() { }
@@ -37538,10 +39143,19 @@ public class <>c__DisplayClass12_0
 // --------------------------------------------------------------
 // TypeDefIndex: 1029   token: 0x02000405   запись: 0xAD6F58
 // globalTypeIndex: 4429 = OFF(3400) + rid(1029)
-// методов: 6  (rid 6383..6388)   свойств: 0
+// методов: 6  (rid 6383..6388)   свойств: 2
 // --------------------------------------------------------------
 public class <MakeTable>d__12
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=473 token=0x170001D9  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6386, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=474 token=0x170001DA  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6388, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6383  пар=0  slot=—  flags=0x83 (hidebysig)  колонка+0=36310  token=0x060018EF
 	internal <MakeTable>d__12() { }
@@ -37573,10 +39187,19 @@ public class <MakeTable>d__12
 // --------------------------------------------------------------
 // TypeDefIndex: 1030   token: 0x02000406   запись: 0xAD6FA4
 // globalTypeIndex: 4430 = OFF(3400) + rid(1030)
-// методов: 6  (rid 6389..6394)   свойств: 0
+// методов: 6  (rid 6389..6394)   свойств: 2
 // --------------------------------------------------------------
 public class <OnTankCarCreatedCrt>d__16
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=475 token=0x170001DB  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6392, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=476 token=0x170001DC  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6394, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6389  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x060018F5
 	private <OnTankCarCreatedCrt>d__16() { }
@@ -37608,10 +39231,19 @@ public class <OnTankCarCreatedCrt>d__16
 // --------------------------------------------------------------
 // TypeDefIndex: 1031   token: 0x02000407   запись: 0xAD6FF0
 // globalTypeIndex: 4431 = OFF(3400) + rid(1031)
-// методов: 6  (rid 6395..6400)   свойств: 0
+// методов: 6  (rid 6395..6400)   свойств: 2
 // --------------------------------------------------------------
 public class <PrepareCar>d__14
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=477 token=0x170001DD  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6398, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=478 token=0x170001DE  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6400, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6395  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x060018FB
 	private <PrepareCar>d__14() { }
@@ -37815,10 +39447,19 @@ public class <Start>d__6
 // --------------------------------------------------------------
 // TypeDefIndex: 1037   token: 0x0200040D   запись: 0xAD7250
 // globalTypeIndex: 4437 = OFF(3400) + rid(1037)
-// методов: 6  (rid 6428..6433)   свойств: 0
+// методов: 6  (rid 6428..6433)   свойств: 2
 // --------------------------------------------------------------
 public class <>c__DisplayClass18_0
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=479 token=0x170001DF  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6431, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=480 token=0x170001E0  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6433, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6428  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x0600191C
 	public <>c__DisplayClass18_0() { }
@@ -37950,10 +39591,19 @@ public class TanksHudManager
 // --------------------------------------------------------------
 // TypeDefIndex: 1041   token: 0x02000411   запись: 0xAD7380
 // globalTypeIndex: 4441 = OFF(3400) + rid(1041)
-// методов: 6  (rid 6450..6455)   свойств: 0
+// методов: 6  (rid 6450..6455)   свойств: 2
 // --------------------------------------------------------------
 public class <>c
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=481 token=0x170001E1  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6453, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=482 token=0x170001E2  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6455, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6450  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001932
 	public <>c() { }
@@ -38052,10 +39702,19 @@ public class <ShowLightsCrt>d__16
 // --------------------------------------------------------------
 // TypeDefIndex: 1044   token: 0x02000414   запись: 0xAD73CC
 // globalTypeIndex: 4444 = OFF(3400) + rid(1044)
-// методов: 6  (rid 6473..6478)   свойств: 0
+// методов: 6  (rid 6473..6478)   свойств: 2
 // --------------------------------------------------------------
 public class <StartFight>d__19
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=483 token=0x170001E3  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6476, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=484 token=0x170001E4  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6478, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6473  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x06001949
 	internal <StartFight>d__19(object p0) { }
@@ -38086,10 +39745,19 @@ public class <StartFight>d__19
 // --------------------------------------------------------------
 // TypeDefIndex: 1045   token: 0x02000415   запись: 0xAD7418
 // globalTypeIndex: 4445 = OFF(3400) + rid(1045)
-// методов: 6  (rid 6479..6484)   свойств: 0
+// методов: 6  (rid 6479..6484)   свойств: 2
 // --------------------------------------------------------------
 public class <WaitForStart>d__17
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=485 token=0x170001E5  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6482, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=486 token=0x170001E6  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6484, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6479  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x0600194F
 	private <WaitForStart>d__17() { }
@@ -38168,10 +39836,19 @@ public class TanksLobbyManager
 // --------------------------------------------------------------
 // TypeDefIndex: 1047   token: 0x02000417   запись: 0xAD7548
 // globalTypeIndex: 4447 = OFF(3400) + rid(1047)
-// методов: 6  (rid 6495..6500)   свойств: 0
+// методов: 6  (rid 6495..6500)   свойств: 2
 // --------------------------------------------------------------
 public class TanksTFRowFinal
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=487 token=0x170001E7  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6498, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=488 token=0x170001E8  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6500, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6495  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x0600195F
 	public TanksTFRowFinal() { }
@@ -38470,19 +40147,24 @@ public class Device
 public class DisableOnWeak
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=489 token=0x170001E9  get=+1  set=+— (от первого метода типа)
+	// Property rid=489 token=0x170001E9  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6525, set rid=—
 	public object DevicePower { get; }
 
-	// Property rid=490 token=0x170001EA  get=+2  set=+— (от первого метода типа)
+	// Property rid=490 token=0x170001EA  get=+2  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6526, set rid=—
 	public object GMem { get; }
 
-	// Property rid=491 token=0x170001EB  get=+3  set=+— (от первого метода типа)
+	// Property rid=491 token=0x170001EB  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6527, set rid=—
 	public object iOS_GPUindex { get; }
 
-	// Property rid=492 token=0x170001EC  get=+4  set=+— (от первого метода типа)
+	// Property rid=492 token=0x170001EC  get=+4  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6528, set rid=—
 	public object IsWeakDevice { get; }
 
-	// Property rid=493 token=0x170001ED  get=+5  set=+— (от первого метода типа)
+	// Property rid=493 token=0x170001ED  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6529, set rid=—
 	public object IsTopDevice { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -38916,10 +40598,19 @@ public class HideOnLowDevice
 // --------------------------------------------------------------
 // TypeDefIndex: 1070   token: 0x0200042E   запись: 0xAD7B84
 // globalTypeIndex: 4470 = OFF(3400) + rid(1070)
-// методов: 6  (rid 6604..6609)   свойств: 0
+// методов: 6  (rid 6604..6609)   свойств: 2
 // --------------------------------------------------------------
 public class <LoadSprite>d__10
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=494 token=0x170001EE  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6607, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=495 token=0x170001EF  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6609, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6604  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=36310  token=0x060019CC
 	internal <LoadSprite>d__10(object p0) { }
@@ -39405,7 +41096,8 @@ public class SyncMove
 public class SmoothMove
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=496 token=0x170001F0  get=+4  set=+— (от первого метода типа)
+	// Property rid=496 token=0x170001F0  get=+4  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6658, set rid=—
 	public object myPhotonTime { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -39641,14 +41333,10 @@ public class BaseMeleeWeapon
 // --------------------------------------------------------------
 // TypeDefIndex: 1092   token: 0x02000444   запись: 0xAD8258
 // globalTypeIndex: 4492 = OFF(3400) + rid(1092)
-// методов: 2  (rid 6686..6687)   свойств: 1
+// методов: 2  (rid 6686..6687)   свойств: 0
 // --------------------------------------------------------------
 public class WeaponClass
 {
-	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=53 token=0x17000035  get=+4  set=+5 (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (3 кандидатов)
-	public object IsBought { get; set; }
-
 	// ---- Методы (MethodDefinition) ----
 	// rid=6686  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001A1E
 	public void ApplyDamege() { }
@@ -39770,33 +41458,45 @@ public class BinocularGun
 // --------------------------------------------------------------
 // TypeDefIndex: 1097   token: 0x02000449   запись: 0xAD83D4
 // globalTypeIndex: 4497 = OFF(3400) + rid(1097)
-// методов: 12  (rid 6727..6738)   свойств: 8
+// методов: 12  (rid 6727..6738)   свойств: 9
 // --------------------------------------------------------------
 public class <UpdateHandsMeshC>d__81
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=503 token=0x170001F7  get=+1  set=+— (от первого метода типа)
+	// Property rid=502 token=0x170001F6  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6727, set rid=—
+	public object isFreeItem { get; }
+
+	// Property rid=503 token=0x170001F7  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6728, set rid=—
 	public object damage { get; }
 
-	// Property rid=504 token=0x170001F8  get=+2  set=+— (от первого метода типа)
+	// Property rid=504 token=0x170001F8  get=+2  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6729, set rid=—
 	public object damagePerSec { get; }
 
-	// Property rid=505 token=0x170001F9  get=+3  set=+— (от первого метода типа)
+	// Property rid=505 token=0x170001F9  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6730, set rid=—
 	public object firerate { get; }
 
-	// Property rid=506 token=0x170001FA  get=+4  set=+— (от первого метода типа)
+	// Property rid=506 token=0x170001FA  get=+4  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6731, set rid=—
 	public object accurancy { get; }
 
-	// Property rid=507 token=0x170001FB  get=+5  set=+— (от первого метода типа)
+	// Property rid=507 token=0x170001FB  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6732, set rid=—
 	public object maxUpgradeLevel { get; }
 
-	// Property rid=508 token=0x170001FC  get=+6  set=+— (от первого метода типа)
+	// Property rid=508 token=0x170001FC  get=+6  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6733, set rid=—
 	public object currentUpgradePrice { get; }
 
 	// Property rid=509 token=0x170001FD  get=+7  set=+8 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6734, set rid=6735
 	public object currentLevel { get; set; }
 
-	// Property rid=510 token=0x170001FE  get=+10  set=+— (от первого метода типа)
+	// Property rid=510 token=0x170001FE  get=+10  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6737, set rid=—
 	public object isFullyUpgraded { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -39844,10 +41544,19 @@ public class <UpdateHandsMeshC>d__81
 // --------------------------------------------------------------
 // TypeDefIndex: 1098   token: 0x0200044A   запись: 0xAD8388
 // globalTypeIndex: 4498 = OFF(3400) + rid(1098)
-// методов: 6  (rid 6740..6745)   свойств: 0
+// методов: 6  (rid 6740..6745)   свойств: 2
 // --------------------------------------------------------------
 public class GunInfo
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=511 token=0x170001FF  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6743, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=512 token=0x17000200  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6745, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6740  пар=1  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001A54
 	public GunInfo(object p0) { }
@@ -39882,21 +41591,29 @@ public class GunInfo
 // --------------------------------------------------------------
 // TypeDefIndex: 1099   token: 0x0200044B   запись: 0xAD8420
 // globalTypeIndex: 4499 = OFF(3400) + rid(1099)
-// методов: 39  (rid 6688..6726)   свойств: 4
+// методов: 39  (rid 6688..6726)   свойств: 5
 // --------------------------------------------------------------
 public class BaseWeaponScript
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=498 token=0x170001F2  get=+1  set=+— (от первого метода типа)
+	// Property rid=497 token=0x170001F1  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6688, set rid=—
+	public object damage { get; }
+
+	// Property rid=498 token=0x170001F2  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6689, set rid=—
 	public object parentViewID { get; }
 
-	// Property rid=499 token=0x170001F3  get=+2  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (3 кандидатов)
+	// Property rid=499 token=0x170001F3  get=+2  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6690, set rid=—
 	public object IsBought { get; }
 
-	// Property rid=500 token=0x170001F4  get=+3  set=+— (от первого метода типа)
+	// Property rid=500 token=0x170001F4  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6691, set rid=—
 	public object Player { get; }
 
 	// Property rid=501 token=0x170001F5  get=+9  set=+10 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6697, set rid=6698
 	public object ammo { get; set; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -40676,10 +42393,19 @@ public class <AddGravityCrt>d__4
 // --------------------------------------------------------------
 // TypeDefIndex: 1120   token: 0x02000460   запись: 0xAD8AF4
 // globalTypeIndex: 4520 = OFF(3400) + rid(1120)
-// методов: 6  (rid 6842..6847)   свойств: 0
+// методов: 6  (rid 6842..6847)   свойств: 2
 // --------------------------------------------------------------
 public class GrenadeGun
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=513 token=0x17000201  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6845, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=514 token=0x17000202  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6847, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6842  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001ABA
 	public GrenadeGun() { }
@@ -40741,14 +42467,10 @@ public class GravityGun
 // --------------------------------------------------------------
 // TypeDefIndex: 1122   token: 0x02000462   запись: 0xAD8B40
 // globalTypeIndex: 4522 = OFF(3400) + rid(1122)
-// методов: 2  (rid 6848..6849)   свойств: 1
+// методов: 2  (rid 6848..6849)   свойств: 0
 // --------------------------------------------------------------
 public class GunSkin
 {
-	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=499 token=0x170001F3  get=+2  set=+— (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (3 кандидатов)
-	public object IsBought { get; }
-
 	// ---- Методы (MethodDefinition) ----
 	// rid=6848  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001AC0
 	private virtual void CreateBullet() { }
@@ -40772,12 +42494,17 @@ public class GunSkin
 // --------------------------------------------------------------
 // TypeDefIndex: 1123   token: 0x02000463   запись: 0xAD8B8C
 // globalTypeIndex: 4523 = OFF(3400) + rid(1123)
-// методов: 4  (rid 6850..6853)   свойств: 1
+// методов: 4  (rid 6850..6853)   свойств: 2
 // --------------------------------------------------------------
 public class <>c
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=516 token=0x17000204  get=+2  set=+— (от первого метода типа)
+	// Property rid=515 token=0x17000203  get=+0  set=+1 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6850, set rid=6851
+	public object IsBought { get; set; }
+
+	// Property rid=516 token=0x17000204  get=+2  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6852, set rid=—
 	public object FullId { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -40961,10 +42688,15 @@ public class <>c__DisplayClass9_0
 // --------------------------------------------------------------
 // TypeDefIndex: 1129   token: 0x02000469   запись: 0xAD8D08
 // globalTypeIndex: 4529 = OFF(3400) + rid(1129)
-// методов: 9  (rid 6854..6862)   свойств: 0
+// методов: 9  (rid 6854..6862)   свойств: 1
 // --------------------------------------------------------------
 public class GunSkins
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=517 token=0x17000205  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6854, set rid=—
+	public object myGun { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6854  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001AC6
 	public void get_myGun() { }
@@ -41210,10 +42942,19 @@ public class <Start>d__1
 // --------------------------------------------------------------
 // TypeDefIndex: 1137   token: 0x02000471   запись: 0xAD9000
 // globalTypeIndex: 4537 = OFF(3400) + rid(1137)
-// методов: 6  (rid 6897..6902)   свойств: 0
+// методов: 6  (rid 6897..6902)   свойств: 2
 // --------------------------------------------------------------
 public class ShopItem
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=518 token=0x17000206  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6900, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=519 token=0x17000207  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6902, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6897  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001AF1
 	public ShopItem() { }
@@ -41480,10 +43221,19 @@ public class <TeleportToBulletPoint>d__4
 // --------------------------------------------------------------
 // TypeDefIndex: 1146   token: 0x0200047A   запись: 0xAD92AC
 // globalTypeIndex: 4546 = OFF(3400) + rid(1146)
-// методов: 6  (rid 6920..6925)   свойств: 0
+// методов: 6  (rid 6920..6925)   свойств: 2
 // --------------------------------------------------------------
 public class TorchMeleeWeapon
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=520 token=0x17000208  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6923, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=521 token=0x17000209  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6925, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6920  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001B08
 	public TorchMeleeWeapon() { }
@@ -41712,10 +43462,19 @@ public class WeaponsPoolManager
 // --------------------------------------------------------------
 // TypeDefIndex: 1153   token: 0x02000481   запись: 0xAD94C0
 // globalTypeIndex: 4553 = OFF(3400) + rid(1153)
-// методов: 6  (rid 6952..6957)   свойств: 0
+// методов: 6  (rid 6952..6957)   свойств: 2
 // --------------------------------------------------------------
 public class <AnimateLine>d__19
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=522 token=0x1700020A  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6955, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=523 token=0x1700020B  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6957, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6952  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001B28
 	public <AnimateLine>d__19() { }
@@ -41785,10 +43544,19 @@ public class WeldingGun
 // --------------------------------------------------------------
 // TypeDefIndex: 1155   token: 0x02000483   запись: 0xAD9558
 // globalTypeIndex: 4555 = OFF(3400) + rid(1155)
-// методов: 6  (rid 6965..6970)   свойств: 0
+// методов: 6  (rid 6965..6970)   свойств: 2
 // --------------------------------------------------------------
 public class LocalStore
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=524 token=0x1700020C  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6968, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=525 token=0x1700020D  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6970, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=6965  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001B35
 	public LocalStore() { }
@@ -41862,15 +43630,19 @@ public class LowMemoryTrigger
 {
 	// ---- Свойства (PropertyDefinition) ----
 	// Property rid=526 token=0x1700020E  get=+2  set=+3 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6973, set rid=6974
 	public object currencyBalance { get; set; }
 
 	// Property rid=527 token=0x1700020F  get=+13  set=+14 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6984, set rid=6985
 	public object HasEverBoughtByRealMoney { get; set; }
 
-	// Property rid=528 token=0x17000210  get=+15  set=+— (от первого метода типа)
+	// Property rid=528 token=0x17000210  get=+15  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6986, set rid=—
 	public object isAdsDisabled { get; }
 
-	// Property rid=529 token=0x17000211  get=+17  set=+— (от первого метода типа)
+	// Property rid=529 token=0x17000211  get=+17  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=6988, set rid=—
 	public object IsCheater { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -42540,6 +44312,7 @@ public class VP_GameOverWindow
 {
 	// ---- Свойства (PropertyDefinition) ----
 	// Property rid=530 token=0x17000212  get=+1  set=+2 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7062, set rid=7063
 	public object HiScore { get; set; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -42721,7 +44494,8 @@ public class <>c
 public class VP_LevelManager
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=531 token=0x17000213  get=+2  set=+— (от первого метода типа)
+	// Property rid=531 token=0x17000213  get=+2  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7085, set rid=—
 	public object CurLevelSpeed { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -42782,7 +44556,8 @@ public class VP_LevelManager
 public class <EnablePhysicsCrt>d__7
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=532 token=0x17000214  get=+7  set=+— (от первого метода типа)
+	// Property rid=532 token=0x17000214  get=+7  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7110, set rid=—
 	public object JumpDistance { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -42832,10 +44607,19 @@ public class <EnablePhysicsCrt>d__7
 // --------------------------------------------------------------
 // TypeDefIndex: 1184   token: 0x020004A0   запись: 0xAD9E8C
 // globalTypeIndex: 4584 = OFF(3400) + rid(1184)
-// методов: 6  (rid 7126..7131)   свойств: 0
+// методов: 6  (rid 7126..7131)   свойств: 2
 // --------------------------------------------------------------
 public class BigRigTrailer
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=533 token=0x17000215  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7129, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=534 token=0x17000216  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7131, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7126  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001BD6
 	public BigRigTrailer() { }
@@ -42866,10 +44650,19 @@ public class BigRigTrailer
 // --------------------------------------------------------------
 // TypeDefIndex: 1185   token: 0x020004A1   запись: 0xAD9DA8
 // globalTypeIndex: 4585 = OFF(3400) + rid(1185)
-// методов: 6  (rid 7132..7137)   свойств: 0
+// методов: 6  (rid 7132..7137)   свойств: 2
 // --------------------------------------------------------------
 public class <SetTrailerCrt>d__5
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=535 token=0x17000217  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7135, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=536 token=0x17000218  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7137, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7132  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001BDC
 	private <SetTrailerCrt>d__5() { }
@@ -42900,10 +44693,19 @@ public class <SetTrailerCrt>d__5
 // --------------------------------------------------------------
 // TypeDefIndex: 1186   token: 0x020004A2   запись: 0xAD9DF4
 // globalTypeIndex: 4586 = OFF(3400) + rid(1186)
-// методов: 6  (rid 7138..7143)   свойств: 0
+// методов: 6  (rid 7138..7143)   свойств: 2
 // --------------------------------------------------------------
 public class <WaitForTrailer>d__3
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=537 token=0x17000219  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7141, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=538 token=0x1700021A  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7143, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7138  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001BE2
 	private <WaitForTrailer>d__3() { }
@@ -43012,6 +44814,7 @@ public class <OnPlayerLeaveMeRPCrt>d__4
 {
 	// ---- Свойства (PropertyDefinition) ----
 	// Property rid=539 token=0x1700021B  get=+5  set=+6 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7153, set rid=7154
 	public object MySelectedWheel { get; set; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -43048,10 +44851,19 @@ public class <OnPlayerLeaveMeRPCrt>d__4
 // --------------------------------------------------------------
 // TypeDefIndex: 1190   token: 0x020004A6   запись: 0xAD9FBC
 // globalTypeIndex: 4590 = OFF(3400) + rid(1190)
-// методов: 6  (rid 7163..7168)   свойств: 0
+// методов: 6  (rid 7163..7168)   свойств: 2
 // --------------------------------------------------------------
 public class BoatHorseController
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=540 token=0x1700021C  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7166, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=541 token=0x1700021D  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7168, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7163  пар=0  slot=—  flags=0x81 (hidebysig)  колонка+0=25553  token=0x06001BFB
 	private BoatHorseController() { }
@@ -43206,6 +45018,7 @@ public class CarCloneAssist
 {
 	// ---- Свойства (PropertyDefinition) ----
 	// Property rid=542 token=0x1700021E  get=+14  set=+15 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7187, set rid=7188
 	public object MySelectedWheel { get; set; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -43287,10 +45100,19 @@ public class <EnablePhysicsCrt>d__55
 // --------------------------------------------------------------
 // TypeDefIndex: 1197   token: 0x020004AD   запись: 0xADA2B4
 // globalTypeIndex: 4597 = OFF(3400) + rid(1197)
-// методов: 6  (rid 7237..7242)   свойств: 0
+// методов: 6  (rid 7237..7242)   свойств: 2
 // --------------------------------------------------------------
 public class CarHPWidget
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=548 token=0x17000224  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7240, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=549 token=0x17000225  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7242, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7237  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001C45
 	public CarHPWidget() { }
@@ -43323,10 +45145,19 @@ public class CarHPWidget
 // --------------------------------------------------------------
 // TypeDefIndex: 1198   token: 0x020004AE   запись: 0xADA184
 // globalTypeIndex: 4598 = OFF(3400) + rid(1198)
-// методов: 6  (rid 7243..7248)   свойств: 0
+// методов: 6  (rid 7243..7248)   свойств: 2
 // --------------------------------------------------------------
 public class <OnCrash>d__37
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=550 token=0x17000226  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7246, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=551 token=0x17000227  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7248, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7243  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001C4B
 	private <OnCrash>d__37() { }
@@ -43358,10 +45189,19 @@ public class <OnCrash>d__37
 // --------------------------------------------------------------
 // TypeDefIndex: 1199   token: 0x020004AF   запись: 0xADA1D0
 // globalTypeIndex: 4599 = OFF(3400) + rid(1199)
-// методов: 6  (rid 7249..7254)   свойств: 0
+// методов: 6  (rid 7249..7254)   свойств: 2
 // --------------------------------------------------------------
 public class <OnPlayerLeaveMeRPCrt>d__53
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=552 token=0x17000228  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7252, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=553 token=0x17000229  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7254, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7249  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001C51
 	private <OnPlayerLeaveMeRPCrt>d__53() { }
@@ -43393,10 +45233,19 @@ public class <OnPlayerLeaveMeRPCrt>d__53
 // --------------------------------------------------------------
 // TypeDefIndex: 1200   token: 0x020004B0   запись: 0xADA21C
 // globalTypeIndex: 4600 = OFF(3400) + rid(1200)
-// методов: 6  (rid 7255..7260)   свойств: 0
+// методов: 6  (rid 7255..7260)   свойств: 2
 // --------------------------------------------------------------
 public class <WaitForTrailer>d__20
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=554 token=0x1700022A  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7258, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=555 token=0x1700022B  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7260, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7255  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001C57
 	private <WaitForTrailer>d__20() { }
@@ -43433,19 +45282,24 @@ public class <WaitForTrailer>d__20
 public class CarController
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=543 token=0x1700021F  get=+4  set=+— (от первого метода типа)
+	// Property rid=543 token=0x1700021F  get=+4  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7198, set rid=—
 	public object followAI { get; }
 
-	// Property rid=544 token=0x17000220  get=+16  set=+— (от первого метода типа)
+	// Property rid=544 token=0x17000220  get=+16  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7210, set rid=—
 	public object CurrentSpeed { get; }
 
-	// Property rid=545 token=0x17000221  get=+17  set=+— (от первого метода типа)
+	// Property rid=545 token=0x17000221  get=+17  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7211, set rid=—
 	public object CurrentSpeedSqr { get; }
 
-	// Property rid=546 token=0x17000222  get=+27  set=+— (от первого метода типа)
+	// Property rid=546 token=0x17000222  get=+27  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7221, set rid=—
 	public object MyInventory { get; }
 
-	// Property rid=547 token=0x17000223  get=+37  set=+— (от первого метода типа)
+	// Property rid=547 token=0x17000223  get=+37  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7231, set rid=—
 	public object carHornAudio { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -43821,10 +45675,19 @@ public class <OnCrash>d__6
 // --------------------------------------------------------------
 // TypeDefIndex: 1211   token: 0x020004BB   запись: 0xADA5F8
 // globalTypeIndex: 4611 = OFF(3400) + rid(1211)
-// методов: 6  (rid 7298..7303)   свойств: 0
+// методов: 6  (rid 7298..7303)   свойств: 2
 // --------------------------------------------------------------
 public class HeliController
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=556 token=0x1700022C  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7301, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=557 token=0x1700022D  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7303, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7298  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001C82
 	public HeliController() { }
@@ -43929,10 +45792,19 @@ public class <OnCrash>d__14
 // --------------------------------------------------------------
 // TypeDefIndex: 1214   token: 0x020004BE   запись: 0xADA728
 // globalTypeIndex: 4614 = OFF(3400) + rid(1214)
-// методов: 6  (rid 7326..7331)   свойств: 0
+// методов: 6  (rid 7326..7331)   свойств: 2
 // --------------------------------------------------------------
 public class HoverCarCloneAssist
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=558 token=0x1700022E  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7329, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=559 token=0x1700022F  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7331, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7326  пар=0  slot=—  flags=0x1891 (static|hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001C9E
 	private HoverCarCloneAssist() { }
@@ -43963,10 +45835,15 @@ public class HoverCarCloneAssist
 // --------------------------------------------------------------
 // TypeDefIndex: 1215   token: 0x020004BF   запись: 0xADA690
 // globalTypeIndex: 4615 = OFF(3400) + rid(1215)
-// методов: 5  (rid 7332..7336)   свойств: 0
+// методов: 5  (rid 7332..7336)   свойств: 1
 // --------------------------------------------------------------
 public class <OnPlayerLeaveMeRPCrt>d__25
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=560 token=0x17000230  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7335, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7332  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001CA4
 	private <OnPlayerLeaveMeRPCrt>d__25() { }
@@ -44325,10 +46202,19 @@ public class <CR_Dodge>d__51
 // --------------------------------------------------------------
 // TypeDefIndex: 1227   token: 0x020004CB   запись: 0xADAB50
 // globalTypeIndex: 4627 = OFF(3400) + rid(1227)
-// методов: 6  (rid 7411..7416)   свойств: 0
+// методов: 6  (rid 7411..7416)   свойств: 2
 // --------------------------------------------------------------
 public class EResetOrientationMethod
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=561 token=0x17000231  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7416, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
+	// Property rid=564 token=0x17000234  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7414, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7411  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001CF3
 	public EResetOrientationMethod() { }
@@ -44362,10 +46248,19 @@ public class EResetOrientationMethod
 // --------------------------------------------------------------
 // TypeDefIndex: 1228   token: 0x020004CC   запись: 0xADAA6C
 // globalTypeIndex: 4628 = OFF(3400) + rid(1228)
-// методов: 6  (rid 7417..7422)   свойств: 0
+// методов: 6  (rid 7417..7422)   свойств: 2
 // --------------------------------------------------------------
 public class <OnCrash>d__14
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=565 token=0x17000235  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7422, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
+	// Property rid=566 token=0x17000236  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7420, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7417  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001CF9
 	private <OnCrash>d__14() { }
@@ -44396,10 +46291,19 @@ public class <OnCrash>d__14
 // --------------------------------------------------------------
 // TypeDefIndex: 1229   token: 0x020004CD   запись: 0xADAAB8
 // globalTypeIndex: 4629 = OFF(3400) + rid(1229)
-// методов: 6  (rid 7423..7428)   свойств: 0
+// методов: 6  (rid 7423..7428)   свойств: 2
 // --------------------------------------------------------------
 public class <OnPlayerLeaveMeRPCrt>d__24
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=567 token=0x17000237  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7428, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
+	// Property rid=568 token=0x17000238  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7426, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7423  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001CFF
 	private <OnPlayerLeaveMeRPCrt>d__24() { }
@@ -44438,9 +46342,11 @@ public class PlaneController
 {
 	// ---- Свойства (PropertyDefinition) ----
 	// Property rid=562 token=0x17000232  get=+18  set=+19 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7396, set rid=7397
 	public object BaseCamera { get; set; }
 
-	// Property rid=563 token=0x17000233  get=+20  set=+— (от первого метода типа)
+	// Property rid=563 token=0x17000233  get=+20  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7398, set rid=—
 	public object IsDodging { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -44674,10 +46580,19 @@ public class <TankDestroyedCrt>d__24
 // --------------------------------------------------------------
 // TypeDefIndex: 1235   token: 0x020004D3   запись: 0xADAD18
 // globalTypeIndex: 4635 = OFF(3400) + rid(1235)
-// методов: 6  (rid 7486..7491)   свойств: 0
+// методов: 6  (rid 7486..7491)   свойств: 2
 // --------------------------------------------------------------
 public class <StartBoostingCrt>d__8
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=569 token=0x17000239  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7491, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
+	// Property rid=572 token=0x1700023C  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7489, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7486  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001D3E
 	public <StartBoostingCrt>d__8() { }
@@ -44716,10 +46631,12 @@ public class <StartBoostingCrt>d__8
 public class TankIoController
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=570 token=0x1700023A  get=+29  set=+— (от первого метода типа)
+	// Property rid=570 token=0x1700023A  get=+29  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7483, set rid=—
 	public object Driver { get; }
 
-	// Property rid=571 token=0x1700023B  get=+30  set=+— (от первого метода типа)
+	// Property rid=571 token=0x1700023B  get=+30  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7484, set rid=—
 	public object MyScore { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -44807,10 +46724,19 @@ public class TankIoController
 // --------------------------------------------------------------
 // TypeDefIndex: 1237   token: 0x020004D5   запись: 0xADADB0
 // globalTypeIndex: 4637 = OFF(3400) + rid(1237)
-// методов: 6  (rid 7498..7503)   свойств: 0
+// методов: 6  (rid 7498..7503)   свойств: 2
 // --------------------------------------------------------------
 public class VehicleType
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=573 token=0x1700023D  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7503, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
+	// Property rid=574 token=0x1700023E  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7501, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7498  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001D4A
 	public VehicleType() { }
@@ -44902,10 +46828,15 @@ public class VehicleInfo
 // --------------------------------------------------------------
 // TypeDefIndex: 1240   token: 0x020004D8   запись: 0xADAE48
 // globalTypeIndex: 4640 = OFF(3400) + rid(1240)
-// методов: 2  (rid 7504..7505)   свойств: 0
+// методов: 2  (rid 7504..7505)   свойств: 1
 // --------------------------------------------------------------
 public class <>c
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=576 token=0x17000240  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7504, set rid=—
+	public object MaxSpeedSqr { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7504  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001D50
 	private virtual void get_MaxSpeedSqr() { }
@@ -44990,19 +46921,24 @@ public class <>c__DisplayClass31_0
 public class Vehicle
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=577 token=0x17000241  get=+27  set=+— (от первого метода типа)
+	// Property rid=577 token=0x17000241  get=+27  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7533, set rid=—
 	public object hp { get; }
 
-	// Property rid=578 token=0x17000242  get=+28  set=+— (от первого метода типа)
+	// Property rid=578 token=0x17000242  get=+28  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7534, set rid=—
 	public object Alive { get; }
 
-	// Property rid=579 token=0x17000243  get=+29  set=+— (от первого метода типа)
+	// Property rid=579 token=0x17000243  get=+29  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7535, set rid=—
 	public object IsMine { get; }
 
-	// Property rid=580 token=0x17000244  get=+32  set=+— (от первого метода типа)
+	// Property rid=580 token=0x17000244  get=+32  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7538, set rid=—
 	public object AreFreeForSitting { get; }
 
-	// Property rid=581 token=0x17000245  get=+55  set=+— (от первого метода типа)
+	// Property rid=581 token=0x17000245  get=+55  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7561, set rid=—
 	public object vehicleLightsController { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -45275,15 +47211,21 @@ public class <>c__DisplayClass11_0
 // --------------------------------------------------------------
 // TypeDefIndex: 1248   token: 0x020004E0   запись: 0xADB05C
 // globalTypeIndex: 4648 = OFF(3400) + rid(1248)
-// методов: 12  (rid 7578..7589)   свойств: 2
+// методов: 12  (rid 7578..7589)   свойств: 3
 // --------------------------------------------------------------
 public class VehicleTextureManager
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=583 token=0x17000247  get=+1  set=+— (от первого метода типа)
+	// Property rid=582 token=0x17000246  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7578, set rid=—
+	public object Color1 { get; }
+
+	// Property rid=583 token=0x17000247  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7579, set rid=—
 	public object defaultColor { get; }
 
-	// Property rid=584 token=0x17000248  get=+8  set=+— (от первого метода типа)
+	// Property rid=584 token=0x17000248  get=+8  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7586, set rid=—
 	public object MyId { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -46768,10 +48710,19 @@ public class <shoot>d__21
 // --------------------------------------------------------------
 // TypeDefIndex: 1292   token: 0x0200050C   запись: 0xADBE04
 // globalTypeIndex: 4692 = OFF(3400) + rid(1292)
-// методов: 6  (rid 7770..7775)   свойств: 0
+// методов: 6  (rid 7770..7775)   свойств: 2
 // --------------------------------------------------------------
 public class TankEnemyBullet
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=575 token=0x1700023F  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7775, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
+	// Property rid=585 token=0x17000249  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7773, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7770  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001E5A
 	public TankEnemyBullet() { }
@@ -46878,10 +48829,19 @@ public class <shoot>d__19
 // --------------------------------------------------------------
 // TypeDefIndex: 1295   token: 0x0200050F   запись: 0xADBEE8
 // globalTypeIndex: 4695 = OFF(3400) + rid(1295)
-// методов: 6  (rid 7785..7790)   свойств: 0
+// методов: 6  (rid 7785..7790)   свойств: 2
 // --------------------------------------------------------------
 public class TowerBullet
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=586 token=0x1700024A  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7790, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
+	// Property rid=587 token=0x1700024B  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7788, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7785  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001E69
 	public TowerBullet() { }
@@ -47458,10 +49418,19 @@ public class <ReturnToInitialPositionSmoothly>d__20
 // --------------------------------------------------------------
 // TypeDefIndex: 1312   token: 0x02000520   запись: 0xADC3F4
 // globalTypeIndex: 4712 = OFF(3400) + rid(1312)
-// методов: 6  (rid 7857..7862)   свойств: 0
+// методов: 6  (rid 7857..7862)   свойств: 2
 // --------------------------------------------------------------
 public class SelectSky
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=588 token=0x1700024C  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7862, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
+	// Property rid=589 token=0x1700024D  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7860, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=7857  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001EB1
 	public SelectSky() { }
@@ -47709,10 +49678,19 @@ public class ModularCarCustomizer
 // --------------------------------------------------------------
 // TypeDefIndex: 1328   token: 0x02000530   запись: 0xADC81C
 // globalTypeIndex: 4728 = OFF(3400) + rid(1328)
-// методов: 10  (rid 8029..8038)   свойств: 0
+// методов: 10  (rid 8029..8038)   свойств: 2
 // --------------------------------------------------------------
 public class <get_DeepChilds>d__19
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=623 token=0x1700026F  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8034, set rid=—
+	public object System.Collections.Generic.IEnumerator<SimpleJSON.JSONNode>.Current { get; }
+
+	// Property rid=624 token=0x17000270  get=+7  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8036, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=8029  пар=0  slot=5  flags=0x1E1 (final|virtual|hidebysig|newslot)  колонка+0=25553  token=0x06001F5D
 	private <get_DeepChilds>d__19() { }
@@ -47747,49 +49725,58 @@ public class <get_DeepChilds>d__19
 // --------------------------------------------------------------
 // TypeDefIndex: 1329   token: 0x02000531   запись: 0xADC868
 // globalTypeIndex: 4729 = OFF(3400) + rid(1329)
-// методов: 49  (rid 7972..8020)   свойств: 13
+// методов: 49  (rid 7972..8020)   свойств: 12
 // --------------------------------------------------------------
 public class JSONNode
 {
 	// ---- Свойства (PropertyDefinition) ----
 	// Property rid=609 token=0x17000261  get=+1  set=+2 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7973, set rid=7974
 	public object Item { get; set; }
 
 	// Property rid=610 token=0x17000262  get=+3  set=+4 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7975, set rid=7976
 	public object Item { get; set; }
 
 	// Property rid=611 token=0x17000263  get=+5  set=+6 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7977, set rid=7978
 	public object Value { get; set; }
 
-	// Property rid=612 token=0x17000264  get=+7  set=+— (от первого метода типа)
+	// Property rid=612 token=0x17000264  get=+7  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7979, set rid=—
 	public object Count { get; }
 
-	// Property rid=613 token=0x17000265  get=+12  set=+— (от первого метода типа)
+	// Property rid=613 token=0x17000265  get=+12  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7984, set rid=—
 	public object Childs { get; }
 
-	// Property rid=614 token=0x17000266  get=+13  set=+— (от первого метода типа)
+	// Property rid=614 token=0x17000266  get=+13  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7985, set rid=—
 	public object DeepChilds { get; }
 
 	// Property rid=615 token=0x17000267  get=+16  set=+17 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7988, set rid=7989
 	public object AsInt { get; set; }
 
 	// Property rid=616 token=0x17000268  get=+18  set=+19 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7990, set rid=7991
 	public object AsFloat { get; set; }
 
 	// Property rid=617 token=0x17000269  get=+20  set=+21 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7992, set rid=7993
 	public object AsDouble { get; set; }
 
 	// Property rid=618 token=0x1700026A  get=+22  set=+23 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7994, set rid=7995
 	public object AsBool { get; set; }
 
-	// Property rid=619 token=0x1700026B  get=+24  set=+— (от первого метода типа)
+	// Property rid=619 token=0x1700026B  get=+24  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7996, set rid=—
 	public object AsArray { get; }
 
-	// Property rid=620 token=0x1700026C  get=+25  set=+— (от первого метода типа)
+	// Property rid=620 token=0x1700026C  get=+25  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=7997, set rid=—
 	public object AsObject { get; }
-
-	// Property rid=642 token=0x17000282  get=+3  set=+4 (от первого метода типа)
-	public object Item { get; set; }
 
 	// ---- Методы (MethodDefinition) ----
 	// rid=7972  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001F24
@@ -47908,10 +49895,19 @@ public class JSONNode
 // --------------------------------------------------------------
 // TypeDefIndex: 1331   token: 0x02000533   запись: 0xADC900
 // globalTypeIndex: 4731 = OFF(3400) + rid(1331)
-// методов: 9  (rid 8060..8068)   свойств: 0
+// методов: 9  (rid 8060..8068)   свойств: 2
 // --------------------------------------------------------------
 public class <get_Childs>d__13
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=631 token=0x17000277  get=+4  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8064, set rid=—
+	public object System.Collections.Generic.IEnumerator<SimpleJSON.JSONNode>.Current { get; }
+
+	// Property rid=632 token=0x17000278  get=+6  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8066, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=8060  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001F7C
 	private <get_Childs>d__13() { }
@@ -47944,25 +49940,26 @@ public class <get_Childs>d__13
 // --------------------------------------------------------------
 // TypeDefIndex: 1332   token: 0x02000534   запись: 0xADC94C
 // globalTypeIndex: 4732 = OFF(3400) + rid(1332)
-// методов: 14  (rid 8039..8052)   свойств: 5
+// методов: 14  (rid 8039..8052)   свойств: 4
 // --------------------------------------------------------------
 public class JSONArray
 {
 	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=625 token=0x17000271  get=+0  set=+1 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8039, set rid=8040
+	public object Item { get; set; }
+
 	// Property rid=626 token=0x17000272  get=+2  set=+3 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8041, set rid=8042
 	public object Item { get; set; }
 
-	// Property rid=627 token=0x17000273  get=+4  set=+— (от первого метода типа)
+	// Property rid=627 token=0x17000273  get=+4  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8043, set rid=—
 	public object Count { get; }
 
-	// Property rid=628 token=0x17000274  get=+8  set=+— (от первого метода типа)
+	// Property rid=628 token=0x17000274  get=+8  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8047, set rid=—
 	public object Childs { get; }
-
-	// Property rid=634 token=0x1700027A  get=+2  set=+3 (от первого метода типа)
-	public object Item { get; set; }
-
-	// Property rid=635 token=0x1700027B  get=+4  set=+— (от первого метода типа)
-	public object Count { get; }
 
 	// ---- Методы (MethodDefinition) ----
 	// rid=8039  пар=0  slot=5  flags=0x1E1 (final|virtual|hidebysig|newslot)  колонка+0=25553  token=0x06001F67
@@ -48006,10 +50003,19 @@ public class JSONArray
 // --------------------------------------------------------------
 // TypeDefIndex: 1334   token: 0x02000536   запись: 0xADC9E4
 // globalTypeIndex: 4734 = OFF(3400) + rid(1334)
-// методов: 7  (rid 8086..8092)   свойств: 0
+// методов: 7  (rid 8086..8092)   свойств: 2
 // --------------------------------------------------------------
 public class <GetEnumerator>d__15
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=637 token=0x1700027D  get=+4  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8090, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+	// Property rid=638 token=0x1700027E  get=+6  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8092, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=8086  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x06001F96
 	internal <GetEnumerator>d__15(object p0) { }
@@ -48038,10 +50044,19 @@ public class <GetEnumerator>d__15
 // --------------------------------------------------------------
 // TypeDefIndex: 1335   token: 0x02000537   запись: 0xADCA30
 // globalTypeIndex: 4735 = OFF(3400) + rid(1335)
-// методов: 9  (rid 8093..8101)   свойств: 0
+// методов: 9  (rid 8093..8101)   свойств: 2
 // --------------------------------------------------------------
 public class <get_Childs>d__14
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=639 token=0x1700027F  get=+4  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8097, set rid=—
+	public object System.Collections.Generic.IEnumerator<SimpleJSON.JSONNode>.Current { get; }
+
+	// Property rid=640 token=0x17000280  get=+6  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8099, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=8093  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06001F9D
 	private <get_Childs>d__14() { }
@@ -48074,10 +50089,15 @@ public class <get_Childs>d__14
 // --------------------------------------------------------------
 // TypeDefIndex: 1336   token: 0x02000538   запись: 0xADCA7C
 // globalTypeIndex: 4736 = OFF(3400) + rid(1336)
-// методов: 6  (rid 8069..8083)   свойств: 0
+// методов: 6  (rid 8069..8083)   свойств: 1
 // --------------------------------------------------------------
 public class JSONClass
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=633 token=0x17000279  get=+0  set=+1 (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8069, set rid=8070
+	public object Item { get; set; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=8069  пар=0  slot=5  flags=0x1E1 (final|virtual|hidebysig|newslot)  колонка+0=25553  token=0x06001F85
 	private virtual void get_Item() { }
@@ -48254,10 +50274,19 @@ public class ParticleSceneControls
 // --------------------------------------------------------------
 // TypeDefIndex: 1351   token: 0x02000547   запись: 0xADCEF0
 // globalTypeIndex: 4751 = OFF(3400) + rid(1351)
-// методов: 6  (rid 8209..8214)   свойств: 0
+// методов: 6  (rid 8209..8214)   свойств: 2
 // --------------------------------------------------------------
 public class <ResetRotation>d__63
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=656 token=0x17000290  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8214, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
+	// Property rid=657 token=0x17000291  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8212, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=8209  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06002011
 	private <ResetRotation>d__63() { }
@@ -48292,10 +50321,19 @@ public class <ResetRotation>d__63
 // --------------------------------------------------------------
 // TypeDefIndex: 1352   token: 0x02000548   запись: 0xADCF3C
 // globalTypeIndex: 4752 = OFF(3400) + rid(1352)
-// методов: 6  (rid 8215..8220)   свойств: 0
+// методов: 6  (rid 8215..8220)   свойств: 2
 // --------------------------------------------------------------
 public class <ReverseReset>d__62
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=658 token=0x17000292  get=+5  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8220, set rid=—
+	public object System.Collections.IEnumerator.Current { get; }
+
+	// Property rid=659 token=0x17000293  get=+3  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8218, set rid=—
+	public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=8215  пар=0  slot=7  flags=0x9E1 (final|virtual|hidebysig|newslot|specialname)  колонка+0=29442  token=0x06002017
 	private <ReverseReset>d__62() { }
@@ -48335,16 +50373,20 @@ public class <ReverseReset>d__62
 public class FollowAI
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=651 token=0x1700028B  get=+4  set=+— (от первого метода типа)
+	// Property rid=651 token=0x1700028B  get=+4  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8186, set rid=—
 	public object completedDistance { get; }
 
-	// Property rid=652 token=0x1700028C  get=+7  set=+— (от первого метода типа)
+	// Property rid=652 token=0x1700028C  get=+7  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8189, set rid=—
 	public object CurrentLap { get; }
 
-	// Property rid=653 token=0x1700028D  get=+8  set=+— (от первого метода типа)
+	// Property rid=653 token=0x1700028D  get=+8  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8190, set rid=—
 	public object CurrentPositionInRace { get; }
 
-	// Property rid=654 token=0x1700028E  get=+12  set=+— (от первого метода типа)
+	// Property rid=654 token=0x1700028E  get=+12  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8194, set rid=—
 	public object CurrentLapTime { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -48416,7 +50458,8 @@ public class FollowAI
 public class Wheel
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=661 token=0x17000295  get=+18  set=+— (от первого метода типа)
+	// Property rid=661 token=0x17000295  get=+18  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8301, set rid=—
 	public object TireMarkCreate { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -48515,28 +50558,36 @@ public class SuspensionToggledProperty
 public class VehicleParent
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=662 token=0x17000296  get=+23  set=+— (от первого метода типа)
+	// Property rid=662 token=0x17000296  get=+23  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8459, set rid=—
 	public object SuspensionParts { get; }
 
-	// Property rid=663 token=0x17000297  get=+24  set=+— (от первого метода типа)
+	// Property rid=663 token=0x17000297  get=+24  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8460, set rid=—
 	public object TireScreech { get; }
 
-	// Property rid=664 token=0x17000298  get=+25  set=+— (от первого метода типа)
+	// Property rid=664 token=0x17000298  get=+25  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8461, set rid=—
 	public object VehicleAssist { get; }
 
-	// Property rid=665 token=0x17000299  get=+26  set=+— (от первого метода типа)
+	// Property rid=665 token=0x17000299  get=+26  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8462, set rid=—
 	public object FlipControl { get; }
 
-	// Property rid=666 token=0x1700029A  get=+27  set=+— (от первого метода типа)
+	// Property rid=666 token=0x1700029A  get=+27  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8463, set rid=—
 	public object VehicleBalance { get; }
 
-	// Property rid=667 token=0x1700029B  get=+28  set=+— (от первого метода типа)
+	// Property rid=667 token=0x1700029B  get=+28  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8464, set rid=—
 	public object GasMotor { get; }
 
-	// Property rid=668 token=0x1700029C  get=+29  set=+— (от первого метода типа)
+	// Property rid=668 token=0x1700029C  get=+29  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8465, set rid=—
 	public object SteeringControl { get; }
 
-	// Property rid=669 token=0x1700029D  get=+30  set=+— (от первого метода типа)
+	// Property rid=669 token=0x1700029D  get=+30  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8466, set rid=—
 	public object GearboxTransmission { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -48822,7 +50873,8 @@ public class TCF_Demo
 public class AppTrackingTransparency
 {
 	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=681 token=0x170002A9  get=+1  set=+— (от первого метода типа)
+	// Property rid=681 token=0x170002A9  get=+1  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=8660, set rid=—
 	public object TrackingAuthorizationStatus { get; }
 
 	// ---- Методы (MethodDefinition) ----
@@ -48857,14 +50909,10 @@ public class AppTrackingTransparency
 // --------------------------------------------------------------
 // TypeDefIndex: 1456   token: 0x020005B0   запись: 0xADEE1C
 // globalTypeIndex: 4856 = OFF(3400) + rid(1456)
-// методов: 2  (rid 8874..8875)   свойств: 1
+// методов: 2  (rid 8874..8875)   свойств: 0
 // --------------------------------------------------------------
 public class <>c__DisplayClass78_1
 {
-	// ---- Свойства (PropertyDefinition) ----
-	// Property rid=684 token=0x170002AC  get=+3  set=+— (от первого метода типа)
-	public object NativeInAppPurchase { get; }
-
 	// ---- Методы (MethodDefinition) ----
 	// rid=8874  пар=1  slot=—  flags=0x83 (hidebysig)  колонка+0=19708  token=0x060022AA
 	internal <>c__DisplayClass78_1(object p0) { }
@@ -49275,10 +51323,15 @@ public class UserSettings
 // --------------------------------------------------------------
 // TypeDefIndex: 1492   token: 0x020005D4   запись: 0xADF8CC
 // globalTypeIndex: 4892 = OFF(3400) + rid(1492)
-// методов: 8  (rid 9139..9146)   свойств: 0
+// методов: 8  (rid 9139..9146)   свойств: 1
 // --------------------------------------------------------------
 public class AppStoreInAppPurchase
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=685 token=0x170002AD  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=9139, set rid=—
+	public object NativeInAppPurchase { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=9139  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060023B3
 	public void get_NativeInAppPurchase() { }
@@ -49315,10 +51368,15 @@ public class AppStoreInAppPurchase
 // --------------------------------------------------------------
 // TypeDefIndex: 1494   token: 0x020005D6   запись: 0xADF964
 // globalTypeIndex: 4894 = OFF(3400) + rid(1494)
-// методов: 14  (rid 9155..9168)   свойств: 0
+// методов: 14  (rid 9155..9168)   свойств: 1
 // --------------------------------------------------------------
 public class PlayStoreInAppPurchase
 {
+	// ---- Свойства (PropertyDefinition) ----
+	// Property rid=686 token=0x170002AE  get=+0  set=— (от первого метода типа)
+	// владелец найден по правилу «смещение»; аксессоры: get rid=9155, set rid=—
+	public object NativeInAppPurchase { get; }
+
 	// ---- Методы (MethodDefinition) ----
 	// rid=9155  пар=1  slot=—  flags=0x86 (hidebysig)  колонка+0=39704  token=0x060023C3
 	public void get_NativeInAppPurchase(object p0) { }
@@ -49361,6 +51419,48 @@ public class PlayStoreInAppPurchase
 	//   F61861E4941CAC719AA89F7A80E75EB5DDC0F962086E7C12158AB69B5CD098AE(637498), RSA1(637585), System.dll(637727), NetSecurityNative(637738)
 	//   bufferPtr(637756), minorStatus(637783), statusValue(637795), DisplayMinorStatus(637807)
 	//   DisplayMajorStatus(637826)
+
+}
+
+// --------------------------------------------------------------
+// TypeDefIndex: 1496   token: 0x020005D8   запись: 0xADF9FC
+// globalTypeIndex: 4896 = OFF(3400) + rid(1496)
+// методов: 0   свойств: 0
+// --------------------------------------------------------------
+public class __StaticArrayInitTypeSize=24
+{
+	// ---- [эвристика по куче] НЕ из FieldDefinition (её в файле нет).
+	//      Строки имён из окна ±520 байт вокруг имени типа, не занятые
+	//      именами методов/типов/свойств: поля, параметры, локальные переменные.
+	//   FADB218011E7702BB9575D0C32A685DA10B5C72EB809BD9A955DB1C76E4D8315(221998), FB2089AF82E09593374B65EC2440779FDCF5DD6DA07D26E57AF6790667B937CD(222063), FD68700E95459C5E7A49C5830F8BD0A9BA4BD171252663D8066B09E7768C5C5D(222128), FEC387BA57A54BB6066E4CA8A4F9C0FF9C36B9CBD6600C3683F6FB1BDB5077EB(222193)
+	//   __StaticArrayInitTypeSize=3(222258), __StaticArrayInitTypeSize=6(222286), __StaticArrayInitTypeSize=10(222314), __StaticArrayInitTypeSize=12(222343)
+	//   __StaticArrayInitTypeSize=15(222372), __StaticArrayInitTypeSize=16(222401), __StaticArrayInitTypeSize=32(222488), __StaticArrayInitTypeSize=36(222517)
+	//   __StaticArrayInitTypeSize=38(222546), __StaticArrayInitTypeSize=40(222575), __StaticArrayInitTypeSize=42(222604), __StaticArrayInitTypeSize=44(222633)
+	//   __StaticArrayInitTypeSize=48(222662), __StaticArrayInitTypeSize=52(222691), __StaticArrayInitTypeSize=56(222720), __StaticArrayInitTypeSize=64(222749)
+	//   __StaticArrayInitTypeSize=76(222807), __StaticArrayInitTypeSize=82(222836), __StaticArrayInitTypeSize=84(222865), __StaticArrayInitTypeSize=94(222894)
+	//   __StaticArrayInitTypeSize=120(222923), __StaticArrayInitTypeSize=128(222953)
+
+}
+
+// --------------------------------------------------------------
+// TypeDefIndex: 1497   token: 0x020005D9   запись: 0xADFA48
+// globalTypeIndex: 4897 = OFF(3400) + rid(1497)
+// методов: 0   свойств: 0
+// --------------------------------------------------------------
+public class __StaticArrayInitTypeSize=72
+{
+	// ---- [эвристика по куче] НЕ из FieldDefinition (её в файле нет).
+	//      Строки имён из окна ±520 байт вокруг имени типа, не занятые
+	//      именами методов/типов/свойств: поля, параметры, локальные переменные.
+	//   __StaticArrayInitTypeSize=3(222258), __StaticArrayInitTypeSize=6(222286), __StaticArrayInitTypeSize=10(222314), __StaticArrayInitTypeSize=12(222343)
+	//   __StaticArrayInitTypeSize=15(222372), __StaticArrayInitTypeSize=16(222401), __StaticArrayInitTypeSize=32(222488), __StaticArrayInitTypeSize=36(222517)
+	//   __StaticArrayInitTypeSize=38(222546), __StaticArrayInitTypeSize=40(222575), __StaticArrayInitTypeSize=42(222604), __StaticArrayInitTypeSize=44(222633)
+	//   __StaticArrayInitTypeSize=48(222662), __StaticArrayInitTypeSize=52(222691), __StaticArrayInitTypeSize=56(222720), __StaticArrayInitTypeSize=64(222749)
+	//   __StaticArrayInitTypeSize=76(222807), __StaticArrayInitTypeSize=82(222836), __StaticArrayInitTypeSize=84(222865), __StaticArrayInitTypeSize=94(222894)
+	//   __StaticArrayInitTypeSize=120(222923), __StaticArrayInitTypeSize=128(222953), __StaticArrayInitTypeSize=130(222983), __StaticArrayInitTypeSize=152(223013)
+	//   __StaticArrayInitTypeSize=170(223043), __StaticArrayInitTypeSize=172(223073), __StaticArrayInitTypeSize=174(223103), __StaticArrayInitTypeSize=212(223133)
+	//   __StaticArrayInitTypeSize=240(223163), __StaticArrayInitTypeSize=256(223193), __StaticArrayInitTypeSize=262(223223), __StaticArrayInitTypeSize=288(223253)
+	//   __StaticArrayInitTypeSize=336(223283)
 
 }
 
@@ -49603,10 +51703,15 @@ namespace AppodealAds.Unity.Android
 	// --------------------------------------------------------------
 	// TypeDefIndex: 1459   token: 0x020005B3   запись: 0xADEF4C
 	// globalTypeIndex: 4859 = OFF(3400) + rid(1459)
-	// методов: 15  (rid 8877..8891)   свойств: 0
+	// методов: 15  (rid 8877..8891)   свойств: 1
 	// --------------------------------------------------------------
 	public class AndroidPlayStoreInAppPurchaseBuilder
 	{
+		// ---- Свойства (PropertyDefinition) ----
+		// Property rid=682 token=0x170002AA  get=+0  set=— (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8877, set rid=—
+		public object NativeInAppPurchase { get; }
+
 		// ---- Методы (MethodDefinition) ----
 		// rid=8877  пар=1  slot=—  flags=0x96 (static|hidebysig)  колонка+0=29442  token=0x060022AD
 		public static void get_NativeInAppPurchase(object p0) { }
@@ -50026,6 +52131,56 @@ namespace AppodealAds.Unity.Api
 
 	}
 
+	// --------------------------------------------------------------
+	// TypeDefIndex: 1493   token: 0x020005D5   запись: 0xADF9B0
+	// globalTypeIndex: 4893 = OFF(3400) + rid(1493)
+	// методов: 14  (rid 9169..9182)   свойств: 0
+	// --------------------------------------------------------------
+	public class __StaticArrayInitTypeSize=20
+	{
+		// ---- Методы (MethodDefinition) ----
+		// rid=9169  пар=0  slot=11  flags=0x1E6 (final|virtual|hidebysig|newslot)  колонка+0=33487  token=0x060023D1
+		public virtual void getBuilderInstance() { }
+		// rid=9170  пар=0  slot=—  flags=0x81 (hidebysig)  колонка+0=25976  token=0x060023D2
+		private __StaticArrayInitTypeSize=20() { }
+		// rid=9171  пар=1  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060023D3
+		public void build(object p0) { }
+		// rid=9172  пар=0  slot=—  flags=0x86 (hidebysig)  колонка+0=30333  token=0x060023D4
+		public void withPublicKey() { }
+		// rid=9173  пар=1  slot=—  flags=0x86 (hidebysig)  колонка+0=43399  token=0x060023D5
+		public void withSignature(object p0) { }
+		// rid=9174  пар=1  slot=—  flags=0x86 (hidebysig)  колонка+0=43399  token=0x060023D6
+		public void withPurchaseData(object p0) { }
+		// rid=9175  пар=1  slot=—  flags=0x86 (hidebysig)  колонка+0=43399  token=0x060023D7
+		public void withPrice(object p0) { }
+		// rid=9176  пар=1  slot=—  flags=0x86 (hidebysig)  колонка+0=43399  token=0x060023D8
+		public void withCurrency(object p0) { }
+		// rid=9177  пар=1  slot=—  flags=0x86 (hidebysig)  колонка+0=43399  token=0x060023D9
+		public void withSku(object p0) { }
+		// rid=9178  пар=1  slot=—  flags=0x86 (hidebysig)  колонка+0=43399  token=0x060023DA
+		public void withOrderId(object p0) { }
+		// rid=9179  пар=1  slot=—  flags=0x86 (hidebysig)  колонка+0=43399  token=0x060023DB
+		public void withPurchaseToken(object p0) { }
+		// rid=9180  пар=1  slot=—  flags=0x86 (hidebysig)  колонка+0=43399  token=0x060023DC
+		public void withPurchaseTimestamp(object p0) { }
+		// rid=9181  пар=1  slot=—  flags=0x86 (hidebysig)  колонка+0=43399  token=0x060023DD
+		public void withAdditionalParameters(object p0) { }
+		// rid=9182  пар=1  slot=—  flags=0x86 (hidebysig)  колонка+0=43399  token=0x060023DE
+		public void withDeveloperPayload(object p0) { }
+
+		// ---- [эвристика по куче] НЕ из FieldDefinition (её в файле нет).
+		//      Строки имён из окна ±520 байт вокруг имени типа, не занятые
+		//      именами методов/типов/свойств: поля, параметры, локальные переменные.
+		//   F7D381AF73D85950E0B064CF1AA8F14938A1F38084B46CE36AAEFE81BEF739F3(221933), FADB218011E7702BB9575D0C32A685DA10B5C72EB809BD9A955DB1C76E4D8315(221998), FB2089AF82E09593374B65EC2440779FDCF5DD6DA07D26E57AF6790667B937CD(222063), FD68700E95459C5E7A49C5830F8BD0A9BA4BD171252663D8066B09E7768C5C5D(222128)
+		//   FEC387BA57A54BB6066E4CA8A4F9C0FF9C36B9CBD6600C3683F6FB1BDB5077EB(222193), __StaticArrayInitTypeSize=3(222258), __StaticArrayInitTypeSize=6(222286), __StaticArrayInitTypeSize=10(222314)
+		//   __StaticArrayInitTypeSize=12(222343), __StaticArrayInitTypeSize=15(222372), __StaticArrayInitTypeSize=16(222401), __StaticArrayInitTypeSize=32(222488)
+		//   __StaticArrayInitTypeSize=36(222517), __StaticArrayInitTypeSize=38(222546), __StaticArrayInitTypeSize=40(222575), __StaticArrayInitTypeSize=42(222604)
+		//   __StaticArrayInitTypeSize=44(222633), __StaticArrayInitTypeSize=48(222662), __StaticArrayInitTypeSize=52(222691), __StaticArrayInitTypeSize=56(222720)
+		//   __StaticArrayInitTypeSize=64(222749), __StaticArrayInitTypeSize=76(222807), __StaticArrayInitTypeSize=82(222836), __StaticArrayInitTypeSize=84(222865)
+		//   __StaticArrayInitTypeSize=94(222894), __StaticArrayInitTypeSize=120(222923)
+
+	}
+
 }
 
 namespace AppodealAds.Unity.Common
@@ -50274,7 +52429,8 @@ namespace AppodealAds.Unity.Common
 	public class IPlayStoreInAppPurchaseBuilder
 	{
 		// ---- Свойства (PropertyDefinition) ----
-		// Property rid=683 token=0x170002AB  get=+9  set=+— (от первого метода типа)
+		// Property rid=683 token=0x170002AB  get=+9  set=— (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=9033, set rid=—
 		public object NativeInAppPurchase { get; }
 
 		// ---- Методы (MethodDefinition) ----
@@ -50932,10 +53088,19 @@ namespace EpicToonFX
 	// --------------------------------------------------------------
 	// TypeDefIndex: 1432   token: 0x02000598   запись: 0xADE794
 	// globalTypeIndex: 4832 = OFF(3400) + rid(1432)
-	// методов: 6  (rid 8599..8604)   свойств: 0
+	// методов: 6  (rid 8599..8604)   свойств: 2
 	// --------------------------------------------------------------
 	public class ETFXMouseOrbit
 	{
+		// ---- Свойства (PropertyDefinition) ----
+		// Property rid=671 token=0x1700029F  get=+5  set=— (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8604, set rid=—
+		public object System.Collections.IEnumerator.Current { get; }
+
+		// Property rid=675 token=0x170002A3  get=+3  set=— (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8602, set rid=—
+		public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
 		// ---- Методы (MethodDefinition) ----
 		// rid=8599  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06002197
 		public ETFXMouseOrbit() { }
@@ -51004,10 +53169,19 @@ namespace EpicToonFX
 	// --------------------------------------------------------------
 	// TypeDefIndex: 1435   token: 0x0200059B   запись: 0xADE878
 	// globalTypeIndex: 4835 = OFF(3400) + rid(1435)
-	// методов: 6  (rid 8614..8619)   свойств: 0
+	// методов: 6  (rid 8614..8619)   свойств: 2
 	// --------------------------------------------------------------
 	public class ETFXLightFade
 	{
+		// ---- Свойства (PropertyDefinition) ----
+		// Property rid=676 token=0x170002A4  get=+5  set=— (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8619, set rid=—
+		public object System.Collections.IEnumerator.Current { get; }
+
+		// Property rid=677 token=0x170002A5  get=+3  set=— (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8617, set rid=—
+		public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
 		// ---- Методы (MethodDefinition) ----
 		// rid=8614  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060021A6
 		public ETFXLightFade() { }
@@ -51377,10 +53551,15 @@ namespace Photon.Chat.DemoChat
 	// --------------------------------------------------------------
 	// TypeDefIndex: 1416   token: 0x02000588   запись: 0xADE288
 	// globalTypeIndex: 4816 = OFF(3400) + rid(1416)
-	// методов: 32  (rid 8501..8532)   свойств: 0
+	// методов: 32  (rid 8501..8532)   свойств: 1
 	// --------------------------------------------------------------
 	public class ChatSettings
 	{
+		// ---- Свойства (PropertyDefinition) ----
+		// Property rid=672 token=0x170002A0  get=+0  set=+1 (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8501, set rid=8502
+		public object UserName { get; set; }
+
 		// ---- Методы (MethodDefinition) ----
 		// rid=8501  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06002135
 		public void get_UserName() { }
@@ -51467,10 +53646,15 @@ namespace Photon.Chat.DemoChat
 	// --------------------------------------------------------------
 	// TypeDefIndex: 1417   token: 0x02000589   запись: 0xADE2D4
 	// globalTypeIndex: 4817 = OFF(3400) + rid(1417)
-	// методов: 4  (rid 8533..8536)   свойств: 0
+	// методов: 4  (rid 8533..8536)   свойств: 1
 	// --------------------------------------------------------------
 	public class FriendItem
 	{
+		// ---- Свойства (PropertyDefinition) ----
+		// Property rid=673 token=0x170002A1  get=+0  set=— (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8533, set rid=—
+		public object Instance { get; }
+
 		// ---- Методы (MethodDefinition) ----
 		// rid=8533  пар=0  slot=—  flags=0x1891 (static|hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06002155
 		private static void get_Instance() { }
@@ -51506,8 +53690,9 @@ namespace Photon.Chat.DemoChat
 	public class NamePickNewGui
 	{
 		// ---- Свойства (PropertyDefinition) ----
-		// Property rid=674 token=0x170002A2  get=+1  set=+— (от первого метода типа)
-		public object FriendId { get; }
+		// Property rid=674 token=0x170002A2  get=+1  set=+0 (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8538, set rid=8537
+		public object FriendId { get; set; }
 
 		// ---- Методы (MethodDefinition) ----
 		// rid=8537  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06002159
@@ -51848,10 +54033,19 @@ namespace RVP
 	// --------------------------------------------------------------
 	// TypeDefIndex: 1350   token: 0x02000546   запись: 0xADCFD4
 	// globalTypeIndex: 4750 = OFF(3400) + rid(1350)
-	// методов: 6  (rid 8203..8208)   свойств: 0
+	// методов: 6  (rid 8203..8208)   свойств: 2
 	// --------------------------------------------------------------
 	public class VehicleWaypoint
 	{
+		// ---- Свойства (PropertyDefinition) ----
+		// Property rid=622 token=0x1700026E  get=+5  set=— (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8208, set rid=—
+		public object System.Collections.IEnumerator.Current { get; }
+
+		// Property rid=655 token=0x1700028F  get=+3  set=— (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8206, set rid=—
+		public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
 		// ---- Методы (MethodDefinition) ----
 		// rid=8203  пар=1  slot=—  flags=0x81 (hidebysig)  колонка+0=19708  token=0x0600200B
 		private VehicleWaypoint(object p0) { }
@@ -53710,10 +55904,19 @@ namespace RVP
 	// --------------------------------------------------------------
 	// TypeDefIndex: 1411   token: 0x02000583   запись: 0xADE158
 	// globalTypeIndex: 4811 = OFF(3400) + rid(1411)
-	// методов: 6  (rid 8468..8473)   свойств: 0
+	// методов: 6  (rid 8468..8473)   свойств: 2
 	// --------------------------------------------------------------
 	public class WheelCheckGroup
 	{
+		// ---- Свойства (PropertyDefinition) ----
+		// Property rid=660 token=0x17000294  get=+5  set=— (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8473, set rid=—
+		public object System.Collections.IEnumerator.Current { get; }
+
+		// Property rid=670 token=0x1700029E  get=+3  set=— (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8471, set rid=—
+		public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
 		// ---- Методы (MethodDefinition) ----
 		// rid=8468  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06002114
 		public WheelCheckGroup() { }
@@ -53803,10 +56006,19 @@ namespace SimpleJSON
 	// --------------------------------------------------------------
 	// TypeDefIndex: 1327   token: 0x0200052F   запись: 0xADC8B4
 	// globalTypeIndex: 4727 = OFF(3400) + rid(1327)
-	// методов: 8  (rid 8021..8028)   свойств: 0
+	// методов: 8  (rid 8021..8028)   свойств: 2
 	// --------------------------------------------------------------
 	public class <GetEnumerator>d__14
 	{
+		// ---- Свойства (PropertyDefinition) ----
+		// Property rid=590 token=0x1700024E  get=+5  set=— (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8026, set rid=—
+		public object System.Collections.IEnumerator.Current { get; }
+
+		// Property rid=621 token=0x1700026D  get=+3  set=— (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8024, set rid=—
+		public object System.Collections.Generic.IEnumerator<SimpleJSON.JSONNode>.Current { get; }
+
 		// ---- Методы (MethodDefinition) ----
 		// rid=8021  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001F55
 		public <GetEnumerator>d__14() { }
@@ -53837,10 +56049,19 @@ namespace SimpleJSON
 	// --------------------------------------------------------------
 	// TypeDefIndex: 1330   token: 0x02000532   запись: 0xADC998
 	// globalTypeIndex: 4730 = OFF(3400) + rid(1330)
-	// методов: 7  (rid 8053..8059)   свойств: 0
+	// методов: 7  (rid 8053..8059)   свойств: 2
 	// --------------------------------------------------------------
 	public class <>c__DisplayClass12_0
 	{
+		// ---- Свойства (PropertyDefinition) ----
+		// Property rid=629 token=0x17000275  get=+4  set=— (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8057, set rid=—
+		public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
+		// Property rid=630 token=0x17000276  get=+6  set=— (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8059, set rid=—
+		public object System.Collections.IEnumerator.Current { get; }
+
 		// ---- Методы (MethodDefinition) ----
 		// rid=8053  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001F75
 		public <>c__DisplayClass12_0() { }
@@ -53900,10 +56121,15 @@ namespace SimpleJSON
 	// --------------------------------------------------------------
 	// TypeDefIndex: 1337   token: 0x02000539   запись: 0xADCB14
 	// globalTypeIndex: 4737 = OFF(3400) + rid(1337)
-	// методов: 3  (rid 8102..8104)   свойств: 0
+	// методов: 3  (rid 8102..8104)   свойств: 1
 	// --------------------------------------------------------------
 	public class JSONLazyCreator
 	{
+		// ---- Свойства (PropertyDefinition) ----
+		// Property rid=641 token=0x17000281  get=+0  set=+1 (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8102, set rid=8103
+		public object Value { get; set; }
+
 		// ---- Методы (MethodDefinition) ----
 		// rid=8102  пар=0  slot=5  flags=0x1E1 (final|virtual|hidebysig|newslot)  колонка+0=25553  token=0x06001FA6
 		private virtual void get_Value() { }
@@ -54077,10 +56303,19 @@ namespace ToonyColors
 	// --------------------------------------------------------------
 	// TypeDefIndex: 1444   token: 0x020005A4   запись: 0xADEB24
 	// globalTypeIndex: 4844 = OFF(3400) + rid(1444)
-	// методов: 6  (rid 8653..8658)   свойств: 0
+	// методов: 6  (rid 8653..8658)   свойств: 2
 	// --------------------------------------------------------------
 	public class AuthorizationStatus
 	{
+		// ---- Свойства (PropertyDefinition) ----
+		// Property rid=678 token=0x170002A6  get=+5  set=— (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8658, set rid=—
+		public object System.Collections.IEnumerator.Current { get; }
+
+		// Property rid=679 token=0x170002A7  get=+3  set=— (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8656, set rid=—
+		public object System.Collections.Generic.IEnumerator<System.Object>.Current { get; }
+
 		// ---- Методы (MethodDefinition) ----
 		// rid=8653  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x060021CD
 		public AuthorizationStatus() { }
@@ -54115,10 +56350,15 @@ namespace UnityStandardAssets.CrossPlatformInput
 	// --------------------------------------------------------------
 	// TypeDefIndex: 1342   token: 0x0200053E   запись: 0xADCC90
 	// globalTypeIndex: 4742 = OFF(3400) + rid(1342)
-	// методов: 15  (rid 8141..8155)   свойств: 0
+	// методов: 15  (rid 8141..8155)   свойств: 1
 	// --------------------------------------------------------------
 	public class Mode
 	{
+		// ---- Свойства (PropertyDefinition) ----
+		// Property rid=650 token=0x1700028A  get=+0  set=+1 (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=8141, set rid=8142
+		public object virtualMousePosition { get; set; }
+
 		// ---- Методы (MethodDefinition) ----
 		// rid=8141  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001FCD
 		public void get_virtualMousePosition() { }
@@ -54290,18 +56530,25 @@ namespace VolumetricLines
 	// --------------------------------------------------------------
 	// TypeDefIndex: 1320   token: 0x02000528   запись: 0xADC608
 	// globalTypeIndex: 4720 = OFF(3400) + rid(1320)
-	// методов: 19  (rid 7889..7907)   свойств: 3
+	// методов: 19  (rid 7889..7907)   свойств: 4
 	// --------------------------------------------------------------
 	public class VolumetricLineBehavior
 	{
 		// ---- Свойства (PropertyDefinition) ----
-		// Property rid=592 token=0x17000250  get=+2  set=+3 (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (3 кандидатов)
+		// Property rid=591 token=0x1700024F  get=+0  set=+1 (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=7889, set rid=7890
+		public object TemplateMaterial { get; set; }
+
+		// Property rid=592 token=0x17000250  get=+2  set=+3 (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=7891, set rid=7892
 		public object DoNotOverwriteTemplateMaterialProperties { get; set; }
 
-		// Property rid=593 token=0x17000251  get=+4  set=+5 (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (3 кандидатов)
+		// Property rid=593 token=0x17000251  get=+4  set=+5 (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=7893, set rid=7894
 		public object LineColor { get; set; }
 
-		// Property rid=594 token=0x17000252  get=+6  set=+7 (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (3 кандидатов)
+		// Property rid=594 token=0x17000252  get=+6  set=+7 (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=7895, set rid=7896
 		public object LineWidth { get; set; }
 
 		// ---- Методы (MethodDefinition) ----
@@ -54361,20 +56608,10 @@ namespace VolumetricLines
 	// --------------------------------------------------------------
 	// TypeDefIndex: 1321   token: 0x02000529   запись: 0xADC654
 	// globalTypeIndex: 4721 = OFF(3400) + rid(1321)
-	// методов: 29  (rid 7908..7936)   свойств: 3
+	// методов: 29  (rid 7908..7936)   свойств: 0
 	// --------------------------------------------------------------
 	public class VolumetricLineStripBehavior
 	{
-		// ---- Свойства (PropertyDefinition) ----
-		// Property rid=592 token=0x17000250  get=+2  set=+3 (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (3 кандидатов)
-		public object DoNotOverwriteTemplateMaterialProperties { get; set; }
-
-		// Property rid=593 token=0x17000251  get=+4  set=+5 (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (3 кандидатов)
-		public object LineColor { get; set; }
-
-		// Property rid=594 token=0x17000252  get=+6  set=+7 (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (3 кандидатов)
-		public object LineWidth { get; set; }
-
 		// ---- Методы (MethodDefinition) ----
 		// rid=7908  пар=0  slot=—  flags=0x1886 (hidebysig|specialname|rtspecialname)  колонка+0=36310  token=0x06001EE4
 		public void get_TemplateMaterial() { }
@@ -54453,21 +56690,13 @@ namespace VolumetricLines
 	// --------------------------------------------------------------
 	// TypeDefIndex: 1322   token: 0x0200052A   запись: 0xADC6A0
 	// globalTypeIndex: 4722 = OFF(3400) + rid(1322)
-	// методов: 26  (rid 7937..7962)   свойств: 4
+	// методов: 26  (rid 7937..7962)   свойств: 1
 	// --------------------------------------------------------------
 	public class VolumetricLineVertexData
 	{
 		// ---- Свойства (PropertyDefinition) ----
-		// Property rid=592 token=0x17000250  get=+2  set=+3 (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (3 кандидатов)
-		public object DoNotOverwriteTemplateMaterialProperties { get; set; }
-
-		// Property rid=593 token=0x17000251  get=+4  set=+5 (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (3 кандидатов)
-		public object LineColor { get; set; }
-
-		// Property rid=594 token=0x17000252  get=+6  set=+7 (от первого метода типа)  ВЛАДЕЛЕЦ НЕ ОДНОЗНАЧЕН (3 кандидатов)
-		public object LineWidth { get; set; }
-
-		// Property rid=608 token=0x17000260  get=+10  set=+— (от первого метода типа)
+		// Property rid=608 token=0x17000260  get=+10  set=— (от первого метода типа)
+		// владелец найден по правилу «смещение»; аксессоры: get rid=7947, set rid=—
 		public object LineVertices { get; }
 
 		// ---- Методы (MethodDefinition) ----
@@ -54604,488 +56833,32 @@ namespace ithappy
 
 // ============================================================================
 // Методы, чей declaringType не соответствует ни одной записи типа игровой сборки
-// (групп: 2, методов: 15). Имена и число параметров достоверны, владелец не установлен:
+// (групп: 1, методов: 1). Имена и число параметров достоверны, владелец не установлен:
 // либо это типы из другой сборки, либо записи типов не распознались.
 // ============================================================================
-// declaringType = 4893 (rid 1493), методов 14
-//   rid=9169  пар=0  slot=11  flags=0x1E6  getBuilderInstance
-//   rid=9170  пар=0  slot=—  flags=0x81  .ctor
-//   rid=9171  пар=1  slot=—  flags=0x1886  build
-//   rid=9172  пар=0  slot=—  flags=0x86  withPublicKey
-//   rid=9173  пар=1  slot=—  flags=0x86  withSignature
-//   rid=9174  пар=1  slot=—  flags=0x86  withPurchaseData
-//   rid=9175  пар=1  slot=—  flags=0x86  withPrice
-//   rid=9176  пар=1  slot=—  flags=0x86  withCurrency
-//   rid=9177  пар=1  slot=—  flags=0x86  withSku
-//   rid=9178  пар=1  slot=—  flags=0x86  withOrderId
-//   rid=9179  пар=1  slot=—  flags=0x86  withPurchaseToken
-//   rid=9180  пар=1  slot=—  flags=0x86  withPurchaseTimestamp
-//   rid=9181  пар=1  slot=—  flags=0x86  withAdditionalParameters
-//   rid=9182  пар=1  slot=—  flags=0x86  withDeveloperPayload
-
 // declaringType = 4904 (rid 1504), методов 1
 //   rid=9184  пар=1  slot=—  flags=0x93  ReleaseGssBuffer
 
 // ============================================================================
-// Свойства, владелец которых не восстановлен (456 из 673): get/set в
-// PropertyDefinition — смещения от первого метода типа-владельца, и ни один тип
-// не дал метода с именем get_<свойство>. Причины: аксессор в другой сборке,
-// свойство без get-аксессора, либо сдвиг базы у владельца.
+// Свойства, владелец которых не восстановлен (14 из 673).
+// Проверены оба правила: (1) у типа есть метод по адресу first_method+get с
+// именем get_<свойство> — включая явные реализации интерфейса вида
+// <интерфейс>.get_X; (2) у типа есть метод с таким именем и get < числа его
+// методов. Здесь не сработало ни то ни другое: аксессора с таким именем в
+// игровом чанке MethodDef нет вовсе — он в другой сборке или вырезан.
 // ============================================================================
-// Property rid=1  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=2  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=3  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=4  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=5  SecretDone   get=+— set=+1
-// Property rid=7  minDistanceBeetwenSmoothingPoints   get=+— set=+—
-// Property rid=11  avs   get=+— set=+—
-// Property rid=13  r   get=+— set=+—
-// Property rid=20  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=21  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=22  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=23  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=24  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=25  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=26  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=27  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=28  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=29  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=30  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=31  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=32  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=33  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=34  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=35  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=36  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=37  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=39  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=40  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=41  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=42  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=43  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=44  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=45  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=46  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=47  OutlineMode   get=+— set=+1
-// Property rid=50  id   get=+— set=+—
-// Property rid=55  customTexture   get=+— set=+—
-// Property rid=57  mainCam   get=+— set=+—
-// Property rid=58  AmbientOcclusionComp   get=+— set=+—
-// Property rid=59  ColorGradingComp   get=+— set=+—
-// Property rid=60  Grain   get=+— set=+—
-// Property rid=61  Volume   get=+— set=+—
-// Property rid=63  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=64  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=65  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=66  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=67  HuggySpawnPoint   get=+— set=+—
-// Property rid=68  CurMaxZCount   get=+— set=+—
-// Property rid=70  SpawnPoints   get=+— set=+—
-// Property rid=71  cam   get=+— set=+—
-// Property rid=72  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=73  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=74  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=75  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=76  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=77  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=78  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=79  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=80  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=81  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=82  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=83  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=85  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=86  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=87  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=88  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=89  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=90  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=91  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=92  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=93  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=94  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=95  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=96  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=97  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=98  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=100  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=101  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=102  AdsPauseTime   get=+— set=+1
-// Property rid=103  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=104  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=107  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=108  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=109  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=110  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=111  cam   get=+— set=+—
-// Property rid=113  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=114  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=116  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=117  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=118  ourPlayer   get=+— set=+—
-// Property rid=120  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=121  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=122  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=123  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=124  CameraComponent   get=+— set=+—
-// Property rid=125  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=126  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=127  target   get=+— set=+—
-// Property rid=128  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=129  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=132  curSettings   get=+— set=+—
-// Property rid=135  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=136  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=137  AndroidApiLevel   get=+— set=+—
-// Property rid=141  Name   get=+— set=+—
-// Property rid=180  MaxInvObjectsCount   get=+— set=+—
-// Property rid=182  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=183  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=184  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=185  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=188  isInitialized   get=+— set=+—
-// Property rid=190  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=191  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=192  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=193  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=194  ChatMessages   get=+— set=+—
-// Property rid=195  OurPlayer   get=+— set=+—
-// Property rid=196  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=197  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=198  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=199  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=200  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=201  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=202  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=203  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=204  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=205  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=206  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=207  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=208  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=209  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=210  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=211  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=212  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=213  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=214  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=215  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=216  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=217  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=221  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=222  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=223  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=224  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=225  gameMode   get=+— set=+—
-// Property rid=226  GameStartTime   get=+— set=+—
-// Property rid=229  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=230  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=231  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=232  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=233  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=234  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=235  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=236  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=237  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=238  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=239  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=240  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=241  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=242  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=243  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=244  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=245  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=246  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=247  SpawnPoints   get=+— set=+—
-// Property rid=248  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=249  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=250  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=251  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=252  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=253  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=254  IsInitialized   get=+— set=+—
-// Property rid=258  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=259  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=260  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=261  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=262  startPos   get=+— set=+—
-// Property rid=266  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=267  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=268  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=269  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=270  carID   get=+— set=+—
-// Property rid=272  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=273  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=274  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=275  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=277  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=278  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=279  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=280  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=281  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=282  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=283  R   get=+— set=+—
-// Property rid=284  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=285  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=287  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=288  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=289  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=290  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=291  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=292  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=293  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=294  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=296  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=297  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=298  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=299  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=300  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=301  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=302  currentItemObject   get=+— set=+—
-// Property rid=303  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=304  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=305  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=306  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=307  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=308  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=309  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=310  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=311  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=312  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=313  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=314  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=315  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=316  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=317  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=318  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=319  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=320  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=321  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+4 set=+—
-// Property rid=322  System.Collections.IEnumerator.Current   get=+6 set=+—
-// Property rid=323  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=324  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=325  targetRenderFPS   get=+— set=+—
-// Property rid=329  targetRenderFPS   get=+— set=+—
-// Property rid=333  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=334  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=336  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=337  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=338  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=339  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=340  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=341  System.Collections.IEnumerator.Current   get=+5 set=+—
 // Property rid=342  isSelected   get=+14 set=+15
-// Property rid=343  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=344  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=345  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=346  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=347  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=348  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=349  targetRenderFPS   get=+— set=+—
-// Property rid=353  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=354  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=355  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=356  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=357  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=358  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=359  PlayerTemplateNames   get=+— set=+—
-// Property rid=362  playerClothingManager   get=+— set=+—
-// Property rid=364  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=365  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=366  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=367  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=368  CameraPosForThisScreen   get=+— set=+—
-// Property rid=369  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=370  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=371  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=372  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=373  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=374  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=375  CameraPosForThisScreen   get=+— set=+—
-// Property rid=378  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=379  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=380  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+4 set=+—
-// Property rid=381  System.Collections.IEnumerator.Current   get=+6 set=+—
-// Property rid=384  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=385  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=386  menuPlayerPivot   get=+— set=+—
-// Property rid=390  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=391  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=392  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=393  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=394  CameraPosForThisScreen   get=+— set=+—
-// Property rid=395  PreviewGunsContainer   get=+— set=+—
-// Property rid=396  IsBought   get=+— set=+1
-// Property rid=397  Name   get=+— set=+—
-// Property rid=398  GetHIDE_ROOMS   get=+— set=+1
-// Property rid=400  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=401  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=402  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=403  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=404  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=405  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=406  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=407  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=408  MyJetPack   get=+— set=+—
-// Property rid=409  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=410  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=411  MyJetPack   get=+— set=+—
-// Property rid=412  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=413  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=415  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=416  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=417  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=418  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=419  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=420  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=421  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=422  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=424  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=425  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=426  playerClothingManager   get=+— set=+—
-// Property rid=439  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=440  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=441  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=442  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=443  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=444  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=445  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=446  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=447  TargetPhViewId   get=+— set=+—
-// Property rid=450  animator   get=+— set=+—
-// Property rid=451  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=452  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=453  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=454  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=455  GetCurrentLeftHandPrefab   get=+— set=+—
-// Property rid=457  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=458  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=460  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=461  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=462  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=463  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=464  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=465  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=469  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=470  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=471  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=472  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=473  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=474  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=475  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=476  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=477  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=478  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=479  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=480  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=481  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=482  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=483  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=484  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=485  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=486  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=487  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=488  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=494  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=495  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=497  damage   get=+— set=+—
-// Property rid=502  isFreeItem   get=+— set=+—
-// Property rid=511  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=512  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=513  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=514  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=515  IsBought   get=+— set=+1
-// Property rid=517  myGun   get=+— set=+—
-// Property rid=518  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=519  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=520  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=521  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=522  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=523  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=524  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=525  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=533  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=534  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=535  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=536  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=537  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=538  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=540  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=541  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=548  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=549  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=550  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=551  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=552  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=553  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=554  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=555  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=556  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=557  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=558  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=559  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=560  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=561  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=564  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=565  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=566  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=567  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=568  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=569  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=572  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=573  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=574  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=575  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=576  MaxSpeedSqr   get=+— set=+—
-// Property rid=582  Color1   get=+— set=+—
-// Property rid=585  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=586  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=587  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=588  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=589  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=590  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=591  TemplateMaterial   get=+— set=+1
-// Property rid=621  System.Collections.Generic.IEnumerator<SimpleJSON.JSONNode>.Current   get=+3 set=+—
-// Property rid=622  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=623  System.Collections.Generic.IEnumerator<SimpleJSON.JSONNode>.Current   get=+5 set=+—
-// Property rid=624  System.Collections.IEnumerator.Current   get=+7 set=+—
-// Property rid=625  Item   get=+— set=+1
-// Property rid=629  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+4 set=+—
-// Property rid=630  System.Collections.IEnumerator.Current   get=+6 set=+—
-// Property rid=631  System.Collections.Generic.IEnumerator<SimpleJSON.JSONNode>.Current   get=+4 set=+—
-// Property rid=632  System.Collections.IEnumerator.Current   get=+6 set=+—
-// Property rid=633  Item   get=+— set=+1
-// Property rid=636  Childs   get=+9 set=+—
-// Property rid=637  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+4 set=+—
-// Property rid=638  System.Collections.IEnumerator.Current   get=+6 set=+—
-// Property rid=639  System.Collections.Generic.IEnumerator<SimpleJSON.JSONNode>.Current   get=+4 set=+—
-// Property rid=640  System.Collections.IEnumerator.Current   get=+6 set=+—
-// Property rid=641  Value   get=+— set=+1
+// Property rid=634  Item   get=+2 set=+3
+// Property rid=635  Count   get=+4 set=—
+// Property rid=636  Childs   get=+9 set=—
+// Property rid=642  Item   get=+3 set=+4
 // Property rid=643  Item   get=+5 set=+6
 // Property rid=644  AsInt   get=+15 set=+16
 // Property rid=645  AsFloat   get=+17 set=+18
 // Property rid=646  AsDouble   get=+19 set=+20
 // Property rid=647  AsBool   get=+21 set=+22
-// Property rid=648  AsArray   get=+23 set=+—
-// Property rid=649  AsObject   get=+24 set=+—
-// Property rid=650  virtualMousePosition   get=+— set=+1
-// Property rid=655  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=656  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=657  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=658  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=659  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=660  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=670  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=671  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=672  UserName   get=+— set=+1
-// Property rid=673  Instance   get=+— set=+—
-// Property rid=675  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=676  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=677  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=678  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=679  System.Collections.Generic.IEnumerator<System.Object>.Current   get=+3 set=+—
-// Property rid=680  System.Collections.IEnumerator.Current   get=+5 set=+—
-// Property rid=682  NativeInAppPurchase   get=+— set=+—
-// Property rid=685  NativeInAppPurchase   get=+— set=+—
-// Property rid=686  NativeInAppPurchase   get=+— set=+—
+// Property rid=648  AsArray   get=+23 set=—
+// Property rid=649  AsObject   get=+24 set=—
+// Property rid=680  System.Collections.IEnumerator.Current   get=+5 set=—
+// Property rid=684  NativeInAppPurchase   get=+3 set=—
 

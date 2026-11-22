@@ -125,6 +125,14 @@ def main(argv: list[str] | None = None) -> int:
     types = m.types()[GAME_TYPE_BASE]
     methods = m.methods()[GAME_METHOD_BASE]
     props = m.properties().get(GAME_PROP_BASE, {})
+
+    # Дочитываем хвост таблицы типов: `chunks()` отбраковывает имена с '=' и цифрами,
+    # из-за чего терялись __StaticArrayInitTypeSize=20/24/72 (rid 1493/1496/1497).
+    types, added = T.extend_type_chunk(m, types, GAME_TYPE_BASE)
+    if added:
+        print("# дочитано записей типов: %d -> %s" % (
+            len(added), [(r, m.raw_name(m.u32(types[r], T.TYPE_NAME))) for r in added]))
+
     ntypes = max(types) if types else 0
 
     # --- 1. методы: сгруппировать по типу и перенумеровать сплошно ------------
@@ -155,26 +163,22 @@ def main(argv: list[str] | None = None) -> int:
     meth_name = {rid: (m.name(m.u32(rec, T.METH_NAME)) or "") for rid, rec in methods.items()}
 
     # --- 2. свойства: владелец, затем сплошная укладка по типам ---------------
-    first_method = {dt: lst[0][0] for dt, lst in by_dt.items()}
+    # Владелец в PropertyDef не хранится (в оригинале это TypeDef.propertyStart/
+    # property_count), поэтому восстанавливаем его общим резолвером: по смещениям
+    # get/set от первого метода типа, именам аксессоров (включая явные реализации
+    # интерфейса <интерфейс>.get_X) и порядку rid свойств.
+    resolved, unresolved_rids, prop_stats = T.resolve_property_owners(m, methods, props)
     owners: dict[int, list] = collections.defaultdict(list)
     unowned: list[tuple] = []
     for prid, prec in sorted(props.items()):
         pname = m.name(m.u32(prec, T.PROP_NAME)) or ""
-        g, s = m.u32(prec, 4), m.u32(prec, 8)
-        found = None
-        for dt, F in first_method.items():
-            if 0 < g < 0xFFFF and meth_name.get(F + g) == "get_" + pname:
-                found = dt
-                break
-        if found is None:
-            for dt, F in first_method.items():
-                if 0 < s < 0xFFFF and meth_name.get(F + s) == "set_" + pname:
-                    found = dt
-                    break
-        if found is not None:
-            owners[found].append((prid, prec, pname, g, s))
+        g, s = m.u32(prec, T.PROP_GET), m.u32(prec, T.PROP_SET)
+        info = resolved.get(prid)
+        row = (prid, prec, pname, g, s, info)
+        if info is not None:
+            owners[info["dt"]].append(row)
         else:
-            unowned.append((prid, prec, pname, g, s))
+            unowned.append(row)
 
     prop_start: dict[int, int] = {}
     prop_count: dict[int, int] = {}
@@ -195,10 +199,12 @@ def main(argv: list[str] | None = None) -> int:
     asm_name_i = S.add(args.assembly_name)
     type_name_i, type_ns_i = {}, {}
     for trid, trec in types.items():
-        type_name_i[trid] = S.add(m.name(m.u32(trec, T.TYPE_NAME)) or "")
-        type_ns_i[trid] = S.add(m.name(m.u32(trec, T.TYPE_NS)) or "")
+        type_name_i[trid] = S.add(m.raw_name(m.u32(trec, T.TYPE_NAME))
+                                  or m.name(m.u32(trec, T.TYPE_NAME)) or "")
+        type_ns_i[trid] = S.add(m.raw_name(m.u32(trec, T.TYPE_NS))
+                                or m.name(m.u32(trec, T.TYPE_NS)) or "")
     meth_name_i = {rid: S.add(nm) for rid, nm in meth_name.items()}
-    prop_name_i = {prid: S.add(pname) for prid, _, pname, _, _ in prop_order}
+    prop_name_i = {prid: S.add(pname) for prid, _, pname, _, _, _ in prop_order}
 
     # --- 4. массивы -----------------------------------------------------------
     str_blob = bytes(S.buf)
@@ -218,20 +224,19 @@ def main(argv: list[str] | None = None) -> int:
                                    slot, m.u16(rec, 22))
 
     prop_blob = bytearray()
-    for prid, prec, pname, g, s in prop_order:
+    n_abs_get = 0
+    for prid, prec, pname, g, s, info in prop_order:
         # get/set: в исходнике смещения от первого метода типа -> делаем абсолютными
+        # индексами нового массива методов (в валидной метадате это MethodIndex).
         ga = sa = 0xFFFFFFFF
-        dt = None
-        for cand, F in first_method.items():
-            if 0 < g < 0xFFFF and meth_name.get(F + g) == "get_" + pname:
-                dt = cand
-                break
-        if dt is not None:
-            if 0 < g < 0xFFFF and (F + g) in new_index:
-                ga = new_index[F + g]
-            if 0 < s < 0xFFFF and (F + s) in new_index:
-                sa = new_index[F + s]
-        prop_blob += struct.pack("<IIII", prop_name_i[prid], ga, sa, m.u32(prec, 12))
+        if info is not None:
+            if info["get"] is not None and info["get"] in new_index:
+                ga = new_index[info["get"]]
+                n_abs_get += 1
+            if info["set"] is not None and info["set"] in new_index:
+                sa = new_index[info["set"]]
+        prop_blob += struct.pack("<IIII", prop_name_i[prid], ga, sa,
+                                 m.u32(prec, T.PROP_ATTRS))
         prop_blob += struct.pack("<I", m.u32(prec, T.PROP_TOK))
 
     type_blob = bytearray()
@@ -355,7 +360,7 @@ def verify(path: str, m, types, meth_name, ntypes, new_index, prop_order) -> Non
     # имена типов: сверяем каждый
     bad = 0
     for trid, trec in types.items():
-        want = m.name(m.u32(trec, T.TYPE_NAME)) or ""
+        want = m.raw_name(m.u32(trec, T.TYPE_NAME)) or m.name(m.u32(trec, T.TYPE_NAME)) or ""
         ni = struct.unpack_from("<I", B, to + (trid - 1) * SZ_TYPE)[0]
         if nm(ni) != want:
             bad += 1
@@ -378,16 +383,37 @@ def verify(path: str, m, types, meth_name, ntypes, new_index, prop_order) -> Non
         print("  %-16s methodStart=%-6d method_count=%-4d %s"
               % (probe, mstart, mcount, ", ".join(got[:6]) + ("…" if len(got) > 6 else "")))
 
+    # propertyStart/property_count: диапазоны свойств должны читаться и давать
+    # осмысленные имена (в исходной метадате эти поля не читаются вообще)
+    for probe in ("CharacterMotor", "GameController", "JSONNode"):
+        trid = next((r for r, rec in types.items()
+                     if (m.raw_name(m.u32(rec, T.TYPE_NAME)) or "") == probe), None)
+        if trid is None:
+            continue
+        base = to + (trid - 1) * SZ_TYPE
+        pstart = struct.unpack_from("<i", B, base + 48)[0]
+        pcount = struct.unpack_from("<H", B, base + 70)[0]
+        if pstart < 0 or pcount == 0:
+            print("  %-16s propertyStart=%d property_count=%d (свойств нет)"
+                  % (probe, pstart, pcount))
+            continue
+        names = [nm(struct.unpack_from("<I", B, po + (pstart + k) * SZ_PROP)[0])
+                 for k in range(pcount)]
+        assert all(x is not None for x in names), probe
+        print("  %-16s propertyStart=%-6d property_count=%-4d %s"
+              % (probe, pstart, pcount, ", ".join(names[:6]) + ("…" if len(names) > 6 else "")))
+
     # свойства: get/set стали абсолютными индексами и указывают на get_/set_
     ok = chk = 0
-    for i, (prid, prec, pname, g, s) in enumerate(prop_order):
+    for i, (prid, prec, pname, g, s, info) in enumerate(prop_order):
         rec = po + i * SZ_PROP
         ni, ga, sa = struct.unpack_from("<III", B, rec)[:3]
         if nm(ni) != pname:
             print("  РАСХОЖДЕНИЕ имени свойства rid=%d: %r != %r" % (prid, nm(ni), pname))
         if ga != 0xFFFFFFFF:
             chk += 1
-            if nm(struct.unpack_from("<I", B, mo + ga * SZ_METHOD)[0]) == "get_" + pname:
+            want, _ = T.accessor_names(pname)
+            if nm(struct.unpack_from("<I", B, mo + ga * SZ_METHOD)[0]) in want:
                 ok += 1
     print("  свойства: имён совпало %d/%d; абсолютный get указан у %d, из них ведут на "
           "get_<имя> — %d" % (len(prop_order), len(prop_order), chk, ok))

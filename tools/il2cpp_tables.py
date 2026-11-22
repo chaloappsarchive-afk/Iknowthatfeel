@@ -80,6 +80,7 @@ IDENT = re.compile(rb'^[A-Za-z_<>.`$@][A-Za-z0-9_<>.`$@]*$')
 METH_STRIDE, METH_TOK, METH_NAME, METH_DECL = 30, 12, 24, 28
 TYPE_STRIDE, TYPE_TOK, TYPE_NAME, TYPE_NS = 76, 68, 72, 0
 PROP_STRIDE, PROP_TOK, PROP_NAME = 20, 16, 0
+PROP_GET, PROP_SET, PROP_ATTRS = 4, 8, 12
 TAG_METHOD, TAG_TYPE, TAG_PROP, TAG_FIELD = 0x06, 0x02, 0x17, 0x04
 
 
@@ -114,6 +115,28 @@ class Meta(object):
         res = t.decode('utf8', 'replace') if IDENT.match(t) else None
         self._nc[idx] = res
         return res
+
+    def raw_name(self, idx):
+        """Имя по индексу кучи БЕЗ проверки на идентификатор.
+
+        `name()` отбраковывает строки, не похожие на идентификатор C#, и из-за этого
+        теряются легальные имена с `=` и цифрами — например сгенерированные Roslyn
+        типы `__StaticArrayInitTypeSize=20/24/72` (хвост таблицы TypeDefinition
+        игровой сборки). Здесь принимается любая NUL-терминированная печатная
+        ASCII-строка длиной >= 2.
+        """
+        if idx is None or idx < 0 or idx >= 3000000:
+            return None
+        q = self.B + idx
+        if q < 1 or q >= self.n or self.b[q - 1:q] != b'\x00':
+            return None
+        e = self.b.find(b'\x00', q, min(q + 200, self.n))
+        if e < 0 or e - q < 2:
+            return None
+        t = self.b[q:e]
+        if not all(32 <= c < 127 for c in t):
+            return None
+        return t.decode('ascii')
 
     def name_index(self, s):
         """Индекс кучи для строки s (первое вхождение), либо None."""
@@ -222,6 +245,201 @@ def load(path, cache):
     m.B = base
     sys.stderr.write('[il2cpp_tables] %s; база кучи = 0x%X\n' % (src, base))
     return m
+
+
+def extend_type_chunk(m, chunk, base, stride=TYPE_STRIDE, tok_off=TYPE_TOK,
+                      max_rid=4000, tag=TAG_TYPE):
+    """Дочитать с решётки записи TypeDef, которые `chunks()` отбраковал по имени.
+
+    `chunks()` принимает запись, только если `name()` вернул идентификатор C#.
+    Из-за этого в хвосте игровой сборки теряются легальные типы, чьи имена содержат
+    `=` и цифры: `__StaticArrayInitTypeSize=20/24/72` (rid 1493/1496/1497).
+    Функция идёт по решётке `base + (i-1)*stride`, берёт записи с тегом токена 0x02
+    и читает имя через `raw_name()`; результат сливается с `chunk` (по token rid).
+
+    Возвращает (новый_chunk, список_найденных_rid).
+    """
+    out = dict(chunk)
+    added = []
+    for i in range(1, max_rid + 1):
+        rec = base + (i - 1) * stride
+        tok = m.u32(rec, tok_off)
+        if tok >> 24 != tag:
+            continue
+        rid = tok & 0xFFFFFF
+        if rid in out or not (1 <= rid <= max_rid):
+            continue
+        if m.raw_name(m.u32(rec, TYPE_NAME)):
+            out[rid] = rec
+            added.append(rid)
+    return out, sorted(added)
+
+
+def accessor_names(pname):
+    """Возможные имена get/set-аксессоров для свойства pname.
+
+    Обычное свойство `Foo` даёт `get_Foo`/`set_Foo`. Явная реализация интерфейса
+    в метаданных хранится под полным именем — свойство
+    `System.Collections.IEnumerator.Current` обслуживается методом
+    `System.Collections.IEnumerator.get_Current` (в игровой сборке таких 375).
+    """
+    g = {'get_' + pname}
+    s = {'set_' + pname}
+    if '.' in pname:
+        iface, short = pname.rsplit('.', 1)
+        g.add(iface + '.get_' + short)
+        s.add(iface + '.set_' + short)
+    return g, s
+
+
+def resolve_property_owners(m, methods, props):
+    """Привязать записи PropertyDef к типам-владельцам.
+
+    В PropertyDef нет поля «владелец»: в оригинале принадлежность типу задаётся
+    диапазоном TypeDef.propertyStart/property_count, а эти поля в данном файле не
+    читаются. Зато у свойства есть get/set — смещения аксессоров ОТНОСИТЕЛЬНО
+    первого метода владельца. Отсюда правила.
+
+    Проход 1 — точное смещение: у типа dt есть метод с именем `get_<имя>` (или
+    явной реализацией интерфейса `<интерфейс>.get_X`) ровно по адресу
+    first_method[dt] + get. Кандидатов часто несколько (`get_Current`, `get_Item`
+    есть у десятков типов), поэтому выбор делается ПОРЯДКОМ rid свойств: они идут
+    сплошными диапазонами по типам (94 из 98 проверенных владельцев — непрерывный
+    диапазон, 4 нарушения монотонности на 248). Проход по возрастанию rid требует
+    неубывающей позиции владельца и предпочитает предыдущего владельца.
+
+    Проход 2 — мягкое правило, для свойств, у которых смещение «съехало» (так
+    ведёт себя, например, SimpleJSON). Кандидат принимается, только если:
+      * метод с именем аксессора у этого типа существует;
+      * get < числа методов типа (смещение влезает в его блок);
+      * тип лежит в окне между ближайшими привязанными соседями по rid;
+      * найденный аксессор ещё не занят другим свойством этого типа — иначе
+        получилось бы два одноимённых свойства у одного класса, чего C# не
+        допускает (кроме индексаторов `Item`, у которых аксессоры разные).
+    Принимается единственный кандидат; иначе свойство остаётся непривязанным.
+
+    Возвращает (owners, unresolved, stats):
+      owners     {prop_rid: {'dt': globalTypeIdx, 'get': method_rid|None,
+                             'set': method_rid|None, 'how': 'смещение'|'имя'}}
+      unresolved [prop_rid, ...]  — без владельца
+      stats      Counter со счётчиками способов и отказов
+    """
+    import collections as _c
+    mname = {r: m.name(m.u32(rec, METH_NAME)) for r, rec in methods.items()}
+    decl = {r: m.u16(rec, METH_DECL) for r, rec in methods.items()}
+    first, count = {}, _c.Counter()
+    for r in sorted(methods):
+        first.setdefault(decl[r], r)
+        count[decl[r]] += 1
+    byname = _c.defaultdict(list)
+    for r, n in mname.items():
+        if n:
+            byname[n].append(r)
+    order = sorted(first, key=lambda d: first[d])
+    pos = {dt: i for i, dt in enumerate(order)}
+
+    # кандидаты: точные (по смещению) и все совпадения по имени аксессора
+    exact = {}
+    gacc, sacc = _c.defaultdict(dict), _c.defaultdict(dict)
+    for prid, prec in sorted(props.items()):
+        pname = m.name(m.u32(prec, PROP_NAME))
+        if not pname:
+            continue
+        g, s = m.u32(prec, PROP_GET), m.u32(prec, PROP_SET)
+        gn, sn = accessor_names(pname)
+        ex = set()
+        for off, names, store in ((g, gn, gacc), (s, sn, sacc)):
+            for want in names:
+                for r in byname.get(want, ()):
+                    dt = decl[r]
+                    store[prid].setdefault(dt, []).append(r)
+                    if off != 0xFFFFFFFF and r - first[dt] == off:
+                        ex.add(dt)
+        exact[prid] = sorted(ex, key=lambda d: pos[d])
+
+    owners, used, reasons = {}, set(), {}
+
+    def choose(prid, store, dt, off):
+        """rid аксессора: сначала точное смещение, затем незанятый, затем любой."""
+        lst = sorted(set(store[prid].get(dt, ())))
+        if not lst:
+            return None
+        if off != 0xFFFFFFFF and (first[dt] + off) in lst:
+            return first[dt] + off
+        for r in lst:
+            if r not in used:
+                return r
+        return lst[0]
+
+    def exact_rid(prid, store, dt, off):
+        """rid аксессора, давший точное совпадение смещения (или None)."""
+        if off == 0xFFFFFFFF:
+            return None
+        r = first[dt] + off
+        return r if r in store[prid].get(dt, ()) else None
+
+    last = -1
+    for prid in sorted(props):
+        if prid not in exact:
+            reasons[prid] = 'нет имени'
+            continue
+        g, s = m.u32(props[prid], PROP_GET), m.u32(props[prid], PROP_SET)
+        # Два свойства одного типа не могут делить один метод-аксессор: так
+        # отсеиваются дубли, которые иначе липнут к одному владельцу (пара
+        # `System.Collections.IEnumerator.Current` у каждого итератора).
+        free = []
+        for dt in exact[prid]:
+            clash = False
+            for off, store in ((g, gacc), (s, sacc)):
+                r = exact_rid(prid, store, dt, off)
+                if r is not None and r in used:
+                    clash = True
+            if not clash:
+                free.append(dt)
+        cs = [dt for dt in free if pos[dt] >= last] or free
+        if not cs:
+            reasons[prid] = 'аксессор занят другим свойством'
+            continue
+        dt = order[last] if (last >= 0 and order[last] in cs) else cs[0]
+        gr, sr = choose(prid, gacc, dt, g), choose(prid, sacc, dt, s)
+        owners[prid] = {'dt': dt, 'get': gr, 'set': sr, 'how': 'смещение'}
+        used.update(r for r in (gr, sr) if r is not None)
+        last = pos[dt]
+        reasons[prid] = 'смещение'
+
+    anchors = sorted(owners)
+    for prid in sorted(props):
+        if prid in owners or prid not in exact:
+            continue
+        g, s = m.u32(props[prid], PROP_GET), m.u32(props[prid], PROP_SET)
+        before = [a for a in anchors if a < prid]
+        after = [a for a in anchors if a > prid]
+        lo = pos[owners[before[-1]]['dt']] if before else -1
+        hi = pos[owners[after[0]]['dt']] if after else len(order)
+        cands = []
+        for dt in sorted(set(list(gacc[prid]) + list(sacc[prid])), key=lambda d: pos[d]):
+            if g != 0xFFFFFFFF and g >= count[dt]:
+                continue                        # смещение не влезает в блок методов
+            if not lo <= pos[dt] <= hi:
+                continue                        # вне окна между соседними якорями
+            gr = choose(prid, gacc, dt, g)
+            if g != 0xFFFFFFFF and (gr is None or gr in used):
+                continue                        # аксессор уже занят другим свойством
+            cands.append(dt)
+        if len(cands) == 1:
+            dt = cands[0]
+            gr, sr = choose(prid, gacc, dt, g), choose(prid, sacc, dt, s)
+            owners[prid] = {'dt': dt, 'get': gr, 'set': sr, 'how': 'имя'}
+            used.update(r for r in (gr, sr) if r is not None)
+            reasons[prid] = 'имя'
+        else:
+            reasons[prid] = 'неоднозначно' if cands else 'аксессор не найден'
+
+    unresolved = [prid for prid in sorted(props) if prid not in owners]
+    # одна причина на свойство: сумма счётчиков равна числу записей PropertyDef
+    stats = _c.Counter(reasons.get(prid, 'нет имени') for prid in props)
+    return owners, unresolved, stats
+
 
 
 def calibrate_heap(m, blob):
