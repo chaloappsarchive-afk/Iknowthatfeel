@@ -72,7 +72,7 @@ import sys
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from il2cpp_decrypt import best_phases, apply_phases  # noqa: E402
+from il2cpp_decrypt import best_phases, apply_phases, heal_cache  # noqa: E402
 
 IDENT = re.compile(rb'^[A-Za-z_<>.`$@][A-Za-z0-9_<>.`$@]*$')
 
@@ -131,7 +131,10 @@ class Meta(object):
         if q < 1 or q >= self.n or self.b[q - 1:q] != b'\x00':
             return None
         e = self.b.find(b'\x00', q, min(q + 200, self.n))
-        if e < 0 or e - q < 2:
+        # минимум один символ: в обфусцированном коде легальны однобуквенные имена
+        # типов (rid 1392 игровой сборки — это тип `F`, рядом `G` и `H`), а от мусора
+        # защищают проверка на NUL-границу и требование печатного ASCII
+        if e < 0 or e - q < 1:
             return None
         t = self.b[q:e]
         if not all(32 <= c < 127 for c in t):
@@ -225,21 +228,30 @@ class Meta(object):
 
 # ----------------------------------------------------------------------------
 def load(path, cache):
-    """Дешифрует (или берёт кэш) и калибрует базу кучи по таблице свойств."""
+    """Дешифрует (или берёт кэш), долечивает фазы по крибам и калибрует базу кучи.
+
+    Лечение (`il2cpp_decrypt.heal_cache`) прогоняется всегда, в том числе на
+    готовом кэше: он переписывается, только если нашлись блоки с неверной фазой.
+    """
     raw = open(path, 'rb').read()
     if cache and os.path.exists(cache) and os.path.getsize(cache) == len(raw):
         blob = open(cache, 'rb').read()
         src = '%s (кэш)' % cache
     else:
-        phases = best_phases(raw)
-        blob = apply_phases(raw, phases)
+        # best_phases/apply_phases работают с ndarray: на bytes у них .reshape нет
+        arr = np.frombuffer(raw, dtype=np.uint8)
+        blob = apply_phases(arr, best_phases(arr)).tobytes()
         src = 'дешифровано (%d блоков)' % len(raw)
-        if cache:
-            d = os.path.dirname(cache)
-            if d and not os.path.isdir(d):
-                os.makedirs(d)
-            open(cache, 'wb').write(blob)
-            src += ' -> %s' % cache
+    blob, healed = heal_cache(path, blob, raw_bytes=raw)
+    if healed:
+        src += ', долечено блоков: %d' % len(healed)
+    if cache and (healed or not os.path.exists(cache)
+                  or os.path.getsize(cache) != len(raw)):
+        d = os.path.dirname(cache)
+        if d and not os.path.isdir(d):
+            os.makedirs(d)
+        open(cache, 'wb').write(blob)
+        src += ' -> %s' % cache
     m = Meta(blob, 0)
     base = calibrate_heap(m, blob)
     m.B = base
@@ -273,6 +285,206 @@ def extend_type_chunk(m, chunk, base, stride=TYPE_STRIDE, tok_off=TYPE_TOK,
             out[rid] = rec
             added.append(rid)
     return out, sorted(added)
+
+
+def lattice_types(m, base, stride=TYPE_STRIDE, tok_off=TYPE_TOK, max_rid=4000,
+                  tag=TAG_TYPE):
+    """Восстановить чанк TypeDefinition обходом решётки от `base`.
+
+    `chunks()` выводит базу каждой записи как `rec - (rid-1)*stride` и группирует по
+    ней. На перемешанных чанках (а они перемешаны: в игровом `0xADF964` = rid 1494,
+    следующая `0xADF9B0` = rid 1493; в чанке Photon rid идёт 1..17, затем 16..22,
+    19..26, 24..48) такой вывод даёт разные базы для соседних записей и дробит один
+    чанк на десятки «чанков». Обход решётки этого не делает: он идёт подряд с шагом
+    `stride` и читает rid из токена.
+
+    Граница чанка определяется без имён: обрыв, когда тег токена не тот, rid вне
+    диапазона, либо rid уже встречался (значит начался следующий чанк — там
+    нумерация restart-ует с 1). Записи с нечитаемым именем в результат входят
+    (например rid 62 чанка Photon и rid 1495 игрового: у обоих `nameIndex = 42`,
+    то есть индекс до начала кучи строк, — маркер затёртого имени).
+
+    Возвращает {rid: позиция_записи}.
+    """
+    out = {}
+    pos = base
+    while pos + stride <= m.n:
+        tok = m.u32(pos, tok_off)
+        if tok >> 24 != tag:
+            break
+        rid = tok & 0xFFFFFF
+        if not 1 <= rid <= max_rid or rid in out:
+            break
+        out[rid] = pos
+        pos += stride
+    return out
+
+
+def lattice_methods(m, base, stride=METH_STRIDE, tok_off=METH_TOK, max_rid=200000,
+                    tag=TAG_METHOD):
+    """Восстановить чанк MethodDefinition обходом решётки от `base`.
+
+    То же, что `lattice_types()`, но для методов: rids внутри чанка MethodDef идут
+    подряд (в чанке игровой сборки rid 1 на базе, в чанке Photon — тоже), поэтому
+    граница определяется повтором rid либо невалидным токеном. Возвращает
+    {rid: позиция_записи}.
+    """
+    out = {}
+    pos = base
+    while pos + stride <= m.n:
+        tok = m.u32(pos, tok_off)
+        if tok >> 24 != tag:
+            break
+        rid = tok & 0xFFFFFF
+        if not 1 <= rid <= max_rid or rid in out:
+            break
+        out[rid] = pos
+        pos += stride
+    return out
+
+
+def type_positions(chunk):
+    """Перенумеровать чанк TypeDef ПО ПОРЯДКУ ХРАНЕНИЯ записей.
+
+    Это главное открытие по связкам: `MethodDefinition.declaringType` — ГЛОБАЛЬНЫЙ
+    ИНДЕКС типа, а индекс в IL2CPP — это порядковый номер записи в таблице, а не
+    rid из её токена. В этом файле записи TypeDefinition переставлены: у 713 из
+    1498 записей игровой сборки rid в токене не равен порядковому номеру
+    (смещения от −2 до +27, локальные циклы вроде rid 2→позиция 4→rid 3→позиция 2).
+    Перестановка локальная, поэтому база чанка определена верно, а вот полю token
+    доверять нельзя.
+
+    Проверено механически на 410 машинно-проверяемых типах (итераторы `<X>d__N`,
+    `<>c__DisplayClass*`, `<>c`): связка «индекс = позиция хранения, OFF = 3401»
+    даёт 410/410 согласованных назначений, а «индекс = rid токена, OFF = 3400» —
+    только 276/410. Для сборки Photon: позиция+15832 даёт 8/8, токен+15831 — 7/8.
+    Пример: `BombMonster` владеет DieR/Explode/DamageInRadius, `BotAnimEvents` —
+    AttackEvent/AttackEnd/PlayDieSound/ShootProjectile, `BotBodyPartDmgReceiver` —
+    Damage; при индексации по токену все три сдвигаются на соседние типы.
+
+    Возвращает (by_pos, tokens): `by_pos` {k: rec} с k от 1 в порядке хранения,
+    `tokens` {k: rid_из_токена}.
+    """
+    order = sorted(chunk.items(), key=lambda kv: kv[1])
+    by_pos, tokens = {}, {}
+    for k, (rid, rec) in enumerate(order, 1):
+        by_pos[k] = rec
+        tokens[k] = rid
+    return by_pos, tokens
+
+
+_ITER_CORE = {'MoveNext', '.ctor', 'SetStateMachine', 'System.IDisposable.Dispose',
+              'System.Collections.Generic.IEnumerator<System.Object>.get_Current',
+              'System.Collections.IEnumerator.Reset',
+              'System.Collections.IEnumerator.get_Current'}
+
+
+def _iter_like(names):
+    """Похож ли набор имён на компиляторный итератор `<X>d__N`."""
+    if not names or 'MoveNext' not in names:
+        return False
+    for n in names:
+        if n in _ITER_CORE or n.startswith('<>m__Finally') \
+                or n.startswith('System.Collections.IEnumerable') \
+                or n.startswith('System.Collections.Generic.IEnumerable'):
+            continue
+        return False
+    return True
+
+
+def _lambda_like(names):
+    """Похож ли набор на `<>c` / `<>c__DisplayClass*`: только конструкторы и лямбды."""
+    return bool(names) and all(n in ('.ctor', '.cctor') or 'b__' in n for n in names)
+
+
+def solve_type_off(m, types_idx, methods, offs, name_off=TYPE_NAME,
+                   decl_off=METH_DECL, name_off_m=METH_NAME):
+    """Подобрать OFF связки `declaringType = OFF + индекс_типа` без ручного угадывания.
+
+    Индексом может быть и rid из токена, и порядковый номер записи — вызывающий
+    сам решает, какой словарь передать в `types_idx`. Оценка чисто механическая:
+    берутся типы, чьё имя обязывает набор методов (итераторы `<X>d__N` и
+    лямбда-классы `<>c`/`<>c__DisplayClass*`), и проверяется, совпал ли набор.
+    Возвращает (лучший_OFF, {OFF: (совпало, всего)}).
+    """
+    groups = collections.defaultdict(set)
+    for rec in methods.values():
+        nm = m.raw_name(m.u32(rec, name_off_m))
+        if nm:
+            groups[m.u16(rec, decl_off)].add(nm)
+    scored = {}
+    for off in offs:
+        ok = tot = 0
+        for idx, trec in types_idx.items():
+            nm = m.raw_name(m.u32(trec, name_off))
+            if not nm:
+                continue
+            ms = groups.get(off + idx)
+            if ITER_NAME.match(nm):
+                tot += 1
+                ok += 1 if _iter_like(ms) else 0
+            elif LAMBDA_NAME.match(nm):
+                tot += 1
+                ok += 1 if _lambda_like(ms) else 0
+        scored[off] = (ok, tot)
+    best = max(scored, key=lambda o: (scored[o][0], -abs(o)))
+    return best, scored
+
+
+ITER_NAME = re.compile(r'^<.*>d__\d+$')
+LAMBDA_NAME = re.compile(r'^<>c(__DisplayClass\d+_\d+)?(__\d+)?$')
+
+
+def infer_base_classes(m, types_by_pos, methods, off, min_links=2,
+                       flags_off=16, slot_off=20, decl_off=METH_DECL,
+                       name_off=METH_NAME):
+    """Частично восстановить иерархию: кто кого переопределяет.
+
+    `parentIndex`/`nestedTypes`/`interfaces` в этом файле не читаются, но vtable
+    остаётся: у виртуального метода есть колонка `slot`, и переопределение несёт тот
+    же slot, что и объявление виртуала у предка, при том же имени. Объявление
+    отличается флагом NewSlot (0x100), переопределение — его отсутствием.
+
+    Совпадение по одному (имя, slot) ненадёжно: слоты коллизят на коротких именах
+    (`Damage`, `Heal`, `Update`) у несвязанных типов — на игровой сборке это даёт 500
+    пар, среди которых `AdsCanvas : <MoveObjectsContinuously>d__10`. Требование
+    `min_links = 2` совпавших виртуалов оставляет 23 пары, и у каждого потомка
+    кандидат ровно один. Все 23 выглядят правдоподобно (`JSONLazyCreator : JSONNode`
+    — 13 виртуалов, `CarController : Vehicle` — 9, `HoverMotor : Motor` — 2), но это
+    эвристика: печатать её надо как предположение, а не как факт, и в пересобранную
+    метадату (`parentIndex`) она не пишется.
+
+    Возвращает {индекс_потомка: (индекс_предка, [(имя, slot), ...])}.
+    """
+    decl, over = collections.defaultdict(list), collections.defaultdict(list)
+    for rec in methods.values():
+        nm = m.raw_name(m.u32(rec, name_off))
+        if not nm:
+            continue
+        flags = m.u32(rec, flags_off)
+        slot = m.u16(rec, slot_off)
+        if slot == 0xFFFF or not (flags & 0x40):        # 0x40 = Virtual
+            continue
+        k = m.u16(rec, decl_off) - off
+        if k not in types_by_pos:
+            continue
+        (decl if (flags & 0x100) else over)[(nm, slot)].append(k)   # 0x100 = NewSlot
+    pairs = collections.Counter()
+    which = collections.defaultdict(list)
+    for key, descs in over.items():
+        if key not in decl:
+            continue
+        for d in descs:
+            for b in decl[key]:
+                if d != b:
+                    pairs[(d, b)] += 1
+                    which[(d, b)].append(key)
+    out = {}
+    for (d, b), c in pairs.items():
+        if c < min_links or d in out:
+            continue
+        out[d] = (b, sorted(which[(d, b)]))
+    return out
 
 
 def accessor_names(pname):
@@ -536,12 +748,53 @@ def score_offset(m, by_dt, type_chunk, off):
     return (good / float(tot) if tot else 0.0), tot
 
 
-def pair_assembly(m, meth_chunk, type_chunk, window=24, by_dt=None):
+# Сборки, чанки которых разобраны вручную: эвристика chunks() эти регионы
+# фрагментирует, поэтому обход делается решёткой от известного адреса.
+# off — НЕ данность: его перепроверяет solve_type_off (см. analysis/metadata-repair.md §1.6).
+KNOWN_ASSEMBLIES = collections.OrderedDict((
+    ('game',   {'types': 0xAC3E74, 'methods': 0x411540, 'max_rid': 20000, 'off': 3401}),
+    ('photon', {'types': 0xBAA8E8, 'methods': 0x66A0F8, 'max_rid': 9999,  'off': 15832}),
+))
+
+
+def assembly_index(m, name, off=None, offs=None):
+    """Индекс одной сборки: типы по ПОРЯДКУ ЗАПИСИ и методы по declaringType.
+
+    Возвращает (by_pos, toks, groups, methods, off, scored), где
+    `by_pos[k]` — адрес k-й записи TypeDef (k = 1-based порядковый номер в чанке),
+    `toks[k]` — её токен, `groups[dt]` — [(rid, rec), ...] методов, `methods` —
+    плоский словарь {rid: rec}, `off` — связка `dt = off + k`, `scored` — счёт
+    solve_type_off по перебранным off.
+
+    ВАЖНО: индекс типа — это порядковый номер записи, а не rid её токена: записи
+    внутри чанка переставлены (в игровой сборке расходятся 713 из 1498).
     """
+    spec = KNOWN_ASSEMBLIES[name]
+    lat = lattice_types(m, spec['types'])
+    by_pos, toks = type_positions(lat)
+    methods = lattice_methods(m, spec['methods'], max_rid=spec['max_rid'])
+    groups = collections.defaultdict(list)
+    for r, rec in methods.items():
+        groups[m.u16(rec, METH_DECL)].append((r, rec))
+    for k in groups:
+        groups[k].sort()
+    if offs is None:
+        # диапазон — вокруг уже известного OFF сборки (у game 3401, у photon 15832),
+        # иначе подбор ищет не там
+        offs = range(spec['off'] - 12, spec['off'] + 13)
+    solved, scored = solve_type_off(m, by_pos, methods, offs)
+    if off is None:
+        off = solved if scored[solved][0] else spec['off']
+    return by_pos, toks, groups, methods, off, solved, scored
+
+
+def pair_assembly(m, meth_chunk, type_chunk, window=24, by_dt=None):
+    """УСТАРЕЛО: связка по rid токена. Оставлена только для cmd_chunks.
+
     Связывает чанк методов с чанком типов одной сборки.
 
-    declaringType у метода — ГЛОБАЛЬНЫЙ индекс типа, а rid типа — локальный
-    внутри чанка, поэтому  globalIndex = OFF + rid.  OFF сначала угадывается
+    declaringType у метода — ГЛОБАЛЬНЫЙ индекс типа, и он равен OFF + порядковый
+    номер записи типа, а не OFF + rid (см. assembly_index).  OFF сначала угадывается
     по моде гистограммы разностей (guess_offset), затем уточняется перебором
     ±window по достоверности compiler-generated имён (score_offset).
     """
@@ -583,7 +836,9 @@ def class_name(m, trec):
 
 
 def find_type(m, tchunks, wanted):
-    """Все типы с таким именем: [(chunk_base, rid, record, full_name)]."""
+    """УСТАРЕЛО: ищет по фрагментам chunks(), где rid — локальный номер фрагмента.
+
+    Все типы с таким именем: [(chunk_base, rid, record, full_name)]."""
     out = []
     for cb, chunk in tchunks.items():
         for rid, rec in sorted(chunk.items()):
@@ -652,37 +907,42 @@ def method_index(m, mch):
 
 
 def cmd_class(m, args):
-    tch = m.types()
-    mch = m.methods()
-    hits = find_type(m, tch, args.name)
-    if not hits:
-        print('тип %r не найден' % args.name)
-        return 1
-    mi_all = method_index(m, mch)
-    for cb, rid, rec, full in hits:
-        print('\n=== %s   (чанк типов 0x%X, rid=%d, запись 0x%X, token=0x%08X)'
-              % (full, cb, rid, rec, m.u32(rec, TYPE_TOK)))
-        types = tch[cb]
-        best = None
-        for mi in mi_all:
-            off, score, _ = pair_assembly(m, mi['chunk'], types, by_dt=mi['by_dt'])
-            if off is None:
+    """Тип и его методы — по ПОРЯДКУ ЗАПИСИ в чанке (dt = OFF + k), не по rid токена."""
+    names = (list(KNOWN_ASSEMBLIES) if args.assembly == 'all'
+             else [a.strip() for a in args.assembly.split(',')])
+    found = 0
+    for name in names:
+        by_pos, toks, groups, methods, off, solved, scored = assembly_index(m, name, args.off)
+        print('\n### сборка %r: чанк типов 0x%X, чанк методов 0x%X; '
+              'dt = OFF(%d) + номер записи' % (name, KNOWN_ASSEMBLIES[name]['types'],
+                                               KNOWN_ASSEMBLIES[name]['methods'], off))
+        print('    подбор OFF по compiler-generated типам: лучший %d -> %d/%d'
+              ' (известный %d, взят %d)%s'
+              % (solved, scored[solved][0], scored[solved][1],
+                 KNOWN_ASSEMBLIES[name]['off'], off,
+                 '' if solved == off else '  <-- РАСХОЖДЕНИЕ'))
+        for k in sorted(by_pos):
+            rec = by_pos[k]
+            nm = m.raw_name(m.u32(rec, TYPE_NAME)) or ''
+            hit = (nm == args.name) if not args.substr else (args.name.lower() in nm.lower())
+            if not hit:
                 continue
-            # приоритет: чанк, где у типа реально есть методы, затем — счёт
-            key = ((rid + off) in mi['by_dt'], score)
-            if best is None or key > best[0]:
-                best = (key, mi, off, score)
-        if not best:
-            print('   чанк методов не сопоставлен')
-            continue
-        _, mi, off, score = best
-        ms = mi['by_dt'].get(rid + off, [])
-        print('   чанк методов 0x%X; globalTypeIndex = OFF(%d) + rid(%d) = %d'
-              ' (достоверность %.2f); методов: %d'
-              % (mi['base'], off, rid, rid + off, score, len(ms)))
-        if args.methods:
-            for r, rec2 in ms:
-                print('     ' + fmt_method(m, r, rec2))
+            found += 1
+            ms = groups.get(off + k, [])
+            print('\n=== %s' % class_name(m, rec))
+            print('    номер записи k=%-6d token rid=%-6d dt=%-6d запись 0x%X; методов %d'
+                  % (k, toks[k] & 0xFFFFFF, off + k, rec, len(ms)))
+            if k != (toks[k] & 0xFFFFFF):
+                print('    (rid токена расходится с номером записи — записи переставлены)')
+            if args.methods:
+                for r, rec2 in ms:
+                    print('     ' + fmt_method(m, r, rec2))
+    if not found:
+        print('\nтип %r не найден в сборках %s' % (args.name, ', '.join(names)))
+        print('если он в другой сборке: найди её чанк по уникальному имени '
+              '(lattice_types от候选-адреса) и добавь в KNOWN_ASSEMBLIES')
+        return 1
+    return 0
 
 
 def cmd_method(m, args):
@@ -716,44 +976,38 @@ def cmd_grep(m, args):
 
 
 def cmd_dump(m, args):
-    """
-    Полный дамп: все типы и все методы, сгруппированные по чанкам (= по сборкам).
-    Для каждого чанка типов подбирается соответствующий чанк методов и печатается
-    OFF, так что globalTypeIndex = OFF + rid, и метод принадлежит типу, если
-    его declaringType == globalTypeIndex.
-    """
-    tch, mch = m.types(), m.methods()
-    mi_all = method_index(m, mch)
-    pairs = []
-    for i, (cb, types) in enumerate(sorted(tch.items(), key=lambda kv: -len(kv[1]))):
-        best = None
-        for mi in mi_all:
-            off, score, _ = pair_assembly(m, mi['chunk'], types, by_dt=mi['by_dt'])
-            if off is not None and (best is None or score > best[2]):
-                best = (mi, off, score)
-        pairs.append((cb, types, best))
-        sys.stderr.write('\rчанки типов: %d/%d' % (i + 1, len(tch)))
-    sys.stderr.write('\n')
+    """Полный дамп разобранных сборок: dt = OFF + ПОРЯДКОВЫЙ НОМЕР записи типа.
 
+    Прежняя версия печатала `globalTypeIndex = OFF + rid` — это неверно: записи
+    TypeDef внутри чанка переставлены, и declaringType ссылается на порядковый
+    номер записи. Полный человекочитаемый дамп игровой сборки делает
+    tools/il2cpp_dump.py; эта команда — быстрая проверка связки по всем сборкам.
+    """
+    names = (list(KNOWN_ASSEMBLIES) if args.assembly == 'all'
+             else [a.strip() for a in args.assembly.split(',')])
     n_t = n_m = 0
     with open(args.o, 'w') as f:
-        f.write('# globalTypeIndex = OFF + rid;  метод принадлежит типу, если '
-                'declaringType == globalTypeIndex\n')
-        for cb, types, best in pairs:
-            mi, off, score = best if best else ({'base': 0, 'by_dt': {}}, 0, 0.0)
-            f.write('\n### ЧАНК ТИПОВ 0x%08X (%d записей) <-> чанк методов 0x%08X, '
-                    'OFF=%s, достоверность %.2f\n'
-                    % (cb, len(types), mi['base'], off, score))
-            by_dt = mi['by_dt']
-            for rid, rec in sorted(types.items()):
-                gi = (off + rid) if off is not None else -1
-                f.write('TYPE rid=%-6d 0x%08X globalIdx=%-6d %s\n'
-                        % (rid, rec, gi, class_name(m, rec)))
+        f.write('# globalTypeIndex = OFF + порядковый номер записи типа (НЕ rid токена);\n'
+                '# метод принадлежит типу, если его declaringType == globalTypeIndex\n')
+        for name in names:
+            by_pos, toks, groups, methods, off, solved, scored = \
+                assembly_index(m, name, args.off)
+            f.write('\n### СБОРКА %s: чанк типов 0x%08X (%d записей) <-> чанк методов '
+                    '0x%08X (%d записей), OFF=%d (подбор: лучший %d -> %d/%d)\n'
+                    % (name, KNOWN_ASSEMBLIES[name]['types'], len(by_pos),
+                       KNOWN_ASSEMBLIES[name]['methods'], len(methods), off,
+                       solved, scored[solved][0], scored[solved][1]))
+            for k in sorted(by_pos):
+                rec = by_pos[k]
+                ms = groups.get(off + k, [])
+                f.write('TYPE k=%-6d tokenRid=%-6d 0x%08X globalIdx=%-6d %s%s\n'
+                        % (k, toks[k] & 0xFFFFFF, rec, off + k, class_name(m, rec),
+                           '' if k == (toks[k] & 0xFFFFFF) else '   [переставлено]'))
                 n_t += 1
-                for rid2, rec2 in by_dt.get(gi, []):
-                    f.write('    ' + fmt_method(m, rid2, rec2) + '\n')
+                for r, rec2 in ms:
+                    f.write('    ' + fmt_method(m, r, rec2) + '\n')
                     n_m += 1
-    print('записано %s: %d типов, %d методов' % (args.o, n_t, n_m))
+    print('записано %s: %d типов, %d методов (%s)' % (args.o, n_t, n_m, ', '.join(names)))
     return 0
 
 
@@ -770,6 +1024,12 @@ def main():
     p = sub.add_parser('class')
     p.add_argument('--name', required=True)
     p.add_argument('--methods', action='store_true')
+    p.add_argument('--substr', action='store_true',
+                   help='искать подстроку в имени типа, а не точное совпадение')
+    p.add_argument('--assembly', default='all',
+                   help='game|photon|all или список через запятую (по умолчанию all)')
+    p.add_argument('--off', type=int, default=None,
+                   help='не подбирать OFF, а взять указанный')
     p = sub.add_parser('method')
     p.add_argument('--name', required=True)
     p = sub.add_parser('grep')
@@ -778,6 +1038,8 @@ def main():
     p.add_argument('--limit', type=int, default=0)
     p = sub.add_parser('dump')
     p.add_argument('-o', required=True)
+    p.add_argument('--assembly', default='all')
+    p.add_argument('--off', type=int, default=None)
 
     args = ap.parse_args()
     m = load(args.metadata, args.cache)

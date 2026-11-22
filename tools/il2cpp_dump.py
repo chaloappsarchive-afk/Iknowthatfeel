@@ -68,7 +68,13 @@ import il2cpp_tables as T  # noqa: E402
 GAME_TYPE_BASE = 0xAC3E74
 GAME_METHOD_BASE = 0x411540
 GAME_PROP_BASE = 0x2FE698
-GAME_OFF = 3400          # globalTypeIndex (MethodDef.declaringType) = GAME_OFF + rid
+# declaringType — ГЛОБАЛЬНЫЙ ИНДЕКС типа, а индекс в IL2CPP это порядковый номер
+# записи в таблице, НЕ rid из её токена: записи TypeDefinition в этом файле
+# переставлены (у 713 из 1498 записей игровой сборки rid токена != номер позиции).
+# Проверено механически на 410 типах с обязывающим именем (итераторы <X>d__N и
+# лямбда-классы <>c/<>c__DisplayClass*): индекс=позиция, OFF=3401 -> 406/410
+# согласованных назначений; индекс=rid токена, OFF=3400 -> только 279/410.
+GAME_OFF = 3401          # globalTypeIndex = GAME_OFF + порядковый номер записи типа
 HEAP_WINDOW = 520        # байт в каждую сторону от имени типа для эвристики полей
 MAX_HEAP_FIELDS = 40
 
@@ -130,16 +136,26 @@ def main(argv: list[str] | None = None) -> int:
     HB = m.B
     tchunks, mchunks, pchunks = m.types(), m.methods(), m.properties()
 
-    types = tchunks[GAME_TYPE_BASE]
     methods = mchunks[GAME_METHOD_BASE]
     props = pchunks.get(GAME_PROP_BASE, {})
 
-    # Дочитываем хвост таблицы типов: `chunks()` отбраковывает имена с '=' и цифрами,
-    # из-за чего терялись __StaticArrayInitTypeSize=20/24/72.
-    types, added = T.extend_type_chunk(m, types, GAME_TYPE_BASE)
-    if added:
-        print("# дочитано записей типов, отбракованных по имени: %d -> %s"
-              % (len(added), [ (r, m.raw_name(m.u32(types[r], T.TYPE_NAME))) for r in added ]))
+    # Чанк типов берём обходом решётки, а не из `chunks()`: тот отбраковывает записи
+    # с нечитаемым именем и теряет хвост таблицы (__StaticArrayInitTypeSize=20/24/72
+    # и rid 1495, у которого имя затёрто). Затем перенумеровываем ПО ПОРЯДКУ
+    # ХРАНЕНИЯ — именно на него ссылается declaringType (см. GAME_OFF).
+    lat = T.lattice_types(m, GAME_TYPE_BASE)
+    types, type_tokens = T.type_positions(lat)
+    permuted = [k for k in types if type_tokens[k] != k]
+    best_off, scored = T.solve_type_off(m, types, methods, range(GAME_OFF - 4, GAME_OFF + 5))
+    tok_off_best, tok_scored = T.solve_type_off(m, lat, methods, range(GAME_OFF - 5, GAME_OFF + 4))
+    print("# типов %d (обход решётки от 0x%X), у %d из них rid токена != номер записи"
+          % (len(types), GAME_TYPE_BASE, len(permuted)))
+    bases = T.infer_base_classes(m, types, methods, GAME_OFF)
+    print("# подбор OFF: по позиции лучший %d -> %d/%d; по rid токена лучший %d -> %d/%d"
+          % (best_off, scored[best_off][0], scored[best_off][1],
+             tok_off_best, tok_scored[tok_off_best][0], tok_scored[tok_off_best][1]))
+    if best_off != GAME_OFF:
+        raise SystemExit("OFF не сошёлся: подобранный %d, заданный %d" % (best_off, GAME_OFF))
 
     # --- методы по declaringType --------------------------------------------
     by_dt: dict[int, list] = collections.defaultdict(list)
@@ -202,7 +218,11 @@ def main(argv: list[str] | None = None) -> int:
     w("//     MethodDef индексом типа возврата не является;")
     w("//   * полей нет: FieldDefinition игровой сборки в файле отсутствует физически.")
     w("//     Вместо них — эвристика по куче имён, помечена `// [эвристика по куче]`;")
-    w("//   * базовые классы, интерфейсы, вложенные типы, дженерики — неизвестны;")
+    w("//   * базовые классы неизвестны (parentIndex не читается); для %d типов напечатана"
+      % len(bases))
+    w("//     эвристика по vtable: совпадение (имя виртуала, slot) у переопределения и")
+    w("//     объявления — помечена как [эвристика по vtable], фактом не является;")
+    w("//   * интерфейсы, вложенные типы, дженерики — неизвестны;")
     w("//   * всё напечатано как class: enum/struct/interface/delegate не различимы.")
     w("//")
     w("// ФАКТЫ: имена типов и методов, namespace, число параметров, принадлежность типу,")
@@ -212,7 +232,12 @@ def main(argv: list[str] | None = None) -> int:
       % (GAME_TYPE_BASE, len(types), T.TYPE_STRIDE, GAME_METHOD_BASE))
     w("// (%d записей, шаг %d), чанк свойств 0x%X (%d записей, шаг %d)."
       % (len(methods), T.METH_STRIDE, GAME_PROP_BASE, len(props), T.PROP_STRIDE))
-    w("// Связка: globalTypeIndex = %d + rid типа." % GAME_OFF)
+    w("// Связка: globalTypeIndex = %d + ПОРЯДКОВЫЙ НОМЕР записи типа в чанке." % GAME_OFF)
+    w("// Записи TypeDefinition в этом файле переставлены, поэтому rid из токена")
+    w("// (0x02xxxxxx) НЕ равен индексу: у %d записей из %d они расходятся."
+      % (len(permuted), len(types)))
+    w("// declaringType ссылается на индекс (позицию), а не на токен — привязка")
+    w("// методов ниже сделана по индексу; токен записи напечатан рядом как факт.")
     w("// ============================================================================")
     w("")
 
@@ -234,8 +259,19 @@ def main(argv: list[str] | None = None) -> int:
             prs = props_by_owner.get(dt, [])
             cls = tname.split("`")[0]
             w("%s// --------------------------------------------------------------" % ind)
-            w("%s// TypeDefIndex: %d   token: 0x%08X   запись: 0x%X" % (ind, trid, m.u32(trec, T.TYPE_TOK), trec))
-            w("%s// globalTypeIndex: %d = OFF(%d) + rid(%d)" % (ind, dt, GAME_OFF, trid))
+            w("%s// TypeDefIndex: %d   token: 0x%08X (rid %d%s)   запись: 0x%X"
+              % (ind, trid, m.u32(trec, T.TYPE_TOK), type_tokens[trid],
+                 "" if type_tokens[trid] == trid else "  <-- расходится с индексом", trec))
+            w("%s// globalTypeIndex: %d = OFF(%d) + индекс(%d)" % (ind, dt, GAME_OFF, trid))
+            if trid in bases:
+                bidx, links = bases[trid]
+                bname = (m.raw_name(m.u32(types[bidx], T.TYPE_NAME))
+                         or m.name(m.u32(types[bidx], T.TYPE_NAME)) or "?")
+                w("%s// [эвристика по vtable] вероятный базовый класс: %s (индекс %d) —"
+                  % (ind, bname, bidx))
+                w("%s//   совпало %d виртуалов по (имя, slot): %s"
+                  % (ind, len(links), ", ".join("%s/%d" % (n, sl) for n, sl in links[:6])
+                     + ("…" if len(links) > 6 else "")))
             w("%s// методов: %d%s   свойств: %d" % (
                 ind, len(ms),
                 "  (rid %d..%d)" % (ms[0][0], ms[-1][0]) if ms else "", len(prs)))
@@ -336,7 +372,7 @@ def main(argv: list[str] | None = None) -> int:
         w("// либо это типы из другой сборки, либо записи типов не распознались.")
         w("// ============================================================================")
         for dt, lst in sorted(orphans.items()):
-            w("// declaringType = %d (rid %d), методов %d" % (dt, dt - GAME_OFF, len(lst)))
+            w("// declaringType = %d (индекс типа %d), методов %d" % (dt, dt - GAME_OFF, len(lst)))
             for rid, rec, nm in lst:
                 w("//   rid=%d  пар=%d  slot=%s  flags=0x%X  %s"
                   % (rid, m.u16(rec, 22),
@@ -366,8 +402,9 @@ def main(argv: list[str] | None = None) -> int:
     # --- прочие чанки типов (не игровая сборка) --------------------------------
     if args.assembly == "all":
         w("// ============================================================================")
-        w("// Прочие чанки TypeDefinition (другие сборки). OFF для них не установлен,")
-        w("// поэтому методы к этим типам не привязаны — только имена и токены.")
+        w("// Прочие чанки TypeDefinition (другие сборки). Для сборки Photon/PUN OFF")
+        w("// установлен (позиция+15832, см. analysis/photon-assembly.md), для остальных —")
+        w("// нет, поэтому методы к этим типам не привязаны: только имена и токены.")
         w("// ============================================================================")
         for base, ch in sorted(tchunks.items(), key=lambda kv: -len(kv[1])):
             if base == GAME_TYPE_BASE:

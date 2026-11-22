@@ -5,8 +5,32 @@
 `0xB7D00–0x2DF300` использует `C=0x0F`). Все позиции — в расшифрованной копии
 `work/global-metadata.dec.dat`, база кучи имён `B = 0xB7CA4`.
 
-Игровая сборка: TypeDef-чанк `0xAC3E74` (1 498 записей), MethodDef-чанк `0x411540` (9 006 записей),
-связка `globalTypeIdx = 3400 + rid`.
+Игровая сборка: TypeDef-чанк `0xAC3E74` (1 498 записей), MethodDef-чанк `0x411540` (9 184 записи),
+связка `globalTypeIdx = 3401 + порядковый номер записи типа` (записи переставлены,
+rid токена им не равен — см. [`metadata-repair.md`](metadata-repair.md) §1.6).
+
+> **Поправка (важно).** Записи `TypeDefinition` в этом файле переставлены, и
+> `declaringType` ссылается на **порядковый номер записи**, а не на rid из её токена;
+> связка `globalTypeIndex = 3401 + номер записи` (было написано `3400 + rid`).
+> Доказательство и метод — [`metadata-repair.md`](metadata-repair.md) §1.6. Часть
+> Часть привязок «тип → методы» в этом документе была из-за этого сдвинута на соседа и
+> исправлена по тексту. Сводка поправок:
+>
+> | было | стало | почему |
+> |---|---|---|
+> | `BotAnimEvents.DieR/Explode/DamageInRadius` (5674/5675/5676) | **`BombMonster`** (индекс 927) | у `BotAnimEvents` (индекс 928) другие методы |
+> | `BotBodyPartDmgReceiver`: `Start/AttackEvent/AttackEnd/PlayDieSound/ShootProjectile` | **`BotAnimEvents`** (индекс 928) | `BotBodyPartDmgReceiver` (929) владеет только `Damage` и `.ctor` |
+> | `SantaGirlBodyguard.DestroySelf` (5668) | **`Bodyguard`** (индекс 925, 21 метод) | `SantaGirlBodyguard` (926) — только `Start/Update/.ctor` |
+> | `TauntAnimationsEventsHandler.RPC_SecureDestroyPlayer` (6291) | **`SecurePlayerController`** (индекс 1012) | у того же типа `RequestPlayerDestruction` и `OnLeftRoom` |
+> | `InventoryMotoObject.CallPhotonNetworkDestroy` (4464) | **`InventoryItem`** (индекс 748, 16 методов) | `InventoryMotoObject` (749) владеет только `.ctor` |
+> | `FirepitInvObj.CallPhotonNetworkDestroy` (4240) | **`FNAFLaptopVideoCamera`** (индекс 714) | `FirepitInvObj` (715) — только `Start/Update/.ctor` |
+> | `CameraDistanceWidget.DestroyCurrentBodyguard` (3372) | **`BodyguardsWidget`** (индекс 577) | — |
+>
+> Методы `BotController` (индекс 932, rid 5686..5712), `CharacterMotor` (965) и
+> `GameController` (485) не изменились: у этих записей номер отличается от rid токена
+> ровно на 1, что компенсируется новым OFF.
+
+
 
 Это продолжение [`bot-lifecycle.md`](bot-lifecycle.md): там — как бот **создаётся** и помечается
 (`SetAsBot`, `isBot`, `CheckIsSpawnedBot`). Здесь — как он **исчезает**.
@@ -37,8 +61,9 @@
    это библиотека Photon PUN и DOTween. В игровой области из «пуловых» имён только
    `OnLifeTimeEnded` (559465), `RecycleAfter` (602145), `RecycleAfterItem` (602028),
    `RecycleAfterList` (602754) — снаряды/предметы. Единственный игровой символ сетевого
-   уничтожения — `TauntAnimationsEventsHandler.RPC_SecureDestroyPlayer` (rid 6291), про
-   игроков-читеров.
+   уничтожения — `SecurePlayerController.RPC_SecureDestroyPlayer` (rid 6291); у этого же
+   типа (индекс 1012) `RequestPlayerDestruction` и `OnLeftRoom`, то есть он про
+   игроков-читеров и выход из комнаты.
    **Оговорка:** вызывает ли игра библиотечный `PhotonNetwork.Destroy` из тел методов — по
    метаданным не определить (тел нет, `libil2cpp.so` отсутствует). Доказуемо только
    отсутствие собственных объявлений и то, что `BotController.DestroySelf` нуль-параметрический,
@@ -101,7 +126,7 @@ DieR(killer)                      ← RPC, рассылается всем
         ↓
 PlayDieSound(); анимация смерти (Animator)
         ↓  (анимационное событие)
-BotAnimEvents.DieR / Explode      ← см. §2
+BotAnimEvents.PlayDieSound        ← см. §2 (взрывных колбэков у бота нет)
         ↓  yield WaitForSeconds(destroyingDuration)
 DestroySelf()                     → Object.Destroy(gameObject)
         ↓
@@ -110,16 +135,31 @@ DestroySelf()                     → Object.Destroy(gameObject)
 
 ---
 
-## 2. Анимационные события: `BotAnimEvents`
+## 2. Анимационные события: `BotAnimEvents` (и почему `BombMonster` — не он)
 
-Тип rid **928** (dt 4328), 4 метода. Имя в куче: heap **582824**.
+`BotAnimEvents` — индекс **928** (dt 4329), 6 методов:
 
 ```
-DieR (rid 5674, 0 пар.)      — смерть
-Explode (rid 5675, 0 пар.)   — взрыв
-DamageInRadius (rid 5676)    — урон по площади
-.ctor
+Start (rid 5678)             AttackEvent (rid 5679)   AttackEnd (rid 5680)
+PlayDieSound (rid 5681)      ShootProjectile (rid 5682)   .ctor (rid 5683)
 ```
+
+То есть приёмник animation events бота отвечает за **атаку и звук смерти**, а не за
+взрыв. Методы `DieR` (5674), `Explode` (5675) и `DamageInRadius` (5676) принадлежат
+соседнему типу `BombMonster` — индекс **927**, dt 4328, 4 метода; это отдельный
+моб-взрывчатка, у которого `Explode` идёт как `virtual` без NewSlot (slot 14), то есть
+переопределение виртуала предка. Раньше эти три метода приписывались `BotAnimEvents` —
+это следствие индексации типов по rid токена вместо номера записи (см. поправку выше).
+
+Ниже по тексту сохранены рассуждения про animation events: они верны по сути
+(нуль-параметрические методы на кадрах клипа), но относятся к `BotAnimEvents`
+как к приёмнику событий атаки/звука.
+
+Назначение подтверждается порядком кучи имён (позиция 33290): `SantaGirlBodyguard` →
+`BombMonster` → `DieR` → `BotAnimEvents` → `AttackEvent`/`AttackEnd`/`PlayDieSound`/
+`ShootProjectile` → `myBot` → `BotBodyPartDmgReceiver`. Куча пишется тип-за-типом и от
+перестановки записей TypeDef не зависит, так что это независимая проверка
+(детали — [`metadata-repair.md`](metadata-repair.md) §1.6).
 
 Это класс-приёмник **animation events**: такие методы вешаются прямо на кадры анимационного клипа
 и вызываются движком без параметров — ровно та сигнатура, которая здесь у всех трёх. То есть
@@ -154,7 +194,7 @@ AttackEvent, AttackEnd, PlayDieSound, ShootProjectile, myBot
 | `BotteBullet` | 1108 / 4508 | `Start, Throw, Explode(2,s18), DestroyInRadius(s16), .ctor` | снаряд бота: `DestroyInRadius` rid **6789** |
 
 **`OtchimBot` и `HuggyWuggyBot` не имеют `DestroySelf`** — значит у них удаление делает либо
-базовый класс, либо `DieR` напрямую, либо анимационное событие `BotAnimEvents.DieR`. У обоих
+базовый класс, либо `DieR` напрямую. У обоих
 есть `EnableNavMeshAgent` (как и у `BotController` поле `agent`) — перед удалением агент
 отключается, иначе NavMesh оставляет «дырку».
 
@@ -166,7 +206,7 @@ AttackEvent, AttackEnd, PlayDieSound, ShootProjectile, myBot
 
 ## 4. Боты-телохранители и гоночные боты — две отдельные схемы
 
-### 4.1 `SantaGirlBodyguard` (рид 926 / dt 4326, 21 метод)
+### 4.1 `Bodyguard` (индекс 925 / dt 4326, 21 метод)
 
 ```
 Awake, Start, LateUpdate, ApplyHeal(s6), KeepDistToOwner(1,s5), SyncAnimRun,
@@ -178,11 +218,13 @@ StopAttackR(s10), DamageTarget(s11), SetOwner(s12), DestroySelf(1), UpdateCloneS
 **`DestroySelf` rid 5668, 1 параметр, НЕ виртуальный.** Вызывается снаружи:
 у `CharacterMotor` есть **`DestroyCurrentBodyguard` (rid 5939, 1 параметр)** и геттер
 `get_MyBodyguard`. То есть телохранителя удаляет владелец (игрок), а не он сам:
-`CharacterMotor.DestroyCurrentBodyguard(...)` → `SantaGirlBodyguard.DestroySelf(...)`.
-Параметр у `DestroySelf` один — скорее всего «уничтожать ли по сети / немедленно ли».
+`CharacterMotor.DestroyCurrentBodyguard(...)` → `Bodyguard.DestroySelf(...)`.
+(Раньше этот 21-методный тип читался как `SantaGirlBodyguard`; настоящий
+`SantaGirlBodyguard` — соседняя запись, индекс 926, и у неё только `Start`/`Update`/
+`.ctor`, то есть это надстройка над общим `Bodyguard`.) Параметр у `DestroySelf` один — скорее всего «уничтожать ли по сети / немедленно ли».
 
-Есть также `CameraDistanceWidget.DestroyCurrentBodyguard` (rid 3372, 0 пар.) — UI-виджет
-умеет сбросить текущего телохранителя.
+Есть также `BodyguardsWidget.DestroyCurrentBodyguard` (rid 3372, 0 пар., индекс 577) —
+UI-виджет умеет сбросить текущего телохранителя.
 
 ### 4.2 Гоночные боты: `RaceCarController` + `FollowAI`
 
@@ -290,19 +332,23 @@ MaxBotsCount         (heap 533622)
   (машинные методы `.ctor, Dispose, MoveNext, get_Current, GetEnumerator, Reset`) — корутина
   `<AttackPlayer>d__9`. Но это реконструкция по совпадению имён, а не доказанный факт.
   На выводы об удалении это не влияет: в обоих случаях есть `DieR` и нет `DestroySelf`.
-* **Колонка `+20` («slot») в целом согласована с флагом Virtual, но не до конца.**
-  У `BotController` бит `0x40` (Virtual) стоит ровно у тех 19 записей, у которых slot ≠ 0xFFFF,
-  и отсутствует у всех остальных — исключение одно: **`.ctor` (rid 5711) получил slot 24 и
-  flags `0x1C6` (Public|Virtual|NewSlot)**, чего у конструктора быть не может. Значит как минимум
-  у части записей колонки смещены, и выводы о наследовании по slot делать нельзя.
-  Конкретный пример ловушки: значение **14** встречается у
-  `BotController.DestroySelf` (flags `0x1C4`, бит **NewSlot** — объявляет новый виртуал),
-  `OtchimBot.DamageTarget` (rid 5755, flags `0xC4`, бит **ReuseSlot** — переопределяет виртуал
-  предка), `HuggyWuggyBot.DamageTarget` (rid 5734, то же) и `BotAnimEvents.Explode`
-  (rid 5675, то же). Формально три последних переопределяют один и тот же виртуал общего
-  предка, но в C# переопределение не может менять имя метода ⇒ либо имена в этом регионе
-  сдвинуты, либо колонка slot врёт. В этом разборе slot приводится как наблюдение, а не как
-  доказательство иерархии.
+* **Колонка `+20` («slot») — это индекс в vtable своего типа, а не признак родства.**
+  Одинаковый slot у методов с разными именами — совпадение, а не общий предок:
+  `BotController.DestroySelf` (flags `0x1C4`, бит **NewSlot** — объявляет новый виртуал,
+  slot 14), `OtchimBot.DamageTarget` (rid 5755, flags `0xC4` = Virtual|HideBySig без
+  NewSlot — переопределение, slot 14), `HuggyWuggyBot.DamageTarget` (rid 5734, то же) и
+  `BombMonster.Explode` (rid 5675, то же) лежат в трёх несвязанных иерархиях. Прежний
+  вывод «переопределение не может менять имя ⇒ имена сдвинуты или slot врёт» снят.
+  Родство по vtable восстанавливается только парой (имя виртуала, slot):
+  `T.infer_base_classes()` находит в игровой сборке **23 уверенных связи**
+  (`JSONLazyCreator : JSONNode` — 13 совпавших виртуалов, `CarController : Vehicle` — 9,
+  `HoverMotor : Motor` — 2, `DynamiteTNTInvObj : ExplodableObject` — по `Explode`/slot 50);
+  в `Dump.cs` они напечатаны как `// [эвристика по vtable]`. У ботов уверенных связей нет:
+  `BotController.DestroySelf` объявляет новый виртуал, а не переопределяет, то есть
+  общего «ботового» предка по vtable не видно. Колонка slot при этом не безупречна:
+  `BotController..ctor` (rid 5711) имеет slot 24 и flags `0x1C6` (Virtual|NewSlot),
+  чего у конструктора быть не может, — поэтому slot приводится как наблюдение.
+
 * **Базовый класс ботов не установлен.** Ни один игровой тип не объявляет значения колонки
   `+20` для 0–3 (виртуалы `System.Object`), т.е. `BotController`, скорее всего, наследуется
   напрямую от `MonoBehaviour`. Но с учётом пункта выше это вероятный, а не доказанный вывод;
@@ -332,9 +378,9 @@ MaxBotsCount         (heap 533622)
                                                │
                     ┌──────────────────────────┼───────────────────────────┐
                     ▼                          ▼                           ▼
-          PlayDieSound (5709)        Animator: клип смерти          BotAnimEvents (rid 928)
-          myVoiceAudio, dieSound                                    DieR 5674 / Explode 5675
-                                                                     / DamageInRadius 5676
+          PlayDieSound (5709)        Animator: клип смерти          BotAnimEvents (индекс 928)
+          myVoiceAudio, dieSound                                    AttackEvent / AttackEnd /
+                                                                     PlayDieSound / ShootProjectile
                                                │                     (анимационные события)
                                                ▼
                               ждём destroyingDuration (heap 583143)
@@ -352,8 +398,8 @@ MaxBotsCount         (heap 533622)
 Параллельные ветки:
 
 ```
-SantaGirlBodyguard.DestroySelf(1) [rid 5668]  ← CharacterMotor.DestroyCurrentBodyguard(1) [5939]
-                                               ← CameraDistanceWidget.DestroyCurrentBodyguard [3372]
+Bodyguard.DestroySelf(1) [rid 5668]           ← CharacterMotor.DestroyCurrentBodyguard(1) [5939]
+                                               ← BodyguardsWidget.DestroyCurrentBodyguard [3372]
 
 RaceCarController.SetAsBot [3050] → FollowAI (rid 1353) → HideCar(3) [8193] + <HideCar>d__58
                                     (гоночный бот прячется, а не уничтожается)
@@ -382,7 +428,7 @@ python3 -m venv .venv && .venv/bin/pip install -r tools/requirements.txt
 .venv/bin/python tools/il2cpp_tables.py --cache work/global-metadata.dec.dat \
         apk/global-metadata.dat class --name BotController --methods
 .venv/bin/python tools/il2cpp_tables.py --cache work/global-metadata.dec.dat \
-        apk/global-metadata.dat class --name SantaGirlBodyguard --methods
+        apk/global-metadata.dat class --name Bodyguard --methods
 .venv/bin/python tools/il2cpp_tables.py --cache work/global-metadata.dec.dat \
         apk/global-metadata.dat class --name BotAnimEvents --methods
 

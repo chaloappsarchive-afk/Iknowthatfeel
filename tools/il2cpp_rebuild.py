@@ -73,7 +73,11 @@ SANITY = 0xFAB11BAF
 GAME_TYPE_BASE = 0xAC3E74
 GAME_METHOD_BASE = 0x411540
 GAME_PROP_BASE = 0x2FE698
-GAME_OFF = 3400
+# declaringType = GAME_OFF + ПОРЯДКОВЫЙ НОМЕР записи типа в чанке (не rid токена:
+# записи TypeDefinition в исходнике переставлены, у 713 из 1498 токен расходится с
+# номером). Выбор подтверждён механически: T.solve_type_off на 410 типах с
+# обязывающим именем даёт позиция+3401 -> 406/410 против токен+3400 -> 279/410.
+GAME_OFF = 3401
 
 # размеры записей v24.5
 SZ_TYPE, SZ_METHOD, SZ_PROP, SZ_IMAGE, SZ_ASM = 92, 32, 20, 24, 64
@@ -122,16 +126,21 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
 
     m = T.load(args.metadata, args.cache)
-    types = m.types()[GAME_TYPE_BASE]
     methods = m.methods()[GAME_METHOD_BASE]
     props = m.properties().get(GAME_PROP_BASE, {})
 
-    # Дочитываем хвост таблицы типов: `chunks()` отбраковывает имена с '=' и цифрами,
-    # из-за чего терялись __StaticArrayInitTypeSize=20/24/72 (rid 1493/1496/1497).
-    types, added = T.extend_type_chunk(m, types, GAME_TYPE_BASE)
-    if added:
-        print("# дочитано записей типов: %d -> %s" % (
-            len(added), [(r, m.raw_name(m.u32(types[r], T.TYPE_NAME))) for r in added]))
+    # Обход решётки (а не `chunks()`): так в таблицу попадают записи с нечитаемым
+    # именем (__StaticArrayInitTypeSize=20/24/72 и rid 1495), которые chunks()
+    # отбраковывает. Затем перенумеровываем по порядку хранения — именно на него
+    # ссылается declaringType.
+    lat = T.lattice_types(m, GAME_TYPE_BASE)
+    types, type_tokens = T.type_positions(lat)
+    permuted = [k for k in types if type_tokens[k] != k]
+    off, scored = T.solve_type_off(m, types, methods, range(GAME_OFF - 4, GAME_OFF + 5))
+    print("# типов %d, у %d rid токена != номер записи; подбор OFF: %d -> %d/%d"
+          % (len(types), len(permuted), off, scored[off][0], scored[off][1]))
+    if off != GAME_OFF:
+        raise SystemExit("OFF не сошёлся: подобранный %d, заданный %d" % (off, GAME_OFF))
 
     ntypes = max(types) if types else 0
 
@@ -249,7 +258,12 @@ def main(argv: list[str] | None = None) -> int:
             ni = nsi = 0
             tok = 0
         else:
-            ni, nsi, tok = type_name_i[trid], type_ns_i[trid], m.u32(trec, T.TYPE_TOK)
+            ni, nsi = type_name_i[trid], type_ns_i[trid]
+            # токен пишем согласованный с индексом (0x02000000|индекс): в исходнике
+            # записи переставлены и rid токена расходится с позицией у %d типов, а
+            # валидная метадата обязана иметь token = 0x02000000|(index+1).
+            # Оригинальные токены сохранены в analysis/Dump.cs у каждого типа.
+            tok = 0x02000000 | trid
         # nameIndex, namespaceIndex, byvalTypeIndex, byrefTypeIndex, declaringTypeIndex,
         # parentIndex, elementTypeIndex, genericContainerIndex (8 × u32/i32)
         type_blob += struct.pack("<Iiiiiiii", ni, nsi, -1, -1, -1, -1, -1, -1)
@@ -367,8 +381,19 @@ def verify(path: str, m, types, meth_name, ntypes, new_index, prop_order) -> Non
     print("  имена типов: расхождений %d из %d" % (bad, len(types)))
     assert bad == 0
 
+    # токены типов обязаны быть согласованы с индексом (в исходнике они переставлены)
+    tok_bad = 0
+    for trid in types:
+        tok = struct.unpack_from("<I", B, to + (trid - 1) * SZ_TYPE + 88)[0]
+        if tok != (0x02000000 | trid):
+            tok_bad += 1
+    print("  токены типов: 0x02000000|индекс у всех %d записей, расхождений %d"
+          % (len(types), tok_bad))
+    assert tok_bad == 0
+
     # методы BotController: должны вернуться те же имена в том же порядке
-    for probe in ("BotController", "GameController", "CharacterMotor"):
+    for probe in ("BotController", "GameController", "CharacterMotor",
+                  "BombMonster", "BotAnimEvents", "BotBodyPartDmgReceiver"):
         trid = next((r for r, rec in types.items()
                      if (m.name(m.u32(rec, T.TYPE_NAME)) or "") == probe), None)
         if trid is None:

@@ -10,7 +10,7 @@
 ## 1. Факты о методе
 
 ```
-класс      GameController        (тип rid=486, globalTypeIndex 3886)
+класс      GameController        (индекс записи 485, token rid 486, globalTypeIndex 3886)
 запись     0x424C80              (чанк методов 0x411540)
 rid        2657
 имя        CleanTiters           nameIndex = 528811
@@ -40,7 +40,7 @@ flags      0x81                  Private | HideBySig  -> private void
 ## 2. Как он скомпилирован: одна лямбда + кэшированный делегат
 
 ```
-<>c.<CleanTiters>b__88_0     тип GameController+<>c (rid 476, dt 3876)
+<>c.<CleanTiters>b__88_0     тип GameController+<>c (индекс 475, token rid 476, dt 3876)
                              rid 2681, 1 параметр, flags 0x83 (internal, final)
 кэш делегата                 поле <>9__88_0 в куче (индекс 529948+)
 имя параметра лямбды         'it' (индекс 529886, вплотную к имени лямбды)
@@ -98,7 +98,7 @@ Display-класса (`<>c__DisplayClass88_0`) у метода **нет** — з
 ## 4. Единственный `titer` в игре — свойство `CharacterMotor`
 
 Поиск по всей куче (121 886 строк) даёт ровно 4 имени с `titer`, и все они —
-в блоке класса `CharacterMotor` (тип rid 966, globalTypeIndex 4366,
+в блоке класса `CharacterMotor` (индекс записи 965, token rid 966, globalTypeIndex 4366,
 120 методов — это класс игрока/персонажа):
 
 ```
@@ -182,7 +182,10 @@ GetTemRelColor   +0 = 19708   (ожидался Color)
   `ChickenZombieBot`, `BotAnimEvents`, `BotBodyPartDmgReceiver`,
   `BotRenderingSets`, `BotteBullet`) нет ни одного упоминания `titer`.
 * У спавнеров (`GeneralZombieSpawnTrigger`, `ESHudItem`, `ESZombieManager`,
-  `ESZombieSpawnTrigger`, `ESZombieSpawnEmitter`, `SpawnZType`) тоже.
+  `ESZombieSpawnTrigger`, `ESZombieSpawnEmitter`, `SpawnZType`) тоже. Из них методы есть
+  только у `GeneralZombieSpawnTrigger` (индекс 493), `ESZombieManager` (237),
+  `ESZombieSpawnTrigger` (240) и `ESZombieSpawnEmitter` (238); `ESHudItem` (241) и
+  `SpawnZType` (239) — записи без методов.
 * Единственный «удаляющий» метод у `BotController` — `DestroySelf`
   (rid 5700, виртуальный, slot 14, 0 параметров); рядом поле
   `destroyingDuration` и RPC-смерть `DieR` (rid 5699, 1 параметр).

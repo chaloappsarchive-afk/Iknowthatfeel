@@ -53,18 +53,22 @@ rid=8675  ShowBannerBottom             (ложное срабатывание н
 * поблочная дешифровка XOR с периодом 256 (`tools/il2cpp_decrypt.py`) →
   `work/global-metadata.dec.dat`;
 * куча имён `0xB8000..0x2DF000`, база `B = 0xB7CA4` (проверено на 300/300 имён);
-* игровая сборка: чанк методов `0x411540` (9 006 записей, шаг 30, записи
+* игровая сборка: чанк методов `0x411540` (**9 184** записи, шаг 30, записи
   невыровненные), чанк типов `0xAC3E74` (1 498 записей, шаг 76), чанк свойств
   `0x2FE698` (673 записи, шаг 20);
 * связь «метод → класс»: `MethodDefinition.declaringType` (u16 @ +28) —
   **глобальный** индекс типа; для игровой сборки
-  `globalTypeIndex = 3400 + rid_типа` (`work/layout.json`).
+  `globalTypeIndex = 3401 + ПОРЯДКОВЫЙ НОМЕР записи типа` (`work/layout.json`).
+  Номер записи ≠ rid из её токена: записи переставлены у 713 типов из 1498.
 
-Калибровка `OFF = 3400` выполнена по compiler-generated типам: у каждого
+Калибровка `OFF = 3401` выполнена по compiler-generated типам: у каждого
 `<X>d__N` обязан быть `MoveNext`, у `<>c…` — только `.ctor`/`<…>b__…`.
-Контрольные точки сошлись идеально: `BotController` (rid 933 → dt 4333,
-27 методов), `GameController` (486 → 3886, 62 метода), `RaceCarController`
-(520 → 3920, 15 методов), `GeneralZombieSpawnTrigger` (494 → 3894, 6 методов).
+Таких типов в сборке 410; связка «индекс = номер записи, OFF = 3401» согласована
+для 406 (остальные 4 — итераторы с `<>m__Finally1`/`GetEnumerator`, то есть тоже
+верно), а прежняя «индекс = rid токена, OFF = 3400» — только для 279. Подбор
+делает `T.solve_type_off()`. Контрольные точки: `BotController` (индекс 932 →
+dt 4333, 27 методов), `GameController` (485 → 3886, 62), `RaceCarController`
+(519 → 3920, 15), `GeneralZombieSpawnTrigger` (493 → 3894, 6).
 
 ### Как определены владельцы полей
 
@@ -224,12 +228,17 @@ dieSound, attack, renderSet, initColor, dmgFXCrt, bufMat, AttackIndex
 
 ### Помощники и подклассы
 
-| тип | rid | dt | состав |
+| тип | индекс | dt | состав |
 |---|---|---|---|
-| `BotAnimEvents` | 928 | 4328 | `DieR`, `Explode`(slot 14), `DamageInRadius`, `.ctor` — колбэки из анимационных событий |
-| `BotBodyPartDmgReceiver` | 929 | 4329 | `Start`, `AttackEvent`, `AttackEnd`, `PlayDieSound`, `ShootProjectile`, `.ctor`; **поле `myBot`** — обратная ссылка на своего бота |
-| `BotRenderingSets` | 930 | 4330 | `Damage`, `.ctor`; поля `damageColor`, `topDeviceMaterial`, `emissionFlashColor` |
-| `<FlashDamageFXCrt>d__40` | 932 | 4332 | со-программа `BotController.FlashDamageFXCrt`; hoisted-локаль `<isEmission>5__2` |
+| `BombMonster` | 927 | 4328 | `DieR`, `Explode`(slot 14, virtual без NewSlot ⇒ переопределение), `DamageInRadius`, `.ctor` — отдельный моб-взрывчатка, НЕ помощник бота |
+| `BotAnimEvents` | 928 | 4329 | `Start`, `AttackEvent`, `AttackEnd`, `PlayDieSound`, `ShootProjectile`, `.ctor` — приёмник animation events бота (атака и звук, не взрыв) |
+| `BotBodyPartDmgReceiver` | 929 | 4330 | `Damage`, `.ctor` — приёмник урона по части тела |
+| `BotRenderingSets` | 930 | 4331 | методов нет; heap-окно даёт `damageColor`, `topDeviceMaterial`, `emissionFlashColor` |
+| `<FlashDamageFXCrt>d__40` | 931 | 4332 | со-программа `BotController.FlashDamageFXCrt`; hoisted-локаль `<isEmission>5__2` |
+
+Поля (`myBot`, `damageColor`, …) — это эвристика по куче имён: она привязана к
+положению **имени** типа в куче и от перестановки записей не меняется, поэтому в
+таблице указаны отдельно от методов.
 | `CartoonCatMob` | 931 | — | сосед по блоку |
 | `HuggyWuggyBot` | 942 | 4342 | 8 методов, см. ниже; поле `attackSound` |
 | `<AttackPlayer>d__9` | 943 | — | со-программа `AttackPlayer`; `MoveToTarget`; поля `useNavMesh`, `attackFX`, `lookRotation`, `moveDelta` |
@@ -430,7 +439,9 @@ public bool CheckIsSpawnedBot()
 части тела BotBodyPartDmgReceiver.AttackEvent/AttackEnd/PlayDieSound/ShootProjectile
            -> через поле myBot передаёт вызов в BotController
 смерть     DieR(...) -> PlayDieSound() [dieSound, myVoiceAudio] -> DestroySelf()
-           [destroyingDuration] -> BotAnimEvents.DieR/Explode/DamageInRadius
+           [destroyingDuration] -> Object.Destroy; анимационные события бота
+           (BotAnimEvents) — это AttackEvent/AttackEnd/PlayDieSound/ShootProjectile,
+           взрывных колбэков у бота нет (DieR/Explode/DamageInRadius — у BombMonster)
 удаление   запись убирается из mySpawnedBots; SpawnMob() добирает до MaxBotsCount
 ```
 

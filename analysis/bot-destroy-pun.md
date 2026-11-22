@@ -10,6 +10,13 @@
 Продолжение [`bot-removal.md`](bot-removal.md) (кто кого вызывает) и
 [`bot-lifecycle.md`](bot-lifecycle.md) (как бот создаётся и помечается).
 
+> **Поправка.** Записи `TypeDefinition` в файле переставлены: `declaringType` ссылается
+> на **порядковый номер записи**, а не на rid её токена, поэтому
+> `globalTypeIndex = 3401 + номер записи` (раньше здесь было `3400 + rid`). Доказательство —
+> [`metadata-repair.md`](metadata-repair.md) §1.6. Часть владельцев ниже из-за этого
+> съезжала на соседнюю запись; всё исправлено по тексту, а состав PUN-сборки вынесен в
+> отдельный документ [`photon-assembly.md`](photon-assembly.md).
+
 ---
 
 ## 0. Откуда взялась протокольная часть
@@ -49,9 +56,20 @@ GpBinary16/18, LoadBalancing, слой PUN). Константы в `photon/proto
 | `PunVersion` | 2041725 | версия PUN |
 
 Все они — в **библиотечной** области (~2 030 000–2 050 000), тогда как имена игровой сборки
-лежат в ~470 000–650 000. Единственное имя PUN-семейства в игровой области —
-`OnPhotonSerializeView` (heap **585420**), и это метод `CharacterMotor`, а не объявление
-библиотеки.
+лежат в ~470 000–650 000. Из имён PUN-семейства в игровой области встречается только
+`OnPhotonSerializeView` — и не один раз, а пять (это реализации интерфейса, а не объявления
+библиотеки):
+
+| rid | тип | индекс | пар. | flags | slot |
+|---|---|---|---|---|---|
+| 5871 | `CharacterMotor` | 965 | 1 | `0x1C6` Virtual\|NewSlot\|HideBySig\|Family | 12 |
+| 6662 | `SyncMove` | 1085 | 0 | `0x86` | — |
+| 7118 | `BigRigController` | 1186 | 0 | `0xC4` Virtual (переопределение) | 28 |
+| 7199 | `CarController` | 1200 | 0 | `0x886` | — |
+| 7471 | `TankIoController` | 1235 | 0 | `0x81` | — |
+
+То есть покадровая синхронизация в игре есть у **персонажа и у транспорта**, и ни у одного
+моба. `get_ViewID` объявлен только у `CharacterMotor` (rid 5940).
 
 ---
 
@@ -161,14 +179,15 @@ def allocate_id(self, actor_number):
 
 ### 3.1 У бота нет покадровой синхронизации
 
-`CharacterMotor` (игрок, тип rid 966, 120 методов) объявляет:
+`CharacterMotor` (игрок, индекс 965 / token rid 966, 120 методов) объявляет:
 
 ```
 OnPhotonSerializeView(1 пар., slot 12)      get_ViewID      CloneLinearSpeed(2, slot 10)
 UpdateClonePosition      UpdateCloneState      DamageRPC(2, slot 11)      RespawnRPC
 ```
 
-`BotController` (тип rid 933, 27 методов) — **нет ни `OnPhotonSerializeView`, ни `get_ViewID`**.
+`BotController` (индекс 932 / token rid 933, 27 методов) — **нет ни `OnPhotonSerializeView`,
+ни `get_ViewID`**.
 Вся его сетевая поверхность:
 
 ```
@@ -178,8 +197,8 @@ rid 5704  StartAttackR   0 пар.   flags 0x1C4
 rid 5706  StopAttackR    0 пар.   flags 0x1C4
 ```
 
-Вывод: игрок — это `IPunObservable` (события 201/206, дельта-сжатие `PhotonStream`),
-а бот — **RPC-марионетка**: по сети летают только дискретные команды «урон», «умри»,
+Вывод: игрок (и транспорт) — это `IPunObservable` (события 201/206, дельта-сжатие
+`PhotonStream`), а бот — **RPC-марионетка**: по сети летают только дискретные команды «урон», «умри»,
 «начни/кончи атаку». Позицию бота никто не синхронизирует.
 
 ### 3.2 Мобы спавнятся без `R`-суффикса
@@ -189,17 +208,25 @@ rid 5706  StopAttackR    0 пар.   flags 0x1C4
 `StartBattleRoyaleR`, `RemoveWireGunCommanderR`, `SetClothingItemR`, `InteractR`, …).
 Смотрим спавнеры мобов:
 
+Индексы — порядковые номера записей типа (dt = 3401 + индекс):
+
 ```
-GeneralZombieSpawnTrigger (rid 494): get_SpawnPoints, OnTriggerEnter, SpawnZombies(1), SpawnMob(0), OnDrawGizmos, .ctor
-ESHudItem            (rid 241): тот же набор из 6 методов
-ESZombieManager      (rid 238): get_CurMaxZCount, Awake, CreateMonster, CreateBossMonster(2), .ctor(2)
-SpawnZType           (rid 239): Start(1), get_SpawnPoints, OnTriggerEnter, SpawnZombie(1), OnDrawGizmos, .ctor
-ZWZombieManager      (rid 256): OnTriggerEnter, .ctor(1)
-WaveSpawnTanks      (rid 1300): Start, Update, SpawnEnemy, .ctor
-VP_EnemySpawner     (rid 1176): Awake, Start, CreateFirstEnemy, Update, CreateEnemy, MaskFix, OnRestart(1), .ctor
+GeneralZombieSpawnTrigger (493): get_SpawnPoints, OnTriggerEnter, SpawnZombies(1), SpawnMob, OnDrawGizmos, .ctor
+ESZombieSpawnTrigger      (240): тот же набор из 6 методов (rid 1220..1225)
+ESZombieManager           (237): get_CurMaxZCount, Awake, CreateMonster, CreateBossMonster(2), .ctor(2)
+ESZombieSpawnEmitter      (238): Start(1), get_SpawnPoints, OnTriggerEnter, SpawnZombie(1), OnDrawGizmos, .ctor
+ZWZombieManager           (256): Start, SpawnZombie, get_CurMaxZCount, .ctor
+WaveSpawnTanks           (1300): Start, Update, SpawnEnemy, .ctor
+VP_EnemySpawner          (1175): Awake, Start, CreateFirstEnemy, Update, CreateEnemy, MaskFix, OnRestart(1), .ctor
 ```
 
-**Ни одного `R`-суффикса.** Значит спавн моба — локальный `Object.Instantiate` на каждом
+Три имени здесь заменены по сравнению с прежней версией текста: прежние dt указывали на
+соседние записи — `ESHudItem` (241) и `SpawnZType` (239) методов не имеют вовсе, а под
+прежним `ZWZombieManager` читался `SecretDoc` (`OnTriggerEnter`, `.ctor`). Настоящий
+`ZWZombieManager` — это `Start`, `SpawnZombie`, `get_CurMaxZCount`, `.ctor`.
+
+**Ни одного `R`-суффикса** — и это стало только нагляднее: `ZWZombieManager.SpawnZombie`
+(rid 1316) тоже без `R`. Значит спавн моба — локальный `Object.Instantiate` на каждом
 клиенте (триггер в сцене срабатывает у всех одинаково), а не `PhotonNetwork.Instantiate`
 (событие 202). Это согласуется и с тем, что у `BotController` нет `OnPhotonSerializeView`:
 локально заспавненного бота каждый клиент ведёт сам.
@@ -216,13 +243,15 @@ BotController.DestroySelf       rid 5700   0 пар.   flags 0x1C4 = Virtual|New
 `Object.Destroy(gameObject)` / `Object.Destroy(this.gameObject)`, то есть
 **локального** уничтожения.
 
-Сравни с телохранителем — он сетевой объект игрока, и у него параметр есть:
+Сравни с телохранителем — он сетевой объект игрока, и у него параметр есть. Владеет им
+тип `Bodyguard` (индекс 925, 21 метод), а не `SantaGirlBodyguard` (926, только
+`Start`/`Update`/`.ctor`):
 
 ```
-SantaGirlBodyguard.DestroySelf        rid 5668   1 пар.   flags 0x86 (public, НЕ виртуальный)
-SantaGirlBodyguard.SetOwner(s12) / UpdateCloneState(s13) / OnMyOwnerDamaged(1)
+Bodyguard.DestroySelf                 rid 5668   1 пар.   flags 0x86 (public, НЕ виртуальный)
+Bodyguard.SetOwner (rid 5667) / UpdateCloneState / OnMyOwnerDamaged(1)
 CharacterMotor.DestroyCurrentBodyguard  rid 5939   1 пар.   <-- вызывает его снаружи
-CameraDistanceWidget.DestroyCurrentBodyguard  rid 3372   0 пар.
+BodyguardsWidget.DestroyCurrentBodyguard  rid 3372   0 пар.
 ```
 
 `SetOwner` + `UpdateCloneState` — признаки объекта, принадлежащего игроку
@@ -232,13 +261,13 @@ CameraDistanceWidget.DestroyCurrentBodyguard  rid 3372   0 пар.
 
 ```
 GameController.OnOtherPlayerDisconnected(1)   GameController.OnPlayerLeftRoom(1)
-GameController.DestroyDisconnectedPlayer(1 пар.)  + корутина <DestroyDisconnectedPlayer>d__45 (тип rid 480)
-HUDManager.OnPlayerDisonnected                DuelLobbyManager.OnPlayerDisconnected
-TauntAnimationsEventsHandler.RPC_SecureDestroyPlayer  (rid 6291)
+GameController.DestroyDisconnectedPlayer(rid 2625, 1 пар.)  + корутина <DestroyDisconnectedPlayer>d__45 (индекс 479)
+HUDManager.OnPlayerDisonnected (rid 1741)     DuelLobbyManager.OnPlayerDisconnected (rid 2474)
+SecurePlayerController.RPC_SecureDestroyPlayer (rid 6291; тот же тип: RequestPlayerDestruction, OnLeftRoom)
 ```
 
 Это ровно PUN-овские ветки **LEAVE(254) / DESTROY_PLAYER(207)**: параметр — `actorNumber`,
-корутинa — потому что надо дождатьcя таймаута/анимации. К ботам она отношения не имеет:
+корутине надо дождаться таймаута/анимации. К ботам она отношения не имеет:
 бот не игрок и не владеет viewId.
 
 ---
@@ -261,8 +290,8 @@ BotController.Damage / DamageRPC / ApplyDamage → UpdateHP → HP <= 0
 НА КАЖДОМ КЛИЕНТЕ dispatch_rpc находит view и вызывает метод (§1)
         │
 BotController.DieR(1 пар.)                 rid 5699 — локальное выполнение смерти
-        │  PlayDieSound (rid 5709), Animator → BotAnimEvents.DieR / Explode / DamageInRadius
-        │  (анимационные события, rid 5674/5675/5676)
+        │  PlayDieSound (rid 5709), Animator → BotAnimEvents.PlayDieSound / AttackEnd
+        │  (анимационные события бота, rid 5678..5682; взрывных колбэков у бота нет)
         │  ждём destroyingDuration (поле, heap 583143)
         ▼
 BotController.DestroySelf()                rid 5700, 0 пар. → Object.Destroy(gameObject)
@@ -276,29 +305,43 @@ BotController.DestroySelf()                rid 5700, 0 пар. → Object.Destro
   Удалился бот потому, что вызванный метод (через анимацию смерти и `destroyingDuration`)
   дошёл до `DestroySelf`.
 * **Задержка `destroyingDuration` нужна**, чтобы смерть доехала до всех клиентов и доиграла
-  анимация: RPC приходит асинхронно, а `BotAnimEvents.DieR`/`Explode` — это события
-  анимационных кадров, то есть момент удаления привязан к клипу.
+  анимация: RPC приходит асинхронно, а `BotAnimEvents.PlayDieSound`/`AttackEnd` — это
+  события анимационных кадров, то есть момент удаления привязан к клипу.
 * **Список `mySpawnedBots` не чистится спавнером**, потому что спавнер вообще не знает
   о смерти: в Unity уничтоженный объект сравнивается с `null`, поэтому для лимита
   `MaxBotsCount` и для `GameController.CheckIsSpawnedBot` достаточно отфильтровать список
   (в этой же игре есть готовый образец — `CrashArenaBaseGun.RemoveNullTargets`, rid 7269).
-* **Пулы не при чём**: `OnSpawn`/`OnRecycle` объявлены только у снарядов
-  (`BaseBulletScript`, `Missile`, `MolotovBullet`, `BaseGrenade`, `GroundMine`, `Arrow`,
-  `TankFood`, `ChickenCoinTrigger`). Бот уничтожается по-настоящему.
+* **Пулы в игре есть, но бота они не касаются.** Прежняя формулировка «пулы не при чём»
+  была неверной: в игровой сборке объявлены `ObjectPool` (индекс 88, **40 методов**:
+  `CreateStartupPools` 493, `CreatePool` 494/495, 12 перегрузок `Spawn` 496..507,
+  `Recycle` 508..510, `RecycleAll` 511..513, `IsSpawned` 514, `CountPooled`/`CountSpawned`,
+  `GetPooled`/`GetSpawned`, `DestroyPooled` 524/525, `DestroyAll` 526/527, `get_instance` 528)
+  и `ObjectPoolExtensions` (индекс 89, rid 532..571). Колбэки `OnSpawn`/`OnRecycle` при этом
+  объявлены только у снарядов и подбираемых предметов (`BaseBulletScript`, `GunBullet`,
+  `GrenadeBullet`, `Missile`, `ArmGrenade`, `CannonInvObjProjectile`, `TankFood`,
+  `TriggerActConnectionLine`, `BaseBonus`, `Arrow`, `PooledObject`) — **у `BotController` их
+  нет**, и `Recycle` среди его 27 методов тоже. То есть пул в игре обслуживает снаряды,
+  а бот уничтожается по-настоящему.
 
-Исключения из этой схемы (§3.3–§3.4): телохранитель (`SantaGirlBodyguard` — сетевой объект
-игрока, удаляется снаружи через `CharacterMotor.DestroyCurrentBodyguard`) и гоночный бот
-(`FollowAI.HideCar(3 пар.)` + корутина `<HideCar>d__58` — машина **прячется**, а не
-уничтожается; настоящее удаление только через `RaceCarController.OnDestroy`/`Explode`).
+Исключения из этой схемы (§3.3–§3.4): телохранитель (`Bodyguard` — сетевой объект
+игрока, удаляется снаружи через `CharacterMotor.DestroyCurrentBodyguard`, rid 5939) и
+гоночный бот (`FollowAI.HideCar`, rid 8193, 3 пар. + корутина `<HideCar>d__58`, индекс 1349 —
+машина **прячется**, а не уничтожается; настоящее удаление только через
+`RaceCarController.OnDestroy`, rid 3048, и `Explode`, rid 3055).
 
 ---
 
 ## 5. Что остаётся недоказуемым (и почему)
 
 * **Вызывает ли игра `PhotonNetwork.Destroy` / `RemoveInstantiatedGO` — по метаданным
-  не определить.** Эти имена в куче есть (2038651 / 2040806), но они принадлежат
-  библиотеке PUN; *вызовы* библиотечных методов живут в телах методов, а тел в
-  `global-metadata.dat` нет, и `libil2cpp.so` в `apk/` отсутствует.
+  не определить без `libil2cpp.so`.** Объявления теперь картированы полностью —
+  [`photon-assembly.md`](photon-assembly.md): PUN-чанк методов `0x66A0F8` (474 записи),
+  `PhotonNetwork` = индекс 21 / dt 15853, у неё `Destroy` rid **149** (2 пар.) и **150**
+  (1 пар.), `DestroyPlayerObjects` 151/152/184, `RemoveInstantiatedGO` **186**,
+  `NetworkInstantiate` 145/147, `RPC` 156/157/206, `PhotonView.RPC` 287/289.
+  Но *вызовы* этих методов живут в телах, а тел в `global-metadata.dat` нет;
+  `apk/libil2cpp.so` отсутствует, поэтому «кто вызывает `PhotonNetwork.Destroy`» остаётся
+  открытым ровно до появления `.so` (план разбора — там же, §5).
   Доказуемо другое, и этого достаточно: **игровая сборка не объявляет** собственных
   методов сетевого удаления, а у бота есть собственный нуль-параметрический
   `DestroySelf`. Поэтому в [`bot-removal.md`](bot-removal.md) §0 п.6 прежняя формулировка
@@ -310,21 +353,27 @@ BotController.DestroySelf()                rid 5700, 0 пар. → Object.Destro
   аргумент вроде `int killerActorNr`. Различить по метаданным нельзя: типов параметров
   в этом файле не видно (колонка `+0` MethodDef индексом типа возврата **не** является —
   опровергнуто на `CharacterMotor`, см. [`CleanTiters.md`](CleanTiters.md) §6).
-  Косвенная зацепка: `CharacterMotor.OnPhotonSerializeView` по метаданным имеет **1**
-  параметр, тогда как `IPunObservable` требует двух (`PhotonStream`, `PhotonMessageInfo`) —
-  то есть счётчик параметров в этом регионе как минимум для части записей расходится
-  с ожидаемой сигнатурой, и на «1 параметр» тем более нельзя опираться жёстко.
+  Косвенная зацепка: сама PUN-сборка объявляет `IPunObservable.OnPhotonSerializeView`
+  (rid 7, индекс 11) ровно с **2** параметрами, как и положено, а реализация
+  `CharacterMotor.OnPhotonSerializeView` (rid 5871) — с **одним**; `PhotonTransformViewClassic`
+  (индекс 51) тоже с двумя. Значит счётчик параметров в PUN-чанке верен, а в игровом регионе
+  часть записей расходится с ожидаемой сигнатурой — опираться на «1 параметр» жёстко нельзя.
 * **Кто именно рассылает `DieR`** — владелец урона или мастер-клиент. В PUN RPC шлёт тот,
   кто вызвал `photonView.RPC(...)`; у игры есть `GameController.OnPlayerKilled(1)` /
   `OnPlayerMakeKill(1)` для игроков, но для ботов отдельного «kill-менеджера» в метаданных
   не видно.
-* **Наследование ботов.** Значения колонки `+20` («slot») у `BotAnimEvents.Explode`,
-  `OtchimBot.DamageTarget` и `HuggyWuggyBot.DamageTarget` совпадают (14, flags `0xC4` =
-  ReuseSlot ⇒ переопределение виртуала предка), а у `BotController.DestroySelf` то же 14
-  идёт с флагом NewSlot (`0x1C4` ⇒ объявление нового виртуала). Переопределение с разными
-  именами в C# невозможно ⇒ либо имена в этом регионе сдвинуты, либо колонка slot врёт;
-  у `BotController..ctor` она заведомо врёт (slot 24 + бит Virtual). Выводов о наследовании
-  не делаем. Подробности: [`bot-removal.md`](bot-removal.md) §7.
+* **Наследование ботов — частично восстановимо, но не для ботов.** Прежний вывод
+  «slot 14 у методов с разными именами ⇒ имена сдвинуты или slot врёт» снят: slot — индекс
+  в vtable **своего** типа, совпадение номера у несвязанных типов ничего не значит.
+  Родство видно только по паре (имя виртуала, slot): `T.infer_base_classes()` даёт в игровой
+  сборке 23 уверенных связи (`JSONLazyCreator : JSONNode` — 13 виртуалов,
+  `CarController : Vehicle` — 9, `HoverMotor : Motor` — 2,
+  `DynamiteTNTInvObj : ExplodableObject` — `Explode`/slot 50; в `Dump.cs` помечены
+  `// [эвристика по vtable]`). Общего предка у ботов так не видно: `BotController.DestroySelf`
+  объявляет новый виртуал, а `BombMonster.Explode` (rid 5675, slot 14) переопределяет
+  виртуал, у которого совпадение по (имя, slot) находится только у `ExplodableObject`
+  в другой ветке. Колонка slot при этом не безупречна: `BotController..ctor` имеет slot 24
+  с битом Virtual. Подробности: [`bot-removal.md`](bot-removal.md) §7.
 
 ---
 
