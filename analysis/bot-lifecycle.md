@@ -10,6 +10,10 @@
 Доказательная база: `analysis/bot-heap-blocks.txt` (дампы блоков кучи),
 `work/gameprops.json` (карта свойств), `tools/il2cpp_tables.py` (парсер).
 
+Смежные разборы: **как боты удаляются/умирают — `analysis/bot-removal.md`**;
+что такое `GameController.CleanTiters` и при чём тут `CharacterMotor.titer` —
+`analysis/CleanTiters.md`; поиск несуществующего `ClearBots` — `analysis/ClearBots.md`.
+
 ---
 
 ## 0. Коротко

@@ -7,13 +7,15 @@
 | Шаг | Состояние |
 |---|---|
 | Скачать APK с `fs293.tbx.su` | ❌ **заблокировано** — исходящий трафик песочницы ограничен хостами `github.com`, `codeload.github.com`, `api.github.com`, `pypi.org`, `files.pythonhosted.org`, `registry.npmjs.org`. TLS-рукопожатие с `fs293.tbx.su` обрывается (`curl: (35) SSL_ERROR_SYSCALL`), по http — `Empty reply`. Для сравнения: `api.github.com` отвечает 200, значит сеть жива, работает именно allowlist. |
-| Получить сам файл | ✅ APK залили в репозиторий вручную; из него достали `apk/global-metadata.dat` (14 043 988 байт) и `libil2cpp.so` |
+| Получить сам файл | ✅ APK залили в репозиторий вручную; из него в репозитории лежит только `apk/global-metadata.dat` (14 043 988 байт). **`libil2cpp.so` отсутствует** ⇒ тела методов недоступны, `tools/il2cpp_native.py` запускать не на чем |
 | Установить jadx / apktool / Il2CppDumper | ❌ нет Java и .NET runtime, `apt` и `dot.net` недоступны, GitHub-релизы уезжают на `objects.githubusercontent.com` (тоже закрыт) |
 | Собрать собственный пайплайн на Python | ✅ сделано и протестировано (см. `tools/`) |
 | Обфускация `global-metadata.dat` | ✅ **вскрыта**: поблочный XOR с периодом 256, `plain[i] = cipher[i] ^ ((i + C) & 0xFF)`, своя фаза `C` на блок; 33 770 блоков пересчитано, число читаемых имён выросло с 4 727 до 128 301 (`tools/il2cpp_decrypt.py`) |
 | Таблицы метаданных без заголовка | ✅ восстановлены: `MethodDefinition` (шаг 30), `TypeDefinition` (шаг 76), `PropertyDefinition` (шаг 20); заголовок испорчен намеренно, `il2cpp_meta.py` этот файл не берёт — используется `tools/il2cpp_tables.py` |
 | Найти `ClearBots` | ❌ **метода в этой сборке нет**: 0 совпадений в сыром файле, во всех 256 глобальных фазах XOR, в куче имён (121 886 строк) и в литералах; `RemoveBots`/`KillBots`/`DeleteBots`/`despawn`/`Mod Menu`/`Aimbot` — тоже 0. Подробности и реконструкция того, что делала бы такая функция: `analysis/ClearBots.md` |
 | Разобрать, как боты устроены на самом деле | ✅ `analysis/bot-lifecycle.md` (+ доказательная база `analysis/bot-heap-blocks.txt`) |
+| Что такое `CleanTiters` | ✅ `analysis/CleanTiters.md`: `GameController.CleanTiters` (rid 2657) — зачистка «титров» в конце Battle Royale, свойство `titer` принадлежит `CharacterMotor`; к ботам отношения не имеет. Попутно опровергнуто, что колонка `+0` MethodDef — индекс типа возврата |
+| Найти, как боты удаляются | ✅ `analysis/bot-removal.md`: единой функции удаления нет; бот умирает через `BotController.DieR` → `destroyingDuration` → `DestroySelf` (rid 5700, `protected virtual`), боты не пулятся и не удаляются по сети. Корутина `<DestroySelf>d__6` оказалась `ItemControl.DestroySelf(wait)` |
 | Таблица `FieldDefinition` игровой сборки | ❌ не локализована (находятся только 6 301 библиотечных записей). Имена полей восстановлены по порядку кучи имён |
 
 ## 1. Инструменты (готовы, без Java и .NET)
