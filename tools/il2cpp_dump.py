@@ -146,6 +146,12 @@ def main(argv: list[str] | None = None) -> int:
     lat = T.lattice_types(m, GAME_TYPE_BASE)
     types, type_tokens = T.type_positions(lat)
     permuted = [k for k in types if type_tokens[k] != k]
+
+    # Хвост региона методов: ПОСЛЕДНЯЯ запись принадлежит следующей сборке, а не игре
+    # (rid 9184 ReleaseGssBuffer, dt 4904 -> System.dll!NetSecurityNative — порядок кучи
+    # имён: 637727 System.dll, 637738 NetSecurityNative, 637756 bufferPtr, 637766
+    # ReleaseGssBuffer). Правило проверено на трёх сборках, см. T.split_tail.
+    methods, tail = T.split_tail(m, methods, GAME_OFF, len(types))
     best_off, scored = T.solve_type_off(m, types, methods, range(GAME_OFF - 4, GAME_OFF + 5))
     tok_off_best, tok_scored = T.solve_type_off(m, lat, methods, range(GAME_OFF - 5, GAME_OFF + 4))
     print("# типов %d (обход решётки от 0x%X), у %d из них rid токена != номер записи"
@@ -156,6 +162,8 @@ def main(argv: list[str] | None = None) -> int:
              tok_off_best, tok_scored[tok_off_best][0], tok_scored[tok_off_best][1]))
     if best_off != GAME_OFF:
         raise SystemExit("OFF не сошёлся: подобранный %d, заданный %d" % (best_off, GAME_OFF))
+    print("# методов %d (своих); хвост региона исключён: %s"
+          % (len(methods), ", ".join("rid %d dt %d %s" % t for t in tail) or "нет"))
 
     # --- методы по declaringType --------------------------------------------
     by_dt: dict[int, list] = collections.defaultdict(list)
@@ -422,7 +430,8 @@ def main(argv: list[str] | None = None) -> int:
     Path(args.out).write_text("\n".join(out) + "\n", encoding="utf-8")
     print("# типов: %d   методов: %d   свойств: %d (без владельца: %d)"
           % (n_types, n_methods, n_props, len(unresolved_props)))
-    print("# групп методов без типа-владельца: %d" % len(orphans))
+    print("# групп методов без типа-владельца: %d (хвост региона исключён заранее)"
+          % len(orphans))
     print("# записано: %s  (%.1f КБ, %d строк)"
           % (args.out, Path(args.out).stat().st_size / 1024, len(out)))
     return 0

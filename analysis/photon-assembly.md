@@ -15,12 +15,13 @@
 | таблица | база чанка | шаг | записей | индексы |
 |---|---|---|---|---|
 | `TypeDefinition` | `0xBAA8E8` … `0xBABB04` | 76 | **62** | 1..62 |
-| `MethodDefinition` | `0x66A0F8` | 30 | **474** | rid 1..474 |
+| `MethodDefinition` | `0x66A0F8` | 30 | **473 своих** (+1 хвост) | rid 1..473 |
 
 Граница чанка типов определяется без имён: следующая запись (`0xBABB50`) несёт токен
-`0x02000001` и имя `HttpRequestMethod` — это уже другая сборка (дальше идут
-`AssetDownloader`, `AssetDownloaderBehaviour`, `<DownloadAsset>d__3`, то есть
-загрузчик ассетов). Обход решётки останавливается на повторе rid.
+`0x02000001` и имя `HttpRequestMethod` — это уже другая сборка, **TriLibCore**
+(дальше идут `AssetDownloader`, `AssetDownloaderBehaviour`, `<DownloadAsset>d__3`,
+то есть загрузчик ассетов); она разобрана в §5. Обход решётки останавливается на
+повторе rid.
 
 Чанк найден не по заголовку (его нет), а по именам: `PhotonNetwork` (nameIndex
 2 038 651), `IPunObservable` (2 038 208), `PhotonView` (2 044 045), `PunRPC`
@@ -56,11 +57,20 @@
 попадают ровно в свои типы**. При OFF = 15831 каждый интерфейс получает метод соседа,
 а enum `ObservableSearch` — 8 методов `PhotonStreamQueue`.
 
-Максимальный `declaringType` в чанке указывает на индекс 64 при 62 найденных записях:
-фрагмент таблицы чуть короче сборки (индексы 63 и 64 лежат в другом фрагменте —
-таблицы в этом файле физически разбросаны). У записи с индексом 62 имя затёрто
-(`nameIndex = 42`, до начала кучи строк) и методов у неё нет; ровно такой же
-`nameIndex = 42` у позиции 1498 игровой сборки.
+**Прежняя нестыковка снята.** Раньше максимальный `declaringType` в чанке (15896)
+указывал на индекс 64 при 62 найденных записях, и это читалось как «фрагмент таблицы
+короче сборки». На деле у PUN ровно **62 типа** (dt 15833..15894) и **473 своих метода**
+(rid 1..473, dt 15833..15893), а последняя запись региона — rid 474 `CreateWebRequest`
+(3 пар., dt 15896) — принадлежит **следующей** сборке, TriLibCore: её dt 15896 =
+`AssetDownloader` (k=2 при OFF=15894, §5), а порядок кучи имён ставит `CreateWebRequest`
+(heap 2048894) ровно между `TriLibCore.dll` (2048845) → `AssetDownloader` (2048860) →
+`httpRequestMethod` (2048876) и `unityWebRequest` (2048911). Другого вхождения имени
+`CreateWebRequest` в файле нет.
+
+Это общее правило файла, а не особенность PUN — см. §5.1.
+
+У записи с индексом 62 имя затёрто (`nameIndex = 42`, до начала кучи строк) и методов
+у неё нет; ровно такой же `nameIndex = 42` у позиции 1498 игровой сборки.
 
 ---
 
@@ -176,10 +186,54 @@
 
 ---
 
-## 5. Что с этим делать, когда появится `libil2cpp.so`
+## 5. Соседние сборки и «хвост» региона методов
+
+### 5.1 Правило: регион методов заканчивается чужой записью
+
+Во всех трёх разобранных сборках последняя запись региона методов ссылается на тип
+**следующей** сборки, а записей с `declaringType` ниже своего диапазона нет вовсе:
+
+| сборка | чанк методов | своих записей | хвост | dt хвоста | чей это метод |
+|---|---|---|---|---|---|
+| игровая | `0x411540` | 9 183 (rid 1..9183) | rid 9184 `ReleaseGssBuffer` | 4904 | `System.dll!NetSecurityNative` |
+| PUN | `0x66A0F8` | 473 (rid 1..473) | rid 474 `CreateWebRequest` | 15896 | `TriLibCore!AssetDownloader` |
+| TriLibCore | `0x66D884` | 673 (rid 1..673) | rid 674 `get_debug` | 15981 | следующая сборка (рядом `set_debug`, rid 1) |
+
+Принадлежность хвоста игровой сборки доказана тем же способом — порядком кучи имён:
+`System.dll` (heap 637727) → `NetSecurityNative` (637738) → `bufferPtr` (637756) →
+`ReleaseGssBuffer` (637766) → `minorStatus` (637783), дальше `DisplayMinorStatus`,
+`InitiateCredSpNego`, `GssApiException`, `GssBuffer`, `GSS_S_*` — всё это GSSAPI-обвязка
+`System.dll`, а не `Assembly-CSharp`.
+
+Отсюда два следствия:
+
+* «сирота» `ReleaseGssBuffer` в `Dump.cs` больше не сирота — это метод другой сборки,
+  и `T.split_tail()` исключает его из артефактов (в game-only метадате теперь 9 183 метода);
+* число методов сборки, которое даст `so_recon.sh` (`methodCount` из
+  `Il2CppCodeGenModule`), надо сверять с «своими» записями, а не с длиной региона.
+
+### 5.2 TriLibCore (картирована попутно)
+
+| таблица | база чанка | шаг | записей | OFF | подбор |
+|---|---|---|---|---|---|
+| `TypeDefinition` | `0xBABB50` | 76 | 84 | **15894** | 52 / 52 |
+| `MethodDefinition` | `0x66D884` | 30 | 673 своих (+1 хвост) | — | — |
+
+Записи переставлены так же, как в PUN: k=1 `HttpRequestMethod` (token rid 1, enum,
+0 методов), k=2 `AssetDownloader` (token rid 3, `LoadModelFromUri` + `.ctor` + хвостовой
+`CreateWebRequest`), k=3 `<>c__DisplayClass3_0` (token rid 2), k=4 `<DownloadAsset>d__3`
+(token rid 5, 6 методов итератора), k=5 `AssetDownloaderBehaviour` (token rid 6),
+k=6 `<>c` (token rid 4). Чанк типов заканчивается на `0xBAD3F4` (k=84, имя затёрто),
+следующая запись `0xBAD440` — токен `0x02000001`, имя `jvalue`.
+Сборка доступна в CLI: `class --assembly trilib --name AssetDownloader --methods`.
+
+---
+
+## 6. Что с этим делать, когда появится `libil2cpp.so`
 
 1. `tools/so_recon.sh` → `work/so/03-images.txt` даст `methodCount` каждой сборки;
-   у Photon/PUN их 474 — это и свяжет чанк `0x66A0F8` с образом.
+   у Photon/PUN их 473 (у TriLibCore 673, у игровой 9 183) — это и свяжет чанки
+   `0x66A0F8` / `0x66D884` / `0x411540` с образами.
 2. Индекс RVA расширяется на библиотечные сборки (сейчас `dump-rvas` строится для
    игровой), после чего `tools/il2cpp_so.py who --addr 0x…` начнёт отвечать
    «PhotonNetwork.Destroy» вместо «вне кода игровой сборки».
@@ -189,7 +243,7 @@
 
 ---
 
-## 6. Как повторить
+## 7. Как повторить
 
 ```python
 import sys; sys.path.insert(0, "tools")
@@ -199,9 +253,18 @@ m = T.load("apk/global-metadata.dat", "work/global-metadata.dec.dat")
 types = T.lattice_types(m, 0xBAA8E8)          # {token rid: запись}
 bypos, toks = T.type_positions(types)         # {позиция: запись}, {позиция: token rid}
 meths = T.lattice_methods(m, 0x66A0F8)        # {rid метода: запись}
+meths, tail = T.split_tail(m, meths, 15832, len(bypos))   # хвост -> TriLibCore
+print(len(meths), tail)                       # 473 [(474, 15896, 'CreateWebRequest')]
 
 off, scored = T.solve_type_off(m, bypos, meths, range(15828, 15838))
 print(off, scored[off])                       # 15832 (8, 8)
+
+# соседняя сборка TriLibCore
+tlat = T.lattice_types(m, 0xBABB50)
+tbypos, ttoks = T.type_positions(tlat)
+tmeth = T.lattice_methods(m, 0x66D884)
+toff, tscored = T.solve_type_off(m, tbypos, tmeth, range(15890, 15900))
+print(toff, tscored[toff])                    # 15894 (52, 52)
 
 # методы PhotonNetwork (индекс 21)
 import collections

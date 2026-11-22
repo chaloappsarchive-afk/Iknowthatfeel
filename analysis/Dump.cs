@@ -22,7 +22,7 @@
 // флаги, колонка slot, токены, свойства с get/set и их владельцы.
 //
 // Игровая сборка: чанк типов 0xAC3E74 (1498 записей, шаг 76), чанк методов 0x411540
-// (9184 записей, шаг 30), чанк свойств 0x2FE698 (673 записей, шаг 20).
+// (9183 записей, шаг 30), чанк свойств 0x2FE698 (673 записей, шаг 20).
 // Связка: globalTypeIndex = 3401 + ПОРЯДКОВЫЙ НОМЕР записи типа в чанке.
 // Записи TypeDefinition в этом файле переставлены, поэтому rid из токена
 // (0x02xxxxxx) НЕ равен индексу: у 713 записей из 1498 они расходятся.
@@ -51637,8 +51637,8 @@ public class PlayStoreInAppPurchase
 	//   USER_GENDER(637198), OTHER(637217), MALE(637223), FEMALE(637228)
 	//   _appStoreInAppPurchaseBuilder(637284), _playStoreInAppPurchaseBuilder(637337), 60C72A894D3FB635A2F823FA8051E6DD65DD1AA7A02B9E401FFAE85DA67F9917(637368), CCADAF225CB7EB0591A167942FB1E33F67FD775D6452FD5A774BCDDB7B3D04A2(637433)
 	//   F61861E4941CAC719AA89F7A80E75EB5DDC0F962086E7C12158AB69B5CD098AE(637498), RSA1(637585), System.dll(637727), NetSecurityNative(637738)
-	//   bufferPtr(637756), minorStatus(637783), statusValue(637795), DisplayMinorStatus(637807)
-	//   DisplayMajorStatus(637826)
+	//   bufferPtr(637756), ReleaseGssBuffer(637766), minorStatus(637783), statusValue(637795)
+	//   DisplayMinorStatus(637807), DisplayMajorStatus(637826)
 
 }
 
@@ -52279,7 +52279,7 @@ namespace AppodealAds.Unity.Api
 		//   APPSFLYER_ID(637163), USER_AGE(637189), USER_GENDER(637198), OTHER(637217)
 		//   MALE(637223), FEMALE(637228), _appStoreInAppPurchaseBuilder(637284), _playStoreInAppPurchaseBuilder(637337)
 		//   60C72A894D3FB635A2F823FA8051E6DD65DD1AA7A02B9E401FFAE85DA67F9917(637368), CCADAF225CB7EB0591A167942FB1E33F67FD775D6452FD5A774BCDDB7B3D04A2(637433), F61861E4941CAC719AA89F7A80E75EB5DDC0F962086E7C12158AB69B5CD098AE(637498), RSA1(637585)
-		//   System.dll(637727), NetSecurityNative(637738), bufferPtr(637756)
+		//   System.dll(637727), NetSecurityNative(637738), bufferPtr(637756), ReleaseGssBuffer(637766)
 
 	}
 
@@ -52330,7 +52330,7 @@ namespace AppodealAds.Unity.Api
 		//   APPSFLYER_ID(637163), USER_AGE(637189), USER_GENDER(637198), OTHER(637217)
 		//   MALE(637223), FEMALE(637228), _appStoreInAppPurchaseBuilder(637284), _playStoreInAppPurchaseBuilder(637337)
 		//   60C72A894D3FB635A2F823FA8051E6DD65DD1AA7A02B9E401FFAE85DA67F9917(637368), CCADAF225CB7EB0591A167942FB1E33F67FD775D6452FD5A774BCDDB7B3D04A2(637433), F61861E4941CAC719AA89F7A80E75EB5DDC0F962086E7C12158AB69B5CD098AE(637498), RSA1(637585)
-		//   System.dll(637727), NetSecurityNative(637738), bufferPtr(637756)
+		//   System.dll(637727), NetSecurityNative(637738), bufferPtr(637756), ReleaseGssBuffer(637766)
 
 	}
 
@@ -57292,12 +57292,4 @@ namespace ithappy
 	}
 
 }
-
-// ============================================================================
-// Методы, чей declaringType не соответствует ни одной записи типа игровой сборки
-// (групп: 1, методов: 1). Имена и число параметров достоверны, владелец не установлен:
-// либо это типы из другой сборки, либо записи типов не распознались.
-// ============================================================================
-// declaringType = 4904 (индекс типа 1503), методов 1
-//   rid=9184  пар=1  slot=—  flags=0x93  ReleaseGssBuffer
 

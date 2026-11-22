@@ -335,7 +335,7 @@ BotController.DestroySelf()                rid 5700, 0 пар. → Object.Destro
 
 * **Вызывает ли игра `PhotonNetwork.Destroy` / `RemoveInstantiatedGO` — по метаданным
   не определить без `libil2cpp.so`.** Объявления теперь картированы полностью —
-  [`photon-assembly.md`](photon-assembly.md): PUN-чанк методов `0x66A0F8` (474 записи),
+  [`photon-assembly.md`](photon-assembly.md): PUN-чанк методов `0x66A0F8` (473 своих записи),
   `PhotonNetwork` = индекс 21 / dt 15853, у неё `Destroy` rid **149** (2 пар.) и **150**
   (1 пар.), `DestroyPlayerObjects` 151/152/184, `RemoveInstantiatedGO` **186**,
   `NetworkInstantiate` 145/147, `RPC` 156/157/206, `PhotonView.RPC` 287/289.

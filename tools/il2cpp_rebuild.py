@@ -136,11 +136,16 @@ def main(argv: list[str] | None = None) -> int:
     lat = T.lattice_types(m, GAME_TYPE_BASE)
     types, type_tokens = T.type_positions(lat)
     permuted = [k for k in types if type_tokens[k] != k]
+    # Хвост региона методов принадлежит СЛЕДУЮЩЕЙ сборке (rid 9184 ReleaseGssBuffer,
+    # dt 4904 -> System.dll!NetSecurityNative), в game-only файл он не попадает.
+    methods, tail = T.split_tail(m, methods, GAME_OFF, len(types))
     off, scored = T.solve_type_off(m, types, methods, range(GAME_OFF - 4, GAME_OFF + 5))
     print("# типов %d, у %d rid токена != номер записи; подбор OFF: %d -> %d/%d"
           % (len(types), len(permuted), off, scored[off][0], scored[off][1]))
     if off != GAME_OFF:
         raise SystemExit("OFF не сошёлся: подобранный %d, заданный %d" % (off, GAME_OFF))
+    print("# методов своих %d; хвост региона исключён: %s"
+          % (len(methods), ", ".join("rid %d dt %d %s" % t for t in tail) or "нет"))
 
     ntypes = max(types) if types else 0
 
@@ -163,6 +168,8 @@ def main(argv: list[str] | None = None) -> int:
             new_index[rid] = len(new_order)
             new_order.append((rid, rec))
     orphan_start = len(new_order)
+    # После split_tail сирот быть не должно: единственная запись с dt вне своего чанка
+    # типов (rid 9184) принадлежит System.dll и исключена. Проверка оставлена как страховка.
     orphans = [(rid, rec) for dt, lst in sorted(by_dt.items()) if dt not in known_dt
                for rid, rec in lst]
     for rid, rec in orphans:

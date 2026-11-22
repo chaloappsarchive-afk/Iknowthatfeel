@@ -754,17 +754,19 @@ def score_offset(m, by_dt, type_chunk, off):
 KNOWN_ASSEMBLIES = collections.OrderedDict((
     ('game',   {'types': 0xAC3E74, 'methods': 0x411540, 'max_rid': 20000, 'off': 3401}),
     ('photon', {'types': 0xBAA8E8, 'methods': 0x66A0F8, 'max_rid': 9999,  'off': 15832}),
+    ('trilib', {'types': 0xBABB50, 'methods': 0x66D884, 'max_rid': 9999,  'off': 15894}),
 ))
 
 
 def assembly_index(m, name, off=None, offs=None):
     """Индекс одной сборки: типы по ПОРЯДКУ ЗАПИСИ и методы по declaringType.
 
-    Возвращает (by_pos, toks, groups, methods, off, scored), где
+    Возвращает (by_pos, toks, groups, methods, off, solved, scored, tail), где
     `by_pos[k]` — адрес k-й записи TypeDef (k = 1-based порядковый номер в чанке),
     `toks[k]` — её токен, `groups[dt]` — [(rid, rec), ...] методов, `methods` —
-    плоский словарь {rid: rec}, `off` — связка `dt = off + k`, `scored` — счёт
-    solve_type_off по перебранным off.
+    плоский словарь {rid: rec} БЕЗ хвостовой записи, `off` — связка `dt = off + k`,
+    `solved`/`scored` — результат solve_type_off, `tail` — записи в конце региона
+    методов, принадлежащие следующей сборке (см. split_tail).
 
     ВАЖНО: индекс типа — это порядковый номер записи, а не rid её токена: записи
     внутри чанка переставлены (в игровой сборке расходятся 713 из 1498).
@@ -773,6 +775,7 @@ def assembly_index(m, name, off=None, offs=None):
     lat = lattice_types(m, spec['types'])
     by_pos, toks = type_positions(lat)
     methods = lattice_methods(m, spec['methods'], max_rid=spec['max_rid'])
+    methods, tail = split_tail(m, methods, spec['off'], len(by_pos))
     groups = collections.defaultdict(list)
     for r, rec in methods.items():
         groups[m.u16(rec, METH_DECL)].append((r, rec))
@@ -785,7 +788,38 @@ def assembly_index(m, name, off=None, offs=None):
     solved, scored = solve_type_off(m, by_pos, methods, offs)
     if off is None:
         off = solved if scored[solved][0] else spec['off']
-    return by_pos, toks, groups, methods, off, solved, scored
+    return by_pos, toks, groups, methods, off, solved, scored, tail
+
+
+def split_tail(m, methods, off, ntypes, decl_off=METH_DECL, name_off=METH_NAME):
+    """Отделить «хвост» региона методов — записи, принадлежащие СЛЕДУЮЩЕЙ сборке.
+
+    Регион чанка методов заканчивается записью, чей declaringType указывает за
+    пределы чанка типов своей сборки. На всех трёх разобранных сборках хвост ровно
+    один, и записей с dt ниже своего диапазона нет:
+
+        game       rid 9184  dt 4904   ReleaseGssBuffer  -> System.dll!NetSecurityNative
+        PUN        rid  474  dt 15896  CreateWebRequest  -> TriLibCore!AssetDownloader
+        TriLibCore rid  674  dt 15981  get_debug         -> следующая сборка
+
+    Принадлежность доказана порядком кучи имён: `ReleaseGssBuffer` (heap 637766)
+    стоит сразу за `System.dll` -> `NetSecurityNative` -> `bufferPtr`, а
+    `CreateWebRequest` (heap 2048894) — за `TriLibCore.dll` -> `AssetDownloader` ->
+    `httpRequestMethod`; оба dt точно попадают на тип следующей сборки
+    (у TriLibCore OFF = 15894 подтверждён 52/52, `AssetDownloader` = k=2 -> dt 15896).
+
+    Возвращает (own, tail): `own` = {rid: rec} с dt в [off+1, off+ntypes],
+    `tail` = [(rid, dt, имя)] — то, что своей сборке не принадлежит.
+    """
+    lo, hi = off + 1, off + ntypes
+    own, tail = {}, []
+    for rid, rec in methods.items():
+        dt = m.u16(rec, decl_off)
+        if lo <= dt <= hi:
+            own[rid] = rec
+        else:
+            tail.append((rid, dt, m.raw_name(m.u32(rec, name_off)) or '?'))
+    return own, sorted(tail)
 
 
 def pair_assembly(m, meth_chunk, type_chunk, window=24, by_dt=None):
@@ -912,7 +946,8 @@ def cmd_class(m, args):
              else [a.strip() for a in args.assembly.split(',')])
     found = 0
     for name in names:
-        by_pos, toks, groups, methods, off, solved, scored = assembly_index(m, name, args.off)
+        by_pos, toks, groups, methods, off, solved, scored, tail = \
+            assembly_index(m, name, args.off)
         print('\n### сборка %r: чанк типов 0x%X, чанк методов 0x%X; '
               'dt = OFF(%d) + номер записи' % (name, KNOWN_ASSEMBLIES[name]['types'],
                                                KNOWN_ASSEMBLIES[name]['methods'], off))
@@ -921,6 +956,9 @@ def cmd_class(m, args):
               % (solved, scored[solved][0], scored[solved][1],
                  KNOWN_ASSEMBLIES[name]['off'], off,
                  '' if solved == off else '  <-- РАСХОЖДЕНИЕ'))
+        if tail:
+            print('    хвост региона (принадлежит СЛЕДУЮЩЕЙ сборке, исключён): %s'
+                  % ', '.join('rid %d dt %d %s' % t for t in tail))
         for k in sorted(by_pos):
             rec = by_pos[k]
             nm = m.raw_name(m.u32(rec, TYPE_NAME)) or ''
@@ -940,7 +978,7 @@ def cmd_class(m, args):
     if not found:
         print('\nтип %r не найден в сборках %s' % (args.name, ', '.join(names)))
         print('если он в другой сборке: найди её чанк по уникальному имени '
-              '(lattice_types от候选-адреса) и добавь в KNOWN_ASSEMBLIES')
+              '(lattice_types от адреса-кандидата) и добавь в KNOWN_ASSEMBLIES')
         return 1
     return 0
 
@@ -990,13 +1028,16 @@ def cmd_dump(m, args):
         f.write('# globalTypeIndex = OFF + порядковый номер записи типа (НЕ rid токена);\n'
                 '# метод принадлежит типу, если его declaringType == globalTypeIndex\n')
         for name in names:
-            by_pos, toks, groups, methods, off, solved, scored = \
+            by_pos, toks, groups, methods, off, solved, scored, tail = \
                 assembly_index(m, name, args.off)
             f.write('\n### СБОРКА %s: чанк типов 0x%08X (%d записей) <-> чанк методов '
                     '0x%08X (%d записей), OFF=%d (подбор: лучший %d -> %d/%d)\n'
                     % (name, KNOWN_ASSEMBLIES[name]['types'], len(by_pos),
                        KNOWN_ASSEMBLIES[name]['methods'], len(methods), off,
                        solved, scored[solved][0], scored[solved][1]))
+            if tail:
+                f.write('# хвост региона методов (следующая сборка, исключён): %s\n'
+                        % ', '.join('rid %d dt %d %s' % t for t in tail))
             for k in sorted(by_pos):
                 rec = by_pos[k]
                 ms = groups.get(off + k, [])
