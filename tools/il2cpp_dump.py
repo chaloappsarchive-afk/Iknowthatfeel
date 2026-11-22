@@ -94,12 +94,39 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--cache", default="work/global-metadata.dec.dat")
     ap.add_argument("-o", "--out", default="analysis/Dump.cs")
     ap.add_argument("--assembly", choices=("game", "all"), default="game")
+    ap.add_argument("--rvas", default="",
+                    help="JSON от `il2cpp_so.py dump-rvas`: тогда у каждого метода "
+                         "печатаются RVA и Offset из libil2cpp.so")
     ap.add_argument("--no-heap-fields", action="store_true",
                     help="не печатать эвристику полей из кучи имён")
     args = ap.parse_args(argv)
 
     B = open(args.cache, "rb").read()
     m = T.load(args.metadata, args.cache)
+
+    # --- таблица RVA из libil2cpp.so (необязательно) ------------------------
+    # JSON делает `tools/il2cpp_so.py dump-rvas`: там rid метода -> vaddr из
+    # массива Il2CppCodeGenModule.methodPointers и сегменты PT_LOAD, по которым
+    # vaddr переводится в файловый offset.
+    rva_tab: dict[int, int] = {}
+    rva_meta: dict = {}
+    if args.rvas:
+        import json as _json
+        rva_meta = _json.loads(Path(args.rvas).read_text())
+        rva_tab = {int(k): v for k, v in rva_meta.get("rva", {}).items() if v}
+        _loads = rva_meta.get("loads", [])
+
+        def vaddr_to_off(va: int):
+            for v, o, sz, _f in _loads:
+                if v <= va < v + sz:
+                    return o + (va - v)
+            return None
+        print("# RVA: загружено %d ненулевых указателей из %s (methodCount=%s, %s)"
+              % (len(rva_tab), args.rvas, rva_meta.get("method_count"),
+                 rva_meta.get("arch")))
+    else:
+        def vaddr_to_off(va: int):
+            return None
     HB = m.B
     tchunks, mchunks, pchunks = m.types(), m.methods(), m.properties()
 
@@ -154,9 +181,22 @@ def main(argv: list[str] | None = None) -> int:
     w("// Dump.cs — объявления, восстановленные из apk/global-metadata.dat")
     w("// com.chaloapps.roosterrudy (Chicken Gun 6.5.3), IL2CPP, обфусцированные метаданные")
     w("//")
-    w("// Сгенерировано tools/il2cpp_dump.py. Il2CppDumper этот файл не берёт: заголовок")
-    w("// испорчен намеренно, а libil2cpp.so отсутствует (RVA/Offset взять неоткуда).")
+    w("// Сгенерировано tools/il2cpp_dump.py. Il2CppDumper этот файл не берёт:")
+    if rva_tab:
+        w("// заголовок исходных метаданных испорчен намеренно, поэтому таблицы")
+        w("// восстановлены вручную, а адреса взяты из libil2cpp.so (--rvas).")
+    else:
+        w("// заголовок исходных метаданных испорчен намеренно, а libil2cpp.so")
+        w("// отсутствует — RVA/Offset взять неоткуда. Как появится, перегенерируй с")
+        w("// --rvas work/method_rvas.json (таблицу делает tools/il2cpp_so.py).")
     w("//")
+    if rva_tab:
+        w("// RVA/Offset: из libil2cpp.so, массив Il2CppCodeGenModule.methodPointers")
+        w("// (%s, methodCount=%s, ненулевых указателей %d). Отсутствие строки RVA у"
+          % (rva_meta.get("arch"), rva_meta.get("method_count"), len(rva_tab)))
+        w("// метода значит, что указатель нулевой (abstract/pinvoke) либо rid вне")
+        w("// таблицы бинарника.")
+        w("//")
     w("// ЗАГЛУШКИ (подробно — в docstring инструмента):")
     w("//   * все возвраты напечатаны как void, все параметры как object pN: колонка +0")
     w("//     MethodDef индексом типа возврата не является;")
@@ -230,6 +270,11 @@ def main(argv: list[str] | None = None) -> int:
                     w("%s\t// rid=%d  пар=%d  slot=%s  flags=0x%X (%s)  колонка+0=%d  token=0x%08X"
                       % (ind, rid, pc, "—" if slot == 0xFFFF else slot, flags, bits,
                          m.u32(rec, 0), m.u32(rec, T.METH_TOK)))
+                    if rid in rva_tab:
+                        va = rva_tab[rid]
+                        fo = vaddr_to_off(va)
+                        w("%s\t// RVA: 0x%X  Offset: %s   [из methodPointers libil2cpp.so]"
+                          % (ind, va, "0x%X" % fo if fo is not None else "—"))
                     ps = ", ".join("object p%d" % i for i in range(pc))
                     if nm == ".ctor":
                         w("%s\t%s%s(%s) { }" % (ind, ACCESS.get(flags & 7, ""), cls, ps))

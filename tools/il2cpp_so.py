@@ -350,9 +350,13 @@ def cmd_dump_rvas(a):
     so = So(a.so)
     mod = pick_module(find_codegen_modules(so, a.image), a.image)
     rvas = read_rvas(so, mod)
+    # PT_LOAD кладём сюда же: по нему потребитель (tools/il2cpp_dump.py --rvas)
+    # переводит vaddr в файловый offset, не перечитывая .so
     out = {"image": a.image, "method_count": mod["method_count"],
+           "arch": so.machine, "bits": so.bits,
            "struct_vaddr": mod["struct_vaddr"],
            "method_pointers_vaddr": mod["method_pointers_vaddr"],
+           "loads": [list(x) for x in so.loads],
            "rva": {str(k): v for k, v in sorted(rvas.items())}}
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     Path(a.out).write_text(json.dumps(out))

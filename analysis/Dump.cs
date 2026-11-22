@@ -2,8 +2,10 @@
 // Dump.cs — объявления, восстановленные из apk/global-metadata.dat
 // com.chaloapps.roosterrudy (Chicken Gun 6.5.3), IL2CPP, обфусцированные метаданные
 //
-// Сгенерировано tools/il2cpp_dump.py. Il2CppDumper этот файл не берёт: заголовок
-// испорчен намеренно, а libil2cpp.so отсутствует (RVA/Offset взять неоткуда).
+// Сгенерировано tools/il2cpp_dump.py. Il2CppDumper этот файл не берёт:
+// заголовок исходных метаданных испорчен намеренно, а libil2cpp.so
+// отсутствует — RVA/Offset взять неоткуда. Как появится, перегенерируй с
+// --rvas work/method_rvas.json (таблицу делает tools/il2cpp_so.py).
 //
 // ЗАГЛУШКИ (подробно — в docstring инструмента):
 //   * все возвраты напечатаны как void, все параметры как object pN: колонка +0
