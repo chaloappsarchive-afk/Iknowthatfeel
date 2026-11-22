@@ -298,9 +298,19 @@ size(string)=88665, size(images)=24, size(assemblies)=64
 
   | регион | своих записей | хвост | dt хвоста | владелец хвоста |
   |---|---|---|---|---|
-  | игровая `0x411540` | 9 183 | rid 9184 `ReleaseGssBuffer` | 4904 | `System.dll!NetSecurityNative` |
-  | PUN `0x66A0F8` | 473 | rid 474 `CreateWebRequest` | 15896 | `TriLibCore!AssetDownloader` |
-  | TriLibCore `0x66D884` | 673 | rid 674 `get_debug` | 15981 | следующая сборка (рядом `set_debug`, rid 1) |
+  | игровая `0x411540` | 9 183 | rid 9184 `ReleaseGssBuffer` | 4904 | `System.dll!NetSecurityNative` (k=5) |
+  | System.dll `0x454980` | 8 627 | rid 8628 `.ctor` | 6125 | следующая сборка (k=1) |
+  | PUN `0x66A0F8` | 473 | rid 474 `CreateWebRequest` | 15896 | `TriLibCore!AssetDownloader` (k=2) |
+  | TriLibCore `0x66D884` | 673 | rid 674 `get_debug` | 15981 | `UnityEngine!AndroidJNIHelper` (k=3) |
+
+  Глобальные индексы типов **смежны по сборкам**: OFF следующей сборки = OFF предыдущей
+  + число её типов. Так System.dll получила OFF = 3401 + 1498 = **4899** (подбор по
+  compiler-generated типам 103/104, чанк типов `0xADFB2C`, 1 225 записей), TriLibCore —
+  15832 + 62 = **15894** (52/52), а сборка UnityEngine JNI — 15894 + 84 = **15978**.
+  Механическая проверка хвоста игровой сборки: у `NetSecurityNative` (k=5 → dt 4904)
+  в её регионе `0x454980` ровно 14 методов (`DisplayMinorStatus` … `UnwrapBuffer`), и
+  `ReleaseGssBuffer` среди них нет — он лежит в хвосте игрового региона. Подробно —
+  [`photon-assembly.md`](photon-assembly.md) §5.
 
   Владелец хвоста устанавливается порядком кучи имён: `System.dll` (heap 637727) →
   `NetSecurityNative` (637738) → `bufferPtr` (637756) → `ReleaseGssBuffer` (637766) →

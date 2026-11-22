@@ -190,14 +190,35 @@
 
 ### 5.1 Правило: регион методов заканчивается чужой записью
 
-Во всех трёх разобранных сборках последняя запись региона методов ссылается на тип
-**следующей** сборки, а записей с `declaringType` ниже своего диапазона нет вовсе:
+Во всех четырёх разобранных регионах последняя запись ссылается на тип **следующей**
+сборки, а записей с `declaringType` ниже своего диапазона нет вовсе:
 
-| сборка | чанк методов | своих записей | хвост | dt хвоста | чей это метод |
-|---|---|---|---|---|---|
-| игровая | `0x411540` | 9 183 (rid 1..9183) | rid 9184 `ReleaseGssBuffer` | 4904 | `System.dll!NetSecurityNative` |
-| PUN | `0x66A0F8` | 473 (rid 1..473) | rid 474 `CreateWebRequest` | 15896 | `TriLibCore!AssetDownloader` |
-| TriLibCore | `0x66D884` | 673 (rid 1..673) | rid 674 `get_debug` | 15981 | следующая сборка (рядом `set_debug`, rid 1) |
+| регион методов | своих записей | хвост | dt хвоста | чей это метод |
+|---|---|---|---|---|
+| игровая `0x411540` | 9 183 (rid 1..9183) | rid 9184 `ReleaseGssBuffer` | 4904 | `System.dll!NetSecurityNative` (k=5) |
+| System.dll `0x454980` | 8 627 (rid 1..8627) | rid 8628 `.ctor` | 6125 | следующая сборка (k=1) |
+| PUN `0x66A0F8` | 473 (rid 1..473) | rid 474 `CreateWebRequest` | 15896 | `TriLibCore!AssetDownloader` (k=2) |
+| TriLibCore `0x66D884` | 673 (rid 1..673) | rid 674 `get_debug` | 15981 | `UnityEngine!AndroidJNIHelper` (k=3; `set_debug` — rid 1 следующего региона) |
+
+**Глобальные индексы типов смежны по сборкам**, поэтому OFF каждой следующей сборки
+равен OFF предыдущей плюс число её типов. Правило предсказывает OFF, который потом
+подтверждается подбором по compiler-generated типам:
+
+| граница | предсказание | подтверждение |
+|---|---|---|
+| игровая → System.dll | 3401 + 1498 = **4899** | `solve_type_off` 103/104; чанк типов `0xADFB2C` (1 225 записей: `GssApiException`, `GssBuffer`, `Status`, `GssFlags`, `NetSecurityNative`, …) |
+| System.dll → следующая | 4899 + 1225 = **6124** | dt хвоста 6125 = k=1 |
+| PUN → TriLibCore | 15832 + 62 = **15894** | `solve_type_off` 52/52 |
+| TriLibCore → UnityEngine JNI | 15894 + 84 = **15978** | подбор здесь слабый (1/1: в сборке почти нет compiler-generated типов), но dt 15981 = k=3 чанка `0xBAD440` (`jvalue`, `JNINativeMethod`, `AndroidJNIHelper`, `JStringBinding`, `AndroidJNI`), а `debug` — это свойство именно `AndroidJNIHelper`, не `AndroidJNI` |
+
+Хвост игровой сборки доказан не только порядком кучи, но и механически: у
+`NetSecurityNative` (k=5 → dt 4904) в её собственном регионе `0x454980` ровно **14**
+методов — `DisplayMinorStatus`, `DisplayMajorStatus`, `ImportUserName`,
+`ImportPrincipalName`, `ReleaseName`, `InitiateCredSpNego`, `InitiateCredWithPassword`,
+`ReleaseCred`, `InitSecContext`, `DeleteSecContext`, `Wrap`, `Unwrap`, `WrapBuffer`,
+`UnwrapBuffer` — и `ReleaseGssBuffer` среди них **нет**: он лежит в хвосте игрового
+региона. Куча при этом ставит `ReleaseGssBuffer` (637766) перед `DisplayMinorStatus`
+(637807), то есть это первый метод типа, физически оказавшийся в чужом регионе.
 
 Принадлежность хвоста игровой сборки доказана тем же способом — порядком кучи имён:
 `System.dll` (heap 637727) → `NetSecurityNative` (637738) → `bufferPtr` (637756) →
@@ -205,12 +226,14 @@
 `InitiateCredSpNego`, `GssApiException`, `GssBuffer`, `GSS_S_*` — всё это GSSAPI-обвязка
 `System.dll`, а не `Assembly-CSharp`.
 
-Отсюда два следствия:
+Отсюда три следствия:
 
 * «сирота» `ReleaseGssBuffer` в `Dump.cs` больше не сирота — это метод другой сборки,
   и `T.split_tail()` исключает его из артефактов (в game-only метадате теперь 9 183 метода);
 * число методов сборки, которое даст `so_recon.sh` (`methodCount` из
-  `Il2CppCodeGenModule`), надо сверять с «своими» записями, а не с длиной региона.
+  `Il2CppCodeGenModule`), надо сверять с «своими» записями, а не с длиной региона;
+* OFF сборки можно **предсказать** по предыдущей (таблица выше), что даёт проверку
+  подбору `solve_type_off` там, где compiler-generated типов мало.
 
 ### 5.2 TriLibCore (картирована попутно)
 
@@ -226,6 +249,16 @@
 k=6 `<>c` (token rid 4). Чанк типов заканчивается на `0xBAD3F4` (k=84, имя затёрто),
 следующая запись `0xBAD440` — токен `0x02000001`, имя `jvalue`.
 Сборка доступна в CLI: `class --assembly trilib --name AssetDownloader --methods`.
+
+### 5.3 System.dll (картирована по хвосту)
+
+| таблица | база чанка | записей | OFF | подбор |
+|---|---|---|---|---|
+| `TypeDefinition` | `0xADFB2C` | 1 225 | **4899** | 103 / 104 |
+| `MethodDefinition` | `0x454980` | 8 627 своих (+1 хвост) | — | — |
+
+Найдена именно потому, что на неё указал хвост игровой сборки. В CLI:
+`class --assembly system --name NetSecurityNative --methods`.
 
 ---
 

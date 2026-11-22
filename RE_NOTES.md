@@ -46,7 +46,7 @@
 | `tools/pun_probe.py` | read-only наблюдатель PUN2-трафика: `check` (офлайн-справка по кодам событий 200/201/202/204/207/254, структуре RPC и INSTANTIATION, формуле `viewId = actorNr*1000 + subId`), `create`/`join` (подключение к Photon и лог входящих событий в JSONL). Ничего не отправляет в игровом трафике; AppId берёт из `--app-id` / `PHOTON_APP_ID` / `work/photon_appid.txt` (в git не лежит). Библиотека — `third_party/Photon-PUN2-Python` | `check` — работает; `create` — импорт и handshake-путь проверены, но UDP-выход на `ns.photonengine.io:5058` из песочницы закрыт (TimeoutError), живой прогон только снаружи |
 | `tools/il2cpp_decrypt.py` | `probe`/`decrypt`: подбирает фазу XOR для каждого 256-байтового блока (`plain[i] = cipher[i] ^ ((i + C) & 0xFF)`), собирает карту фаз, пишет расшифрованную копию; `heal`/`heal_by_tokens`: чинит фазы по 4-байтовому крибу токена (`0x06000000\|rid` на `+12`), `load()` в `il2cpp_tables.py` вызывает его сам | реальный `global-metadata.dat`: читаемых имён 4 727 → 128 301; `heal`: исправлено 749 блоков (все C=111), записей MethodDef 117 969 → 118 603, идемпотентно |
 | `tools/il2cpp_heap.py` | `stats`/`dump`/`find`/`context` по куче имён: база `B = 0xB7CA4`, поиск по regex, печать соседей строки (`--before/--after`) | 121 886 имён; `ClearBots` — 0, `bot` — 184 |
-| `tools/il2cpp_tables.py` | **главный инструмент**: разбирает таблицы без заголовка (`layout`/`chunks`/`class`/`method`/`grep`/`dump`). `class`/`dump` работают по `KNOWN_ASSEMBLIES` (game `0xAC3E74`/`0x411540`, photon `0xBAA8E8`/`0x66A0F8`, trilib `0xBABB50`/`0x66D884`) и связывают `globalTypeIndex = OFF + порядковый номер записи`, OFF подбирается сам (`solve_type_off`) и сверяется с известным; `lattice_types`/`lattice_methods`/`type_positions` обходят чанк решёткой, `split_tail` отсекает последнюю запись региона (она принадлежит следующей сборке), `infer_base_classes` даёт вероятных предков по (имя виртуала, slot), `resolve_property_owners` — владельцев свойств | `BotController` (индекс 932, 27 методов), `GameController` (485, 62), `Bodyguard` (925, 21), `BombMonster` (927, 4), `PhotonNetwork` (21, 186); подбор OFF: game 3401 → 406/410, photon 15832 → 8/8, trilib 15894 → 52/52 |
+| `tools/il2cpp_tables.py` | **главный инструмент**: разбирает таблицы без заголовка (`layout`/`chunks`/`class`/`method`/`grep`/`dump`). `class`/`dump` работают по `KNOWN_ASSEMBLIES` (game `0xAC3E74`/`0x411540`, system `0xADFB2C`/`0x454980`, photon `0xBAA8E8`/`0x66A0F8`, trilib `0xBABB50`/`0x66D884`) и связывают `globalTypeIndex = OFF + порядковый номер записи`, OFF подбирается сам (`solve_type_off`) и сверяется с известным; `lattice_types`/`lattice_methods`/`type_positions` обходят чанк решёткой, `split_tail` отсекает последнюю запись региона (она принадлежит следующей сборке), `infer_base_classes` даёт вероятных предков по (имя виртуала, slot), `resolve_property_owners` — владельцев свойств | `BotController` (индекс 932, 27 методов), `GameController` (485, 62), `Bodyguard` (925, 21), `BombMonster` (927, 4), `PhotonNetwork` (21, 186), `NetSecurityNative` (5, 14); подбор OFF: game 3401 → 406/410, system 4899 → 103/104, photon 15832 → 8/8, trilib 15894 → 52/52 |
 
 Реальные проверки: `apk_recon.py manifest/dex` прогнаны на настоящих APK
 (`TestActivity.apk`, `a2dp.Vol_137.apk` из тестовых данных androguard) — манифест
@@ -153,9 +153,12 @@ compiler-generated типам (`<X>d__N` → обязан быть `MoveNext`; `
 (52/52). Полный разбор обеих — `analysis/photon-assembly.md`.
 
 **Хвост региона методов.** Последний метод каждого региона принадлежит **следующей**
-сборке, а не своей: rid 9184 `ReleaseGssBuffer` (dt 4904) — это `System.dll!NetSecurityNative`,
-rid 474 `CreateWebRequest` (dt 15896) — `TriLibCore!AssetDownloader`, rid 674 `get_debug`
-(dt 15981) — сборка после TriLibCore. Владелец доказывается порядком кучи имён
+сборке, а не своей: rid 9184 `ReleaseGssBuffer` (dt 4904) — это `System.dll!NetSecurityNative`
+(k=5, у неё 14 своих методов в регионе `0x454980`, и этого среди них нет), rid 8628 `.ctor`
+(dt 6125) — сборка после System.dll, rid 474 `CreateWebRequest` (dt 15896) —
+`TriLibCore!AssetDownloader`, rid 674 `get_debug` (dt 15981) — `UnityEngine!AndroidJNIHelper`.
+**OFF следующей сборки = OFF предыдущей + число её типов**: 3401+1498 = 4899 (System.dll,
+подбор 103/104), 4899+1225 = 6124, 15832+62 = 15894 (TriLibCore, 52/52), 15894+84 = 15978. Владелец доказывается порядком кучи имён
 (`System.dll` → `NetSecurityNative` → `bufferPtr` → `ReleaseGssBuffer`), а dt точно
 попадает на тип соседней сборки. Исключает `T.split_tail()`; раньше этот метод
 числился «сиротой без владельца».

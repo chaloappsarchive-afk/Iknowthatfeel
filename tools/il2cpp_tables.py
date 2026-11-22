@@ -751,8 +751,13 @@ def score_offset(m, by_dt, type_chunk, off):
 # Сборки, чанки которых разобраны вручную: эвристика chunks() эти регионы
 # фрагментирует, поэтому обход делается решёткой от известного адреса.
 # off — НЕ данность: его перепроверяет solve_type_off (см. analysis/metadata-repair.md §1.6).
+# Глобальные индексы типов СМЕЖНЫ по сборкам, поэтому off каждой следующей сборки
+# равен off предыдущей + число её типов: 3401+1498 = 4899 (System.dll),
+# 15832+62 = 15894 (TriLibCore), 15894+84 = 15978 (UnityEngine JNI), 4899+1225 = 6124.
+# Это независимая перекрёстная проверка off — см. analysis/photon-assembly.md §5.
 KNOWN_ASSEMBLIES = collections.OrderedDict((
     ('game',   {'types': 0xAC3E74, 'methods': 0x411540, 'max_rid': 20000, 'off': 3401}),
+    ('system', {'types': 0xADFB2C, 'methods': 0x454980, 'max_rid': 20000, 'off': 4899}),
     ('photon', {'types': 0xBAA8E8, 'methods': 0x66A0F8, 'max_rid': 9999,  'off': 15832}),
     ('trilib', {'types': 0xBABB50, 'methods': 0x66D884, 'max_rid': 9999,  'off': 15894}),
 ))
