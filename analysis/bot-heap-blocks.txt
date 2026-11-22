@@ -1,0 +1,220 @@
+Блоки кучи имён игровой сборки (чанк типов 0xAC3E74, чанк методов 0x411540, OFF=3400).
+Непокрытые строки внутри блока типа = его поля/свойства/события (таблица FieldDef игровой сборки в этой упаковке не локализована).
+
+===== GameController: начало блока (поля eventCode/eventContent/receivers) =====
+  528094   GameController                 ТИП   rid=486 GameController
+  528109   get_GameStartTime              МЕТОД GameController(rid=2609 dt=3886 p=0 slot=65535 БЕЗПАРАМ)
+  528127   eventCode                      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  528137   eventContent                   --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  528150   receivers                      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  528160   SendMyEvent                    МЕТОД GameController(rid=2612 dt=3886 p=0 slot=65535 БЕЗПАРАМ)
+  528172   CheckIsMapValid                МЕТОД GameController(rid=2614 dt=3886 p=1 slot=4)
+  528188   InitVars                       МЕТОД GameController(rid=2615 dt=3886 p=0 slot=65535 БЕЗПАРАМ)
+  528197   OnCompletlyConnected           МЕТОД GameController(rid=2617 dt=3886 p=0 slot=65535 БЕЗПАРАМ)
+
+===== GameController: проверки лимитов и поле characterMotor перед CheckIsSpawnedBot =====
+  528961   invObjId                       --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  528970   spawnLimit                     --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  528981   IsInvObjLimitReached           МЕТОД GameController(rid=2664 dt=3886 p=2 slot=65535)
+  529002   IsVehiclesLimitReached         МЕТОД GameController(rid=2665 dt=3886 p=0 slot=65535 БЕЗПАРАМ)
+  529025   characterMotor                 --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  529040   CheckIsSpawnedBot              МЕТОД GameController(rid=2666 dt=3886 p=0 slot=65535 БЕЗПАРАМ)
+  529058   HandleCorruptedPlayer          МЕТОД GameController(rid=2667 dt=3886 p=1 slot=65535)
+  529080   UpdateFPS                      МЕТОД GameController(rid=2668 dt=3886 p=1 slot=65535)
+  529090   playerConfigData               --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  529107   Players                        --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  529115   TimeUntilTheEndOfLevel         --- непокрытое: поле / свойство / событие / элемент перечисления ---
+
+===== GameController: <>c, кэшированные делегаты <>9__NN_M и display-классы =====
+  529703   OtherTeamScore                 --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  529718   MatchTimeEnded                 ТИП   rid=474 MatchTimeEnded
+  529733   <CheckBattleRoyaleAlives>b__81 МЕТОД <>c(rid=2677 dt=3876 p=0 slot=65535 БЕЗПАРАМ)
+  529766   <CheckBattleRoyaleAlives>b__81 МЕТОД <>c(rid=2678 dt=3876 p=1 slot=65535)
+  529799   <CheckBattleRoyaleAlives>b__81 МЕТОД <>c(rid=2679 dt=3876 p=1 slot=65535)
+  529832   <CheckBattleRoyaleAlives>b__81 МЕТОД <>c(rid=2680 dt=3876 p=1 slot=65535)
+  529865   <CleanTiters>b__88_0           МЕТОД <>c(rid=2681 dt=3876 p=1 slot=65535)
+  529886   it                             --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  529889   <IsVehiclesLimitReached>b__97_ МЕТОД <>c(rid=2682 dt=3876 p=1 slot=65535)
+  529921   <CheckIsSpawnedBot>b__99_0     МЕТОД <>c(rid=2683 dt=3876 p=1 slot=65535)
+  529948   <>9__81_0                      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  529958   <>9__81_1                      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  529968   <>9__81_2                      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  529978   <>9__81_3                      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  529988   <>9__88_0                      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  529998   <>9__97_0                      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  530008   <>9__99_0                      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  530018   <>c__DisplayClass94_0          ТИП   rid=477 <>c__DisplayClass94_0
+  530040   <IsMyLimitReached>b__0         МЕТОД <>c__DisplayClass94_0(rid=2685 dt=3877 p=0 slot=65535 БЕЗПАРАМ) | <>c__DisplayClass95_0(rid=2687 dt=3878 p=0 slot=65535 БЕЗПАРАМ)
+  530063   <>c__DisplayClass95_0          ТИП   rid=478 <>c__DisplayClass95_0
+  530085   <>c__DisplayClass99_0          ТИП   rid=479 <>c__DisplayClass99_0
+  530107   <CheckIsSpawnedBot>b__1        МЕТОД <>c__DisplayClass99_0(rid=2689 dt=3879 p=0 slot=65535 БЕЗПАРАМ)
+  530131   <DestroyDisconnectedPlayer>d__ ТИП   rid=480 <DestroyDisconnectedPlayer>d__45
+
+===== Семейство спавнеров: ESZombieSpawnEmitter/ESZombieManager/SpawnZType/ESZombieSpawnTrigger/ESHudItem =====
+  499843   ESZombieManager                ТИП   rid=238 ESZombieManager
+  499859   get_CurMaxZCount               МЕТОД ESZombieManager(rid=1206 dt=3638 p=0 slot=65535 БЕЗПАРАМ) | CFX_AutoStopLoopedEffect(rid=1317 dt=3657 p=0 slot=65535 БЕЗПАРАМ)
+  499876   monsterInfo                    --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  499888   CreateMonster                  МЕТОД ESZombieManager(rid=1208 dt=3638 p=0 slot=65535 БЕЗПАРАМ)
+  499902   CreateBossMonster              МЕТОД ESZombieManager(rid=1209 dt=3638 p=2 slot=65535)
+  499920   maxBossZombCount               --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  499937   CurMaxZCount                   --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  499950   <CreateBossMonster>b__6_0      МЕТОД ESZombieSpawnEmitter(rid=1213 dt=3637 p=0 slot=65535 БЕЗПАРАМ)
+  499976   ESZombieSpawnEmitter           ТИП   rid=237 ESZombieSpawnEmitter
+  499997   get_SpawnPoints                МЕТОД SpawnZType(rid=1215 dt=3639 p=0 slot=65535 БЕЗПАРАМ) | ESHudItem(rid=1220 dt=3641 p=0 slot=65535 БЕЗПАРАМ) | GeneralZombieSpawnTrigger(rid=2845 
+  500013   SpawnZombie                    МЕТОД SpawnZType(rid=1217 dt=3639 p=1 slot=65535) | CFX_AutoStopLoopedEffect(rid=1316 dt=3657 p=0 slot=65535 БЕЗПАРАМ)
+  500025   spawnPeriod                    --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  500037   allowedMonsters                --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  500053   spawnZType                     --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  500064   spawnIfActivated               --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  500081   triggerCollider                --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  500097   _activated                     --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  500108   _spawnPoints                   --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  500121   SpawnPoints                    --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  500133   SpawnZType                     ТИП   rid=239 SpawnZType
+  500144   RandomOne                      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  500154   AllAtTime                      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  500164   ESZombieSpawnTrigger           ТИП   rid=240 ESZombieSpawnTrigger
+  500185   SpawnZombies                   МЕТОД ESHudItem(rid=1222 dt=3641 p=1 slot=65535) | GeneralZombieSpawnTrigger(rid=2847 dt=3894 p=1 slot=65535)
+  500198   SpawnMob                       МЕТОД ESHudItem(rid=1223 dt=3641 p=0 slot=65535 БЕЗПАРАМ) | GeneralZombieSpawnTrigger(rid=2848 dt=3894 p=0 slot=65535 БЕЗПАРАМ)
+  500207   isBossType                     --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  500218   spawnOnEveryTriggerEvent2      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  500244   activated                      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  500254   EliteSquadHudManager           ТИП   rid=244 EliteSquadHudManager
+
+===== GeneralZombieSpawnTrigger: mySpawnedBots и MaxBotsCount =====
+  533573   <cg>5__2                       --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  533582   GeneralZombieSpawnTrigger      ТИП   rid=494 GeneralZombieSpawnTrigger
+  533608   mySpawnedBots                  --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  533622   MaxBotsCount                   --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  533635   <SpawnMob>b__12_0              МЕТОД HPBar(rid=2853 dt=3893 p=0 slot=65535 БЕЗПАРАМ)
+  533653   HPBar                          ТИП   rid=493 HPBar
+  533659   SetTeamName                    МЕТОД <Start>d__7(rid=2857 dt=3895 p=1 slot=65535)
+  533671   UpdateHP                       МЕТОД <Start>d__7(rid=2858 dt=3895 p=1 slot=65535) | HipPointsWidget(rid=2863 dt=3897 p=0 slot=65535 БЕЗПАРАМ) | SantaGirlBodyguard(rid=5659 dt=4326 p
+  533680   HPLine                         --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  533687   teamName                       --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  533696   teamIcon                       --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  533705   initWidth                      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  533715   HipPointsWidget                ТИП   rid=497 HipPointsWidget
+
+===== RaceCarController: SetAsBot и блок полей (isBot, followAI, driverName, carID, Alive) =====
+  537442   RaceCarController              ТИП   rid=520 RaceCarController
+  537460   get_carID                      МЕТОД RaceCarController(rid=3045 dt=3920 p=0 slot=65535 БЕЗПАРАМ)
+  537470   ResetPhysicsForStart           МЕТОД RaceCarController(rid=3049 dt=3920 p=0 slot=65535 БЕЗПАРАМ)
+  537491   SetAsBot                       МЕТОД RaceCarController(rid=3050 dt=3920 p=0 slot=65535 БЕЗПАРАМ)
+  537500   myParticipantUnit              --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  537518   SetParticipantInfo             МЕТОД RaceCarController(rid=3051 dt=3920 p=1 slot=65535)
+  537537   GetDamage                      МЕТОД RaceCarController(rid=3053 dt=3920 p=0 slot=65535 БЕЗПАРАМ) | EnemyBullet(rid=7754 dt=4689 p=0 slot=65535 БЕЗПАРАМ) | Tower(rid=7780 dt=4696 p=0
+  537547   GetCrashed                     МЕТОД RaceCarController(rid=3054 dt=3920 p=1 slot=65535)
+  537558   HpNormalized                   МЕТОД RaceCarController(rid=3056 dt=3920 p=0 slot=65535 БЕЗПАРАМ)
+  537571   get_Alive                      МЕТОД RaceCarController(rid=3057 dt=3920 p=0 slot=65535 БЕЗПАРАМ) | Vehicle(rid=7534 dt=4643 p=0 slot=65535 БЕЗПАРАМ)
+  537581   FindCarTarget                  МЕТОД RaceCarController(rid=3058 dt=3920 p=0 slot=65535 БЕЗПАРАМ)
+  537595   RaceCarCreated                 --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  537610   RaceCarLeaved                  МЕТОД RaceGameController(rid=3100 dt=3930 p=1 slot=65535) | RaceHudManager(rid=3184 dt=3946 p=1 slot=65535)
+  537624   initHP                         --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  537631   HpUpdated                      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  537641   vehicleParent                  --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  537655   followAI                       --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  537664   CarCrashed                     --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  537675   driverName                     --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  537686   isBot                          --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  537692   explosionPivot                 --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  537707   carID                          --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  537713   Alive                          --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  537719   <GetCrashed>d__24              ТИП   rid=517 <GetCrashed>d__24
+  537737   <Start>d__14                   ТИП   rid=519 <Start>d__14
+  537750   Tournament                     ТИП   rid=518 Tournament
+
+===== SantaGirlBodyguard / BombMonster / BotAnimEvents / BotBodyPartDmgReceiver (myBot) / начало BotController =====
+  582563   OnMyOwnerDamaged               МЕТОД SantaGirlBodyguard(rid=5660 dt=4326 p=1 slot=65535)
+  582580   CheckAttack                    МЕТОД SantaGirlBodyguard(rid=5661 dt=4326 p=2 slot=65535) | BotController(rid=5689 dt=4333 p=0 slot=65535 БЕЗПАРАМ)
+  582592   StartAttack                    МЕТОД SantaGirlBodyguard(rid=5662 dt=4326 p=0 slot=7 БЕЗПАРАМ) | BotController(rid=5703 dt=4333 p=0 slot=16 БЕЗПАРАМ) | MosterSpine(rid=6037 dt=4377 p
+  582604   attackIndex                    --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  582616   StartAttackR                   МЕТОД SantaGirlBodyguard(rid=5663 dt=4326 p=0 slot=8 БЕЗПАРАМ) | BotController(rid=5704 dt=4333 p=0 slot=17 БЕЗПАРАМ) | CrashArenaBaseGun(rid=7271 dt=
+  582629   StopAttack                     МЕТОД SantaGirlBodyguard(rid=5664 dt=4326 p=1 slot=9) | BotController(rid=5705 dt=4333 p=0 slot=18 БЕЗПАРАМ) | MosterSpine(rid=6038 dt=4377 p=0 slot=6
+  582640   StopAttackR                    МЕТОД SantaGirlBodyguard(rid=5665 dt=4326 p=0 slot=10 БЕЗПАРАМ) | BotController(rid=5706 dt=4333 p=0 slot=19 БЕЗПАРАМ) | CrashArenaBaseGun(rid=7273 dt
+  582652   DamageTarget                   МЕТОД SantaGirlBodyguard(rid=5666 dt=4326 p=0 slot=11 БЕЗПАРАМ) | BotController(rid=5707 dt=4333 p=0 slot=20 БЕЗПАРАМ) | HuggyWuggyBot(rid=5734 dt=434
+  582665   UpdateCloneState               МЕТОД SantaGirlBodyguard(rid=5669 dt=4326 p=0 slot=13 БЕЗПАРАМ)
+  582682   myEnemy                        --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  582690   myOwner                        --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  582698   damagePerAttack                --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  582714   attackDist                     --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  582725   isAttacking                    --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  582737   hitAudio                       --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  582746   minDistToOwner                 --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  582761   lastChTime1                    --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  582773   isChasingOwner                 --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  582788   SantaGirlBodyguard             ТИП   rid=926 SantaGirlBodyguard
+  582807   BombMonster                    ТИП   rid=927 BombMonster
+  582819   DieR                           МЕТОД BotAnimEvents(rid=5674 dt=4328 p=0 slot=65535 БЕЗПАРАМ) | BotController(rid=5699 dt=4333 p=1 slot=65535) | DragonFireAttackEvents(rid=5721 dt=43
+  582824   BotAnimEvents                  ТИП   rid=928 BotAnimEvents
+  582838   AttackEvent                    МЕТОД BotBodyPartDmgReceiver(rid=5679 dt=4329 p=0 slot=65535 БЕЗПАРАМ) | MosterSpine(rid=6043 dt=4377 p=1 slot=65535)
+  582850   AttackEnd                      МЕТОД BotBodyPartDmgReceiver(rid=5680 dt=4329 p=0 slot=65535 БЕЗПАРАМ)
+  582860   PlayDieSound                   МЕТОД BotBodyPartDmgReceiver(rid=5681 dt=4329 p=0 slot=65535 БЕЗПАРАМ) | BotController(rid=5709 dt=4333 p=0 slot=22 БЕЗПАРАМ)
+  582873   ShootProjectile                МЕТОД BotBodyPartDmgReceiver(rid=5682 dt=4329 p=0 slot=65535 БЕЗПАРАМ) | BotController(rid=5710 dt=4333 p=0 slot=23 БЕЗПАРАМ)
+  582889   myBot                          --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  582895   BotBodyPartDmgReceiver         ТИП   rid=929 BotBodyPartDmgReceiver
+  582918   BotController                  ТИП   rid=933 BotController
+
+===== BotController: методы и полный блок полей =====
+  582918   BotController                  ТИП   rid=933 BotController
+  582932   PlaySpawnFX                    МЕТОД BotController(rid=5688 dt=4333 p=0 slot=9 БЕЗПАРАМ)
+  582944   FlashDamageFX                  МЕТОД BotController(rid=5693 dt=4333 p=2 slot=4)
+  582958   get_IsTopShaderDevice          МЕТОД BotController(rid=5694 dt=4333 p=0 slot=13 БЕЗПАРАМ)
+  582980   InitColor                      МЕТОД BotController(rid=5695 dt=4333 p=0 slot=65535 БЕЗПАРАМ)
+  582990   FlashDamageFXCrt               МЕТОД BotController(rid=5696 dt=4333 p=0 slot=65535 БЕЗПАРАМ)
+  583007   UpdateTarget                   МЕТОД BotController(rid=5702 dt=4333 p=1 slot=5)
+  583020   AttackEndEvent                 МЕТОД BotController(rid=5708 dt=4333 p=0 slot=21 БЕЗПАРАМ) | HuggyWuggyBot(rid=5735 dt=4342 p=0 slot=21 БЕЗПАРАМ) | <AttackPlayer>d__9(rid=5749 dt=434
+  583035   animation2                     --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583046   spawnFXPrefab                  --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583060   projectilePivot                --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583076   spawnFXPivot                   --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583089   attackAnimsCount               --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583106   agent                          --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583112   targetPoint                    --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583124   UpdateTargetPeriod             --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583143   destroyingDuration             --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583162   myVoiceAudio                   --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583175   dieSound                       --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583184   attack                         --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583191   renderSet                      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583201   initColor                      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583211   dmgFXCrt                       --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583220   bufMat                         --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583227   AttackIndex                    --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583239   IsTopShaderDevice              --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583257   BotRenderingSets               ТИП   rid=930 BotRenderingSets
+
+===== BotRenderingSets, <FlashDamageFXCrt>d__40, CartoonCatMob, ChickenZombieBot, HuggyWuggyBot, InvZombie, OtchimBot =====
+  583257   BotRenderingSets               ТИП   rid=930 BotRenderingSets
+  583274   damageColor                    --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583286   topDeviceMaterial              --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583304   emissionFlashColor             --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583323   <FlashDamageFXCrt>d__40        ТИП   rid=932 <FlashDamageFXCrt>d__40
+  583347   <isEmission>5__2               --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583364   CartoonCatMob                  ТИП   rid=931 CartoonCatMob
+  583378   ChickenZombieAnimEvents        ТИП   rid=934 ChickenZombieAnimEvents
+  583402   ChickenZombieBot               ТИП   rid=935 ChickenZombieBot
+  583419   DragonFireAttackEvents         ТИП   rid=936 DragonFireAttackEvents
+  583442   StartFire                      МЕТОД Egglet(rid=5723 dt=4337 p=0 slot=65535 БЕЗПАРАМ)
+  583452   StopFire                       МЕТОД Egglet(rid=5724 dt=4337 p=0 slot=65535 БЕЗПАРАМ)
+  583461   fire                           --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583466   Egglet                         ТИП   rid=937 Egglet
+  583473   myObjToSpawnAfterDeath         --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583496   GudzonHorseAnimEvents          ТИП   rid=938 GudzonHorseAnimEvents
+  583518   PlayStepSoundEvent             МЕТОД HorseAnimEvents(rid=5728 dt=4339 p=0 slot=65535 БЕЗПАРАМ)
+  583537   stepsAudioSource               --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583554   stepSound                      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583564   HorseAnimEvents                ТИП   rid=939 HorseAnimEvents
+  583580   HuggyWuggyBot                  ТИП   rid=942 HuggyWuggyBot
+  583594   EnableNavMeshAgent             МЕТОД HuggyWuggyBot(rid=5732 dt=4342 p=0 slot=9 БЕЗПАРАМ) | OtchimBot(rid=5753 dt=4345 p=0 slot=9 БЕЗПАРАМ)
+  583613   AttackPlayer                   МЕТОД HuggyWuggyBot(rid=5737 dt=4342 p=2 slot=25) | OtchimBot(rid=5758 dt=4345 p=2 slot=25)
+  583626   attackSound                    --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583638   <AttackPlayer>d__9             ТИП   rid=943 <AttackPlayer>d__9
+  583657   InvZombie                      ТИП   rid=941 InvZombie
+  583667   MoveToTarget                   МЕТОД <AttackPlayer>d__9(rid=5747 dt=4343 p=0 slot=65535 БЕЗПАРАМ)
+  583680   useNavMesh                     --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583691   attackFX                       --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583700   lookRotation                   --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583713   moveDelta                      --- непокрытое: поле / свойство / событие / элемент перечисления ---
+  583723   OtchimBot                      ТИП   rid=945 OtchimBot
+  583733   MoveToAhmedJailTrigger         ТИП   rid=944 MoveToAhmedJailTrigger
