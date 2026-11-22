@@ -35,6 +35,9 @@ rid=8675  ShowBannerBottom             (ложное срабатывание н
 ```
 
 Метода `ClearBots` в этой сборке нет — см. `analysis/ClearBots.md`.
+`GameController.CleanTiters` тоже **не про ботов**: это зачистка игроков
+(свойство `CharacterMotor.titer`) в конце Battle Royale — разбор в
+`analysis/CleanTiters.md`.
 
 ---
 
@@ -327,7 +330,7 @@ void SpawnMob()
 Запись `0x424D8E`, rid 2666, тип 3886 (`GameController`, rid 486):
 
 ```
-returnType (id в чанке) = 19708  -> bool
++0 = 19708                       -> вероятно bool (см. §7: колонка ненадёжна)
 parameterStart = 0xFFFF          -> параметров нет
 parameterCount = 0
 slot = 0xFFFF                    -> невиртуальный
@@ -450,9 +453,16 @@ MakeKill`, `OnMasterClientSwitched`, `SyncTeamScore`, `SendMyEvent`
   `myParticipantUnit` помечены как «поле или параметр соседнего метода».
 * Колонка `slot` достоверна не для всех записей (см. расхождение слотов
   `DamageTarget` у `BotController` и `OtchimBot`).
-* Индексы типов возврата (`returnType` @ +0) — локальные для чанка:
-  `36310` = void, `19708` = bool **внутри игрового чанка**; переносить эти
-  значения на другие сборки нельзя.
+* **Колонка `+0` — не надёжный индекс типа возврата.** Раньше она читалась как
+  `returnType` (`36310` = void, `19708` = bool внутри игрового чанка). Проверка
+  на `CharacterMotor` это опровергла: `get_isInAir`, `get_HP`, `get_MyBodyguard`
+  дают `36310`, а `set_titer` — `19708`. Значения годятся только как признак:
+  `36310` — самое частое (≈ void / «нет типа»), `19708` — общее для всех
+  предикатов и bool-проверок (`IsGrounded`, `get_IsAlive`, `IsMyLimitReached`,
+  `IsInvObjLimitReached`, `IsVehiclesLimitReached`, `FindCarTarget`,
+  `<CleanTiters>b__88_0`, `<IsVehiclesLimitReached>b__97_0`,
+  `<CheckIsSpawnedBot>b__99_0`). Поэтому «`CheckIsSpawnedBot` → `bool`» —
+  вероятный, а не доказанный факт. Подробности: `analysis/CleanTiters.md` §6.
 
 ---
 
