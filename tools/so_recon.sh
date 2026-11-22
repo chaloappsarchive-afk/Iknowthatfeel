@@ -107,16 +107,30 @@ RIDS=$(printf '%s\n' "$BOTS" | awk 'NF{printf " --rid %s", $1}')
   || echo "(rid вне таблицы methodPointers — значит methodCount меньше наших 9 184)"
 
 echo
-echo "################ 08-disasm ################"
-COUNT="${COUNT:-120}"
-printf '%s\n' "$BOTS" | while read -r rid label; do
-  [ -n "${rid:-}" ] || continue
-  case "$rid" in ''|*[!0-9]*) continue ;; esac
-  dst="$OUT/disasm/$rid.txt"
-  echo "  rid $rid -> $dst"
-  "$PY" "$TOOL" disasm "$SO" --rid "$rid" --count "$COUNT" --label "$label" \
-      >"$dst" 2>&1 || echo "    (не получилось: $(head -1 "$dst"))"
-done
+echo "################ 08-calls ################"
+# `calls`, а не `disasm`: он подписывает цели bl/b rid-ом и именем метода из
+# метаданных. Без подписей bl-цель — просто число, и вопрос «зовёт ли игра
+# библиотечный PhotonNetwork.Destroy» по такому листингу не решить.
+COUNT="${COUNT:-200}"
+META="${META:-$ROOT/apk/global-metadata.dat}"
+CACHE="${CACHE:-$ROOT/work/global-metadata.dec.dat}"
+NAMES=""
+[ -f "$META" ] && [ -f "$CACHE" ] && NAMES="--metadata $META --cache $CACHE"
+
+# Подписи из списка складываем рядом с листингами: в батч-режиме --label один на
+# все rid, а пояснения «что именно здесь интересно» терять не хочется.
+printf '%s\n' "$BOTS" | awk 'NF{printf "# rid %-6s %s\n", $1, substr($0, index($0,$2))}' \
+  > "$OUT/disasm/_index.txt"
+
+# ОДИН вызов на все rid: имена методов из метаданных грузятся один раз. По одному
+# rid за прогон расшифрованные метаданные перечитывались каждый раз, и 26 методов
+# стоили около четырёх минут вместо нескольких секунд.
+RID_ARGS=$(printf '%s\n' "$BOTS" | awk 'NF{printf " --rid %s", $1}')
+# shellcheck disable=SC2086
+"$PY" "$TOOL" calls "$SO" $RID_ARGS --count "$COUNT" --outdir "$OUT/disasm" $NAMES \
+  2>&1 | tee -a "$OUT/08-calls.txt" \
+  || echo "(разбор методов завершился ошибкой — см. $OUT/08-calls.txt)"
+echo "  пояснения по каждому rid: $OUT/disasm/_index.txt"
 
 echo
 echo "################ 09-rvas-в-Dump.cs ################"
@@ -127,8 +141,15 @@ cat <<EOF
       --cache work/global-metadata.dec.dat \\
       --rvas $OUT/method_rvas.json -o analysis/Dump.cs
 
-Дальше по тексту в $OUT/disasm/: у каждого метода видны bl-вызовы. Адреса
-вызовов сверяются с таблицей RVA (обратный поиск по method_rvas.json) — так
-устанавливается, зовёт ли игра библиотечный PhotonNetwork.Destroy или
-ограничивается локальным Object.Destroy.
+Дальше по тексту в $OUT/disasm/: у каждого метода bl-вызовы уже подписаны
+(rid + имя из метаданных), поэтому сразу видно, зовёт ли игра библиотечный
+PhotonNetwork.Destroy или ограничивается локальным Object.Destroy. Цели, которых
+нет в таблице игровой сборки, помечаются как «вне таблицы кода игровой сборки» —
+это библиотечные методы; их rid раскроются, если подобрать OFF для нужной
+сборки по её methodCount из 03-images.txt.
+
+Обратный поиск отдельного адреса:
+
+  $PY tools/il2cpp_so.py who --json $OUT/method_rvas.json --addr 0x... \
+      --metadata apk/global-metadata.dat --cache work/global-metadata.dec.dat
 EOF

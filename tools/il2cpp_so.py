@@ -330,6 +330,83 @@ def cmd_module(a):
     return 0
 
 
+# --- обратный поиск и подписи имён -------------------------------------------
+
+def load_rva_table(so: So | None, path: str, image: str) -> dict[int, int]:
+    """Таблица rid -> vaddr: из готового JSON либо построить из .so."""
+    if path:
+        data = json.loads(Path(path).read_text())
+        return {int(k): v for k, v in data.get("rva", {}).items()}
+    if so is None:
+        raise SystemExit("нужен либо --json <method_rvas.json>, либо путь к .so")
+    mod = pick_module(find_codegen_modules(so, image), image)
+    return read_rvas(so, mod)
+
+
+def loads_from_json(path: str):
+    if not path:
+        return []
+    return [tuple(x) for x in json.loads(Path(path).read_text()).get("loads", [])]
+
+
+def addr_to_off(va: int, loads) -> int | None:
+    for v, o, sz, _f in loads:
+        if v <= va < v + sz:
+            return o + (va - v)
+    return None
+
+
+def build_addr_index(tab: dict[int, int]):
+    """Отсортированный список (vaddr, rid) для поиска «ближайшего снизу»."""
+    idx = sorted((v, r) for r, v in tab.items() if v)
+    return idx
+
+
+def in_exec(va: int, loads) -> bool:
+    """Лежит ли адрес в исполняемом PT_LOAD (флаг 0x1)."""
+    return any(v <= va < v + sz for v, _o, sz, f in loads if f & 1)
+
+
+# Предел правдоподобного размера функции: дальше «ближайший снизу» почти
+# наверняка уже не владелец адреса, и ответ выглядит уверенно, но неверно.
+MAX_FUNC_BYTES = 0x20000
+
+
+def lookup_addr(idx, va: int, loads=None):
+    """(rid, точное совпадение, смещение внутрь функции) либо (None, False, 0).
+
+    Адрес функции в таблице есть, а её конца нет, поэтому «ближайший снизу» --
+    оценка. Она отсекается, если адрес не в исполняемом сегменте или отстоит от
+    найденного начала дальше MAX_FUNC_BYTES.
+    """
+    lo, hi = 0, len(idx) - 1
+    best = None
+    while lo <= hi:
+        mid = (lo + hi) // 2
+        if idx[mid][0] <= va:
+            best = idx[mid]
+            lo = mid + 1
+        else:
+            hi = mid - 1
+    if best is None:
+        return None, False, 0
+    if loads is not None and not in_exec(va, loads):
+        return None, False, 0
+    if va - best[0] > MAX_FUNC_BYTES:
+        return None, False, 0
+    return best[1], best[0] == va, va - best[0]
+
+
+def load_method_names(metadata: str, cache: str) -> dict[int, str]:
+    """rid метода игровой сборки -> имя (из расшифрованных метаданных)."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import il2cpp_tables as T
+    import il2cpp_dump as D
+    m = T.load(metadata, cache)
+    methods = m.methods()[D.GAME_METHOD_BASE]
+    return {r: (m.name(m.u32(rec, T.METH_NAME)) or "?") for r, rec in methods.items()}
+
+
 def cmd_images(a):
     """Перечислить образы (сборки), для которых в .so есть таблица кода.
 
@@ -508,6 +585,98 @@ def cmd_version(a):
     return 0
 
 
+def cmd_who(a):
+    """Обратный поиск: адрес в .so -> rid метода (и имя, если даны метаданные)."""
+    so = So(a.so) if a.so else None
+    tab = load_rva_table(so, a.json, a.image)
+    loads = loads_from_json(a.json) or (so.loads if so else [])
+    idx = build_addr_index(tab)
+    names = load_method_names(a.metadata, a.cache) if a.metadata else {}
+    print("в таблице %d ненулевых указателей%s"
+          % (len(idx), ", имена методов загружены" if names else ""))
+    for spec in a.addr:
+        va = int(spec, 0)
+        rid, exact, delta = lookup_addr(idx, va, loads)
+        if rid is None:
+            print("0x%-10X -> вне кода игровой сборки (не в исполняемом сегменте "
+                  "или далеко от начала ближайшего метода)" % va)
+            continue
+        off = addr_to_off(va, loads)
+        nm = names.get(rid, "")
+        print("0x%-10X -> rid %-6d %s%s%s"
+              % (va, rid, "" if exact else "(ближайший снизу, +%d) " % delta,
+                 nm or "", ("  offset 0x%X" % off) if off is not None else ""))
+    return 0
+
+
+def _calls_listing(so, mod, tab, idx, names, rid, count, label):
+    """Листинг одного метода; ошибки возвращает текстом, а не исключением —
+    иначе пакетный прогон обрывается на первом же rid вне таблицы."""
+    va = tab.get(rid)
+    if not va:
+        return ["// rid %d: указатель нулевой (abstract/pinvoke) или вне таблицы "
+                "(methodCount=%d)" % (rid, mod["method_count"])]
+    out = []
+    out.append("// rid %d  %s" % (rid, label or names.get(rid, "")))
+    out.append("// RVA 0x%X  Offset 0x%X  (methodCount=%d)"
+               % (va, so.vaddr_to_off(va) or -1, mod["method_count"]))
+    ncalls = 0
+    for ins in so.disasm(va, count):
+        note = ""
+        if ins.mnemonic in ("bl", "b", "blr", "blraa", "blrab"):
+            mm = re.match(r"#(0x[0-9a-fA-F]+)", ins.op_str)
+            if mm:
+                target = int(mm.group(1), 16)
+                tgt, exact, delta = lookup_addr(idx, target, so.loads)
+                ncalls += 1
+                if tgt is None:
+                    note = "   ; -> вне кода игровой сборки (библиотечный метод?)"
+                else:
+                    nm = names.get(tgt, "")
+                    note = "   ; -> rid %d %s%s" % (
+                        tgt, nm, "" if exact else " +%d (ближайший снизу)" % delta)
+        out.append("0x%-10X %-10s %-36s%s"
+                   % (ins.address, ins.mnemonic, ins.op_str, note))
+        if ins.mnemonic == "ret":
+            break
+    out.append("// переходов: %d" % ncalls)
+    return out
+
+
+def cmd_calls(a):
+    """Дизассемблер методов с расшифровкой целей bl/b: адрес -> rid + имя.
+
+    Это ровно тот шаг, которого не хватало, чтобы ответить на вопрос §5
+    analysis/bot-destroy-pun.md: зовёт ли игра библиотечный PhotonNetwork.Destroy
+    или ограничивается локальным Object.Destroy. Без подписей bl-цель — просто
+    число, с подписями видно, куда идёт переход.
+
+    --rid можно повторять, а --outdir раскладывает листинги по файлам: имена
+    методов из метаданных тогда грузятся ОДИН раз на весь пакет (одиночный
+    прогон перечитывал расшифрованные метаданные на каждый rid, и 26 методов
+    стоили ~4 минуты).
+    """
+    so = So(a.so)
+    mod = pick_module(find_codegen_modules(so, a.image), a.image)
+    tab = read_rvas(so, mod)
+    idx = build_addr_index(tab)
+    names = load_method_names(a.metadata, a.cache) if a.metadata else {}
+    if names:
+        print("# имена методов загружены из %s (%d записей)" % (a.metadata, len(names)))
+    outdir = Path(a.outdir) if a.outdir else None
+    if outdir:
+        outdir.mkdir(parents=True, exist_ok=True)
+    for rid in a.rid:
+        lines = _calls_listing(so, mod, tab, idx, names, rid, a.count, a.label)
+        if outdir:
+            dst = outdir / ("%d.txt" % rid)
+            dst.write_text("\n".join(lines) + "\n")
+            print("  rid %-6d -> %-28s %s" % (rid, dst, lines[0].lstrip("/ ")))
+        else:
+            print("\n".join(lines))
+    return 0
+
+
 def cmd_disasm(a):
     so = So(a.so)
     mod = pick_module(find_codegen_modules(so, a.image), a.image)
@@ -565,6 +734,27 @@ def main() -> int:
     common(sp, image=False)
     sp.add_argument("--sites", type=int, default=0, help="сколько ADRP-сайтов смотреть (0 = все)")
     sp.set_defaults(fn=cmd_version)
+
+    sp = sub.add_parser("who", help="обратный поиск: адрес -> rid метода")
+    sp.add_argument("so", nargs="?", default="", help="путь к .so (не нужен при --json)")
+    sp.add_argument("--image", default=GAME_IMAGE)
+    sp.add_argument("--json", default="", help="готовая таблица от dump-rvas")
+    sp.add_argument("--addr", action="append", required=True,
+                    help="адрес для поиска (можно несколько раз, 0x.. или десятичный)")
+    sp.add_argument("--metadata", default="", help="global-metadata.dat: подписать rid именами")
+    sp.add_argument("--cache", default="work/global-metadata.dec.dat")
+    sp.set_defaults(fn=cmd_who)
+
+    sp = sub.add_parser("calls", help="дизассемблер метода с расшифровкой целей bl/b")
+    common(sp)
+    sp.add_argument("--rid", type=int, action="append", required=True,
+                    help="rid метода (можно несколько раз)")
+    sp.add_argument("--count", type=int, default=200)
+    sp.add_argument("--label", default="", help="подпись для печати (при одном rid)")
+    sp.add_argument("--outdir", default="", help="раскладывать листинги по файлам <rid>.txt")
+    sp.add_argument("--metadata", default="", help="global-metadata.dat: подписать цели именами")
+    sp.add_argument("--cache", default="work/global-metadata.dec.dat")
+    sp.set_defaults(fn=cmd_calls)
 
     sp = sub.add_parser("disasm", help="дизассемблер метода по rid")
     common(sp); sp.add_argument("--rid", type=int, required=True)
