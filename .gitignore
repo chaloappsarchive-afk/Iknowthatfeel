@@ -1,0 +1,17 @@
+# --- analysis workspace: never commit the binaries -------------------------
+# APKs blow past GitHub's 100 MB hard limit and bloat history forever.
+apk/*.apk
+apk/*.aab
+apk/*.xapk
+work/
+out/
+*.so
+*.dll
+*.dex
+*.dat
+!tools/tests/*.py
+
+# --- python -----------------------------------------------------------------
+.venv/
+__pycache__/
+*.pyc

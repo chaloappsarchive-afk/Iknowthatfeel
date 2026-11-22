@@ -1,0 +1,5 @@
+# pure-python RE stack, all installable from pypi.org (no Java, no .NET runtime)
+dnfile>=0.18.0        # .NET PE + CLI metadata parsing (Mono Unity assemblies)
+androguard>=4.1.4     # APK/AndroidManifest/DEX parsing, smali-level disassembly
+capstone>=5.0         # ARM64/ARM/x86 disassembly for libil2cpp.so
+pyelftools>=0.30      # ELF segments/symbols, vaddr <-> file offset translation
