@@ -1,0 +1,10 @@
+Vendored from https://github.com/unomyths442-lang/Photon-PUN2-Python-save-fork-
+upstream branch: main
+upstream commit: 84cd974970b9b55294900427d5d76e8b9da554ab
+vendored on:     2026-11-22
+license:         MIT (see LICENSE, copyright (c) the upstream authors)
+
+Why here: analysis/bot-destroy-pun.md quotes this code to explain why a bot in
+Chicken Gun 6.5.3 is destroyed locally (BotController.DestroySelf) instead of by
+a Photon DESTROY(204) event. tools/pun_probe.py imports this package at runtime
+(--lib defaults to this directory).

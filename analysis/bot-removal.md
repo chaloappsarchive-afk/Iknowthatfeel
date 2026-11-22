@@ -11,6 +11,9 @@
 Это продолжение [`bot-lifecycle.md`](bot-lifecycle.md): там — как бот **создаётся** и помечается
 (`SetAsBot`, `isBot`, `CheckIsSpawnedBot`). Здесь — как он **исчезает**.
 
+**Почему** он исчезает именно так, а не сетевой командой Photon, разобрано отдельно —
+[`bot-destroy-pun.md`](bot-destroy-pun.md) (протокол PUN2 против метаданных).
+
 ---
 
 ## 0. Коротко
@@ -27,15 +30,20 @@
    у снарядов: `BaseBulletScript`, `Missile`, `MolotovBullet`, `BaseGrenade`, `GroundMine`, `Arrow`,
    `TankFood`, `ChickenCoinTrigger`. Ни у одного бот-класса этих методов нет ⇒ бот уничтожается
    настоящим `Object.Destroy`, а не возвращается в пул.
-6. **Сетевых символов удаления в игровой сборке нет.** Имена `PhotonNetwork` (heap 2038651),
-   `RemoveInstantiatedGO` (2040806), `Despawn`/`DespawnAll`/`DespawnActiveTweens`/`DespawnObjects`
-   (1894805–2121680) в куче присутствуют, но лежат **далеко за пределами области игровых имён**
-   (~470000–650000) — это библиотечные символы Photon PUN и DOTween. В игровой области из
-   «пуловых» имён есть только `OnLifeTimeEnded` (559465), `RecycleAfter` (602145),
-   `RecycleAfterItem` (602028), `RecycleAfterList` (602754) — всё это снаряды/предметы.
-   Единственный игровой символ сетевого уничтожения —
-   `TauntAnimationsEventsHandler.RPC_SecureDestroyPlayer` (rid 6291), и он про игроков-читеров.
-   ⇒ боты — локальные объекты, по сети синхронизируются только RPC (`DieR`).
+6. **Игровая сборка не объявляет собственных методов сетевого удаления.** Имена
+   `PhotonNetwork` (heap 2038651), `RemoveInstantiatedGO` (2040806), `DestroyPlayerObjects`
+   (2040162), `Despawn`/`DespawnAll`/`DespawnActiveTweens`/`DespawnObjects` (1894805–2121680)
+   в куче есть, но лежат **далеко за пределами области игровых имён** (~470000–650000) —
+   это библиотека Photon PUN и DOTween. В игровой области из «пуловых» имён только
+   `OnLifeTimeEnded` (559465), `RecycleAfter` (602145), `RecycleAfterItem` (602028),
+   `RecycleAfterList` (602754) — снаряды/предметы. Единственный игровой символ сетевого
+   уничтожения — `TauntAnimationsEventsHandler.RPC_SecureDestroyPlayer` (rid 6291), про
+   игроков-читеров.
+   **Оговорка:** вызывает ли игра библиотечный `PhotonNetwork.Destroy` из тел методов — по
+   метаданным не определить (тел нет, `libil2cpp.so` отсутствует). Доказуемо только
+   отсутствие собственных объявлений и то, что `BotController.DestroySelf` нуль-параметрический,
+   тогда как сетевое удаление обязано нести viewId. Разбор этого вопроса по протоколу PUN2:
+   [`bot-destroy-pun.md`](bot-destroy-pun.md).
 7. **Спавнеры ничего не удаляют.** У `GeneralZombieSpawnTrigger` и `ESHudItem` весь API —
    `get_SpawnPoints, OnTriggerEnter, SpawnZombies, SpawnMob, OnDrawGizmos`. Поля — только
    `mySpawnedBots` и `MaxBotsCount`. Метода очистки списка нет ⇒ список либо чистится обратным
